@@ -1,66 +1,59 @@
 package com.taurus.financeapi.models;
 
-import javax.persistence.*;
 import java.util.Date;
 
-@Entity
-@Table(name = "card")
 public class Cartao {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long id;
+    private int numCartao;
+    private String nomeTitular;
+    private Date dataValidade;
+    private String cvv;
 
-    @Column(name = "card_number")
-    private int cardNumber;
-    @Column
-    private String name;
-    @Column(name = "expiration_date")
-    private Date expirationDate;
-    @Column
-    private int CVV;
-
-//    @OneToOne(mappedBy = "card")
-//    private Person person;
-
-    public Long getId() {
-        return id;
+    public Cartao(int numCartao, String nomeTitular, Date dataValidade, String cvv) {
+        this.numCartao = numCartao;
+        this.nomeTitular = nomeTitular;
+        this.dataValidade = dataValidade;
+        this.cvv = cvv;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public int getNumCartao() {
+        return numCartao;
     }
 
-    public int getCardNumber() {
-        return cardNumber;
+    public void setNumCartao(int numCartao) {
+        this.numCartao = numCartao;
     }
 
-    public void setCardNumber(int cardNumber) {
-        this.cardNumber = cardNumber;
+    public String getNomeTitular() {
+        return nomeTitular;
     }
 
-    public String getName() {
-        return name;
+    public void setNomeTitular(String nomeTitular) {
+        this.nomeTitular = nomeTitular;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public Date getDataValidade() {
+        return dataValidade;
     }
 
-    public Date getExpirationDate() {
-        return expirationDate;
+    public void setDataValidade(Date dataValidade) {
+        this.dataValidade = dataValidade;
     }
 
-    public void setExpirationDate(Date expirationDate) {
-        this.expirationDate = expirationDate;
+    public String getCvv() {
+        return cvv;
     }
 
-    public int getCVV() {
-        return CVV;
+    public void setCvv(String cvv) {
+        this.cvv = cvv;
     }
 
-    public void setCVV(int CVV) {
-        this.CVV = CVV;
+    @Override
+    public String toString() {
+        return "Cartao{" +
+                "numCartao=" + numCartao +
+                ", nomeTitular='" + nomeTitular + '\'' +
+                ", dataValidade=" + dataValidade +
+                ", cvv='" + cvv + '\'' +
+                '}';
     }
-
 }
