@@ -1,6 +1,7 @@
 import Sequelize from "sequelize";
 
 import sequelize from "../../../config/db/dbConfig.js";
+import moment from 'moment'
 
 const User = sequelize.define(
   "user",
@@ -20,11 +21,17 @@ const User = sequelize.define(
 		},
     birthDate: {
 			type: Sequelize.DATE,
-			allowNull: false
+			allowNull: false,
+			validate: {
+				isDate: true
+			},
 		},
     email: {
 			type: Sequelize.STRING,
-			allowNull: false
+			allowNull: false,
+			validate: {
+				isEmail: true
+			},
 		},
     password: {
 			type: Sequelize.STRING,

@@ -12,9 +12,9 @@ class UserService {
       const { email } = req.params;
       this.validateRequestData(email);
       let user = await UserRepository.findByEmail(email);
-      this.validateUserNotFound(user);
+      this.validateUserNotFound(req, user);
+      req.status = httpStatus.SUCCESS;
       return {
-        status: httpStatus.SUCCESS,
         user: {
           id: user.id,
           name: user.name,
@@ -22,8 +22,9 @@ class UserService {
         },
       }
     } catch (err) {
+      const status = err.status ? err.status : httpStatus.INTERNAL_SERVER_ERROR;
+      req.status = status;
       return {
-        status: err.status ? err.status : httpStatus.INTERNAL_SERVER_ERROR,
         message: err.message,
       };
     }
@@ -38,8 +39,9 @@ class UserService {
     }
   }
 
-  validateUserNotFound(user) {
+  validateUserNotFound(req, user) {
     if (!user) {
+      req.status = httpStatus.BAD_REQUEST;
       throw new UserException(
         httpStatus.BAD_REQUEST, 
         "User was not found."
@@ -52,16 +54,18 @@ class UserService {
       const { email, password } = req.body;
       this.validateAccessTokenData(email, password);
       let user = await UserRepository.findByEmail(email);
-      this.validateUserNotFound(user);
+      this.validateUserNotFound(req, user);
       await this.validatePassword(password, user.password);
       let authUser = { id: user.id, name: user.name, email: user.email };
-      const accessToken = jwt.sign({ authUser }, secrets.apiSecret, {expiresIn: '1d'})
+      const accessToken = jwt.sign({ authUser }, secrets.API_SECRET, {expiresIn: '1d'})
+      req.status = httpStatus.SUCCESS;
       return {
         accessToken
       };
     } catch (err) {
+      const status = err.status ? err.status : httpStatus.INTERNAL_SERVER_ERROR;
+      req.status = status;
       return {
-        status: err.status ? err.status : httpStatus.INTERNAL_SERVER_ERROR,
         message: err.message,
       };
     }

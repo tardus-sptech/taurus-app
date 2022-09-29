@@ -1,8 +1,8 @@
 import Sequelize from "sequelize";
 
-const sequelize = new Sequelize("auth-db", "admin", "root", {
+const sequelize = new Sequelize("db", "user", "password", {
   host: "localhost",
-  dialect: "postgres",
+  dialect: "mysql",
   quoteIdentifiers: false,
   define: {
     syncOnAssociation: true,

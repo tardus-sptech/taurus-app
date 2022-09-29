@@ -8,4 +8,4 @@ class AuthException extends Error {
   }
 }
 
-export default AuthException;
+export default AuthException; 
