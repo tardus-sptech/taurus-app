@@ -17,7 +17,8 @@
     "mssql": "^9.0.1",
     "mysql2": "^2.3.3",
     "pg": "^8.8.0",
-    "sequelize": "^6.23.2"
+    "sequelize": "^6.23.2",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"

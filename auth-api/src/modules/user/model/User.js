@@ -7,9 +7,9 @@ const User = sequelize.define(
   "user",
   {
     id: {
-			type: Sequelize.INTEGER,
+			type: Sequelize.UUID,
+			defaultValue: Sequelize.UUIDV4,
 			primaryKey: true,
-			autoIncrement: true
 		},
     name: {
 			type: Sequelize.STRING,
