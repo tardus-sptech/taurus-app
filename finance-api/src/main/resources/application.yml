@@ -1,13 +1,32 @@
+server:
+  port: ${PORT:8081}
+
 spring:
+  application:
+    name: product-api
+
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/taurus?useTimezone=true&serverTimezone=UTC
-    username: root
-    password: 2556
+    url: jdbc:mysql://localhost:3306/db?useTimezone=true&serverTimezone=UTC
+    username: user
+    password: password
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
     show-sql: false
+
+
+## PROD
+#  datasource:
+#    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+#    url: jdbc:sqlserver://svr-taurus.database.windows.net:1433;database=taurus-bd;user=admin-taurus@svr-taurus;password=#Gfgrupo4;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
+#  jpa:
+#    hibernate:
+#      ddl-auto: create-drop
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.SQLServerDialect
+#    show-sql: true
