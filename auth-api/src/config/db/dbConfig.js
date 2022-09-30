@@ -1,8 +1,8 @@
 import Sequelize from "sequelize";
 
-const sequelize = new Sequelize("db", "user", "password", {
-  host: "localhost",
-  dialect: "mysql",
+const sequelize = new Sequelize("taurus-bd", "admin-taurus", "#Gfgrupo4", {
+  host: "svr-taurus.database.windows.net",
+  dialect: "mssql",
   quoteIdentifiers: false,
   define: {
     syncOnAssociation: true,

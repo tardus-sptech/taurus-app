@@ -17,28 +17,36 @@ const User = sequelize.define(
 		},
     cpf: {
 			type: Sequelize.STRING,
-			allowNull: false
+			allowNull: false,
+			unique: true
 		},
     birthDate: {
 			type: Sequelize.DATE,
-			allowNull: false,
-			validate: {
-				isDate: true
-			},
+			allowNull: true,
 		},
     email: {
 			type: Sequelize.STRING,
 			allowNull: false,
+			unique: true,
 			validate: {
 				isEmail: true
 			},
 		},
     password: {
 			type: Sequelize.STRING,
-			allowNull: false
+			allowNull: false,
 		},
   },
-  {}
+  {
+		hooks: {
+			afterCreate: (record) => {
+				delete record.dataValues.password;
+		},
+			afterUpdate: (record) => {
+				delete record.dataValues.password;
+		},
+		}
+	}
 );
 
 export default User;

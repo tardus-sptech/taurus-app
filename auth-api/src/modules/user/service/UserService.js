@@ -7,12 +7,45 @@ import jwt from 'jsonwebtoken';
 import * as secrets from "../../../config/constants/secrets.js"
 
 class UserService {
+
+  async store(req) {
+    try {
+      let user = await UserRepository.store(req)  
+      req.status = httpStatus.SUCCESS;
+      this.validateUserAlreadyExists(user);
+      return {
+        user: {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+        },
+      }
+    } catch(err) {
+      const status = err.status ? err.status : httpStatus.INTERNAL_SERVER_ERROR;
+      req.status = status;
+      return {
+        message: err.message,
+      };
+    }
+  }
+
+  validateUserAlreadyExists(user) {
+    if (!user) {
+      throw new UserException(
+        httpStatus.BAD_REQUEST, 
+        "User already exists."
+      );
+    }
+  }
+
   async findByEmail(req) {
     try {
       const { email } = req.params;
+      const { authUser } = req;
       this.validateRequestData(email);
       let user = await UserRepository.findByEmail(email);
       this.validateUserNotFound(req, user);
+      this.validateAuthenticatedUser(user, authUser);
       req.status = httpStatus.SUCCESS;
       return {
         user: {
@@ -45,6 +78,15 @@ class UserService {
       throw new UserException(
         httpStatus.BAD_REQUEST, 
         "User was not found."
+      );
+    }
+  }
+
+  validateAuthenticatedUser(user, authUser) {
+    if (!authUser || user.id !== authUser.id) {
+      throw new UserException(
+        httpStatus.FORBIDDEN,
+        'You cannot see this user data.'
       );
     }
   }
