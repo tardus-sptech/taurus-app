@@ -9,7 +9,7 @@ const sequelize = new Sequelize("taurus-bd", "admin-taurus", "#Gfgrupo4", {
     timestamps: false,
     underscored: true,
     underscoredAll: true,
-    freezeTabName: true,
+    freezeTableName: true,
   },
 });
 
