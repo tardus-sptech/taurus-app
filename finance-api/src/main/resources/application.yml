@@ -6,17 +6,27 @@ spring:
     name: product-api
 
   datasource:
-    driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5433/finance-db?useTimezone=true&serverTimezone=UTC
-    username: admin
-    password: root
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/financedb
+    username: aluno
+    password: sptech
   jpa:
-    hibernate:
-      ddl-auto: create-drop
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate.ddl-auto: update
+    generate-ddl: true
     show-sql: true
+
+#  datasource:
+#    driver-class-name: org.postgresql.Driver
+#    url: jdbc:postgresql://localhost:5433/finance-db?useTimezone=true&serverTimezone=UTC
+#    username: admin
+#    password: root
+#  jpa:
+#    hibernate:
+#      ddl-auto: create-drop
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.PostgreSQLDialect
+#    show-sql: true
 
 ## PROD
 #  datasource:
@@ -29,3 +39,6 @@ spring:
 #      hibernate:
 #        dialect: org.hibernate.dialect.SQLServerDialect
 #    show-sql: true
+
+file:
+  upload-dir: /Code/UploadDir

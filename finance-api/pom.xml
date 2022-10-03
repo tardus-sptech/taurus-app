@@ -14,7 +14,7 @@
     <name>finance-api</name>
     <description>finance-api</description>
     <properties>
-        <java.version>18</java.version>
+        <java.version>11</java.version>
     </properties>
     <dependencies>
         <dependency>
@@ -46,6 +46,14 @@
             <version>1.18.24</version>
             <scope>provided</scope>
         </dependency>
+
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.30</version>
+        </dependency>
+
     </dependencies>
 
     <build>

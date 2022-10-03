@@ -19,7 +19,7 @@ public class CategoryService {
     public Category findById(Integer id) {
         return categoryRepository
                 .findById(id)
-                .orElseThrow(() -> new ValidationException("There's no supplier for the given ID."));
+                .orElseThrow(() -> new ValidationException("There's no category for the given ID."));
     }
 
     public CategoryResponse save(CategoryRequest request) {
