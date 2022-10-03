@@ -7,7 +7,7 @@ spring:
 
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/finance-db?useTimezone=true&serverTimezone=UTC
+    url: jdbc:postgresql://localhost:5433/finance-db?useTimezone=true&serverTimezone=UTC
     username: admin
     password: root
   jpa:
