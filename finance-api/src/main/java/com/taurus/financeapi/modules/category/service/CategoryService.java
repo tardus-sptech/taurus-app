@@ -16,13 +16,19 @@ public class CategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    public Category findById(Integer id) {
+        return categoryRepository
+                .findById(id)
+                .orElseThrow(() -> new ValidationException("There's no supplier for the given ID."));
+    }
+
     public CategoryResponse save(CategoryRequest request) {
-        validateCategoryNameInformed(request);
+        validateCategoryDescriptionInformed(request);
         var category = categoryRepository.save(Category.of(request));
         return CategoryResponse.of(category);
     }
 
-    private void validateCategoryNameInformed(CategoryRequest request) {
+    private void validateCategoryDescriptionInformed(CategoryRequest request) {
         if (isEmpty(request.getDescription())) {
             throw new ValidationException("The category description was not informed.");
         }

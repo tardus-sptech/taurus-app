@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/kitties")
+@RequestMapping("/api/kitties")
 public class KittyController {
 
     @Autowired
@@ -30,13 +30,13 @@ public class KittyController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Kitty> getById(
-            @PathVariable long id) {
+            @PathVariable Integer id) {
         return ResponseEntity.of(kittyRepository.findById(id));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> remove(
-            @PathVariable Long id) {
+            @PathVariable Integer id) {
 
         if (kittyRepository.existsById(id)) {
             kittyRepository.deleteById(id);
@@ -47,7 +47,7 @@ public class KittyController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Kitty> update(
-            @PathVariable Long id, @RequestBody Kitty kitty) {
+            @PathVariable Integer id, @RequestBody Kitty kitty) {
         if (kittyRepository.existsById(id)) {
             kitty.setId(id);
             kittyRepository.save(kitty);
