@@ -1,7 +1,7 @@
-package Taurus.CRUD.Kitty.Controller;
+package com.taurus.financeapi.modules.kitty.controller;
 
-import Taurus.CRUD.Kitty.Domain.Kitty;
-import Taurus.CRUD.Kitty.Repository.KittyRepository;
+import com.taurus.financeapi.modules.kitty.model.Kitty;
+import com.taurus.financeapi.modules.kitty.repository.KittyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,23 +9,22 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/kitty")
+@RequestMapping("/kitties")
 public class KittyController {
 
     @Autowired
     KittyRepository kittyRepository;
 
-
     @PostMapping
-    public Kitty create(@RequestBody Kitty kitty){
+    public Kitty create(@RequestBody Kitty kitty) {
         return kittyRepository.save(kitty);
     }
 
     @GetMapping
-    public ResponseEntity<List<Kitty>> findAll(){
+    public ResponseEntity<List<Kitty>> findAll() {
         List<Kitty> lista = kittyRepository.findAll();
         return lista.isEmpty()
-          ? ResponseEntity.status(204).build()
+                ? ResponseEntity.status(204).build()
                 : ResponseEntity.status(200).body(lista);
     }
 
@@ -41,7 +40,6 @@ public class KittyController {
 
         if (kittyRepository.existsById(id)) {
             kittyRepository.deleteById(id);
-
             return ResponseEntity.status(200).build();
         }
         return ResponseEntity.status(404).build();

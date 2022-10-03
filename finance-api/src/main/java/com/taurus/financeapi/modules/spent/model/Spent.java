@@ -22,7 +22,6 @@ public class Spent {
 
     @Column(name = "value", nullable = false)
     private Double value;
-
     @ManyToOne
     @JoinColumn(name = "fk_category", nullable = false)
     private Category category;

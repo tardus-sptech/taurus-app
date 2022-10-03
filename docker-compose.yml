@@ -4,8 +4,6 @@ services:
     image: postgres:11
     container_name: auth-db
     restart: always
-    networks:
-      - sales-network
     environment:
       - POSTGRES_DB=auth-db
       - POSTGRES_USER=admin
@@ -13,17 +11,13 @@ services:
     ports:
       - 5432:5432
 
-  product-db:
+  finance-db:
     image: postgres:11
-    container_name: product-db
+    container_name: finance-db
     restart: always
-    networks:
-      - sales-network
     environment:
-      - POSTGRES_DB=product-db
+      - POSTGRES_DB=finance-db
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=root
     ports:
       - 5433:5432
-networks:
-  - sales-network

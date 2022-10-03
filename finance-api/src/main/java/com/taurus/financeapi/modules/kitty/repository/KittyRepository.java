@@ -1,6 +1,6 @@
-package Taurus.CRUD.Kitty.Repository;
+package com.taurus.financeapi.modules.kitty.repository;
 
-import Taurus.CRUD.Kitty.Domain.Kitty;
+import com.taurus.financeapi.modules.kitty.model.Kitty;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface KittyRepository extends JpaRepository<Kitty, Long> {
