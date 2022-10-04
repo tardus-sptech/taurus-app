@@ -37,4 +37,3 @@ O fluxo está descrito abaixo:
 
 * 01 - O início do fluxo será fazendo uma requisição ao endpoint de criação de usuário.
 * 02 - O payload (JSON) de entrada será o informando os dados necessários para o cadastro do usuário.
-...
