@@ -3,7 +3,10 @@ package com.taurus.financeapi.modules.kitty.model;
 import com.taurus.financeapi.modules.category.dto.CategoryRequest;
 import com.taurus.financeapi.modules.category.model.Category;
 import com.taurus.financeapi.modules.kitty.dto.KittyRequest;
+import com.taurus.financeapi.modules.spent.dto.SpentRequest;
+import com.taurus.financeapi.modules.spent.model.Spent;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.BeanUtils;
@@ -12,6 +15,7 @@ import javax.persistence.*;
 
 @Data
 @Entity
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "kitty")
@@ -20,15 +24,30 @@ public class Kitty {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(nullable = false)
     private String name;
 
+    @Column(nullable = false)
     private String description;
 
+    @Column(nullable = false)
     private Float goal;
 
-    public static Kitty of(KittyRequest request) {
-        var kitty = new Kitty();
-        BeanUtils.copyProperties(request, kitty);
-        return kitty;
+    @ManyToOne
+    @JoinColumn(name = "fk_category", nullable = false)
+    private Category category;
+
+    @Column(nullable = false)
+    private Integer quantityAvailable;
+
+    public static Kitty of(KittyRequest request,
+                           Category category) {
+        return Kitty
+                .builder()
+                .name(request.getName())
+                .description(request.getDescription())
+                .category(category)
+                .quantityAvailable(request.getQuantityAvailable())
+                .build();
     }
 }

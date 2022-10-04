@@ -1,8 +1,17 @@
 package com.taurus.financeapi.modules.kitty.controller;
 
+import com.taurus.financeapi.config.SuccessResponse;
+import com.taurus.financeapi.modules.category.dto.CategoryResponse;
+import com.taurus.financeapi.modules.kitty.dto.KittyRequest;
+import com.taurus.financeapi.modules.kitty.dto.KittyResponse;
 import com.taurus.financeapi.modules.kitty.model.Kitty;
 import com.taurus.financeapi.modules.kitty.repository.KittyRepository;
+import com.taurus.financeapi.modules.kitty.service.KittyService;
+import com.taurus.financeapi.modules.spent.dto.SpentRequest;
+import com.taurus.financeapi.modules.spent.dto.SpentResponse;
+import com.taurus.financeapi.modules.spent.model.Spent;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,46 +22,80 @@ import java.util.List;
 public class KittyController {
 
     @Autowired
+    private KittyService kittyService;
+
+    @Autowired
     KittyRepository kittyRepository;
 
-    @PostMapping
-    public Kitty create(@RequestBody Kitty kitty) {
-        return kittyRepository.save(kitty);
-    }
+//    @PostMapping
+//    public Kitty create(@RequestBody Kitty kitty) {
+//        return kittyRepository.save(kitty);
+//    }
 
+
+//    @GetMapping("/{id}")
+//    public ResponseEntity<Kitty> getById(
+//            @PathVariable Integer id) {
+//        return ResponseEntity.of(kittyRepository.findById(id));
+//    }
+
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<Void> remove(
+//            @PathVariable Integer id) {
+//
+//        if (kittyRepository.existsById(id)) {
+//            kittyRepository.deleteById(id);
+//            return ResponseEntity.status(200).build();
+//        }
+//        return ResponseEntity.status(404).build();
+//    }
+
+//    @PutMapping("/{id}")
+//    public ResponseEntity<Kitty> update(
+//            @PathVariable Integer id, @RequestBody Kitty kitty) {
+//        if (kittyRepository.existsById(id)) {
+//            kitty.setId(id);
+//            kittyRepository.save(kitty);
+//            return ResponseEntity.status(200).body(kitty);
+//        }
+//        return ResponseEntity.status(404).build();
+//    }
     @GetMapping
-    public ResponseEntity<List<Kitty>> findAll() {
-        List<Kitty> lista = kittyRepository.findAll();
-        return lista.isEmpty()
-                ? ResponseEntity.status(204).build()
-                : ResponseEntity.status(200).body(lista);
+    public List<KittyResponse> findAll() {
+        return kittyService.findAll();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Kitty> getById(
-            @PathVariable Integer id) {
-        return ResponseEntity.of(kittyRepository.findById(id));
+    @PostMapping
+    public KittyResponse save(@RequestBody KittyRequest request) {
+        return kittyService.save(request);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> remove(
-            @PathVariable Integer id) {
-
-        if (kittyRepository.existsById(id)) {
-            kittyRepository.deleteById(id);
-            return ResponseEntity.status(200).build();
-        }
-        return ResponseEntity.status(404).build();
+    @GetMapping("{id}")
+    public KittyResponse findById(@PathVariable Integer id) {
+        return kittyService.findByIdResponse(id);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Kitty> update(
-            @PathVariable Integer id, @RequestBody Kitty kitty) {
-        if (kittyRepository.existsById(id)) {
-            kitty.setId(id);
-            kittyRepository.save(kitty);
-            return ResponseEntity.status(200).body(kitty);
-        }
-        return ResponseEntity.status(404).build();
+    @GetMapping("/name/{name}")
+    public List<KittyResponse> findByName(@PathVariable String name) {
+        return kittyService.findByName(name);
+    }
+
+    @GetMapping("/category/{categoryId}")
+    public List<KittyResponse> findByCategoryId(@PathVariable Integer categoryId) {
+        return kittyService.findByCategoryId(categoryId);
+    }
+
+    @PutMapping("{id}")
+    public KittyResponse update(@RequestBody KittyRequest request,
+                                @PathVariable Integer id) {
+        return kittyService.update(request, id);
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<Kitty> delete(Kitty kitty,
+                                        @PathVariable Integer id) {
+        var user = findById(id);
+        kittyService.delete(user);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 }

@@ -13,6 +13,6 @@ public class FileStorageConfig {
     }
 
     public void setUploadDir(String uploadDir) {
-        this.uploadDir = "C:\\Users\\Aluno\\Desktop\\Arquivos Temporários\\taurus-app\\files";
+        this.uploadDir = uploadDir;
     }
 }
