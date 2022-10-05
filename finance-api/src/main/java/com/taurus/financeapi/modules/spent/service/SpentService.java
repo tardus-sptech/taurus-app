@@ -33,8 +33,8 @@ public class SpentService {
     private CategoryService categoryService;
 
     public SpentResponse save(SpentRequest request) {
-        validateSpentDataInformed(request);
-        validateCategoryIdInformed(request);
+//        validateSpentDataInformed(request);
+//        validateCategoryIdInformed(request);
         var category = categoryService.findById(request.getCategoryId());
         var spent = spentRepository.save(Spent.of(request, category));
         return SpentResponse.of(spent);

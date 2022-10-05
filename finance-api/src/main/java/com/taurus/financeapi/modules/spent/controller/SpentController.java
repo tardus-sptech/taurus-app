@@ -1,10 +1,5 @@
 package com.taurus.financeapi.modules.spent.controller;
 
-import com.taurus.financeapi.config.SuccessResponse;
-import com.taurus.financeapi.modules.category.dto.CategoryRequest;
-import com.taurus.financeapi.modules.category.dto.CategoryResponse;
-import com.taurus.financeapi.modules.category.service.CategoryService;
-import com.taurus.financeapi.modules.kitty.dto.KittyResponse;
 import com.taurus.financeapi.modules.spent.dto.SpentRequest;
 import com.taurus.financeapi.modules.spent.dto.SpentResponse;
 import com.taurus.financeapi.modules.spent.model.Spent;
@@ -14,7 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -25,7 +22,7 @@ public class SpentController {
     private SpentService spentService;
 
     @PostMapping
-    public SpentResponse save(@RequestBody SpentRequest request) {
+    public SpentResponse save(@Valid @RequestBody SpentRequest request) {
         return spentService.save(request);
     }
 

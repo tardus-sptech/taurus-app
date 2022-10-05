@@ -2,4 +2,4 @@ const env = process.env;
 
 export const API_SECRET = env.API_SECRET 
 ? env.API_SECRET 
-: "dGF1cnVzLWF1dGgtYXBpLWRldg==";
+: "YXV0aC1hcGktc2VjcmV0LWRldi10YXVydXM=";

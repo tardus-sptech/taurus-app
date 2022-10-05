@@ -80,8 +80,8 @@ public class KittyService {
         return KittyResponse.of(kitty);
     }
 
-    public void delete(KittyResponse kitty) {
-        kittyRepository.deleteById(kitty.getId());
+    public void delete(Integer id) {
+        kittyRepository.deleteById(id);
     }
 
     private void validateKittyDescriptionInformed(KittyRequest request) {

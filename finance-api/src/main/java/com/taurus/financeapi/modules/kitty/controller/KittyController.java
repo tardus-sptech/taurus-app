@@ -13,6 +13,7 @@ import com.taurus.financeapi.modules.spent.model.Spent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -91,11 +92,10 @@ public class KittyController {
         return kittyService.update(request, id);
     }
 
+    @Transactional
     @DeleteMapping("{id}")
-    public ResponseEntity<Kitty> delete(Kitty kitty,
-                                        @PathVariable Integer id) {
-        var user = findById(id);
-        kittyService.delete(user);
+    public ResponseEntity<Kitty> delete(@PathVariable Integer id) {
+        kittyService.delete(id);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 }

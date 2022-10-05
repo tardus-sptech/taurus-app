@@ -41,6 +41,9 @@ spring:
 #      hibernate:
 #        dialect: org.hibernate.dialect.SQLServerDialect
 #    show-sql: true
+app-config:
+  secrets:
+    api-secret: ${API_SECRET:YXV0aC1hcGktc2VjcmV0LWRldi10YXVydXM=}
 
 file:
-  upload-dir: /Code/UploadDir
+  upload-dir: . /Code/UploadDir

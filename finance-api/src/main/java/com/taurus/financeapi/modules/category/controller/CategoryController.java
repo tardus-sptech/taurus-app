@@ -4,7 +4,6 @@ import com.taurus.financeapi.modules.category.dto.CategoryRequest;
 import com.taurus.financeapi.modules.category.dto.CategoryResponse;
 import com.taurus.financeapi.modules.category.model.Category;
 import com.taurus.financeapi.modules.category.service.CategoryService;
-import com.taurus.financeapi.modules.spent.model.Spent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
