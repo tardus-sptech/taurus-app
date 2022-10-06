@@ -48,11 +48,9 @@ class UserService {
       this.validateAuthenticatedUser(user, authUser);
       req.status = httpStatus.SUCCESS;
       return {
-        user: {
           id: user.id,
           name: user.name,
           email: user.email,
-        },
       }
     } catch (err) {
       const status = err.status ? err.status : httpStatus.INTERNAL_SERVER_ERROR;

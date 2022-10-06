@@ -1,5 +1,6 @@
 package com.taurus.financeapi.modules.spent.controller;
 
+import com.taurus.financeapi.modules.spent.dto.SpentFinanceResponse;
 import com.taurus.financeapi.modules.spent.dto.SpentRequest;
 import com.taurus.financeapi.modules.spent.dto.SpentResponse;
 import com.taurus.financeapi.modules.spent.model.Spent;
@@ -57,6 +58,11 @@ public class SpentController {
     public ResponseEntity<Spent> delete(@PathVariable Integer id) {
         spentService.delete(id);
         return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @GetMapping("{spentId}/finances")
+    public SpentFinanceResponse findSpentByFinance(@PathVariable Integer id) {
+        return null;
     }
 
 }

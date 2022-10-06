@@ -10,27 +10,31 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class SpentResponse {
+@NoArgsConstructor
+public class SpentFinanceResponse {
     private Integer id;
     private String name;
     private Double value;
     private CategoryResponse category;
+    private List<String> finances;
     @JsonProperty("created_at")
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private LocalDateTime createdAt;
 
-    public static SpentResponse of(Spent spent) {
-        return SpentResponse
+    public static SpentFinanceResponse of(Spent spent,
+                                          List<String> finances) {
+        return SpentFinanceResponse
                 .builder()
                 .id(spent.getId())
                 .name(spent.getName())
                 .value(spent.getValue())
                 .category(CategoryResponse.of(spent.getCategory()))
+                .finances(finances)
                 .createdAt(spent.getCreatedAt())
                 .build();
     }

@@ -48,4 +48,8 @@ public class Spent {
                 .category(category)
                 .build();
     }
+
+    public void updateValue(Double newValue) {
+        value = value + newValue;
+    }
 }

@@ -8,7 +8,7 @@ const router = new Router();
 router.post('/api/user/auth', UserController.getAccessToken);
 router.post('/api/user', UserController.store);
 
-router.use(checkToken);
 router.get('/api/user/email/:email', UserController.findByEmail);
+router.use(checkToken);
 
 export default router;
