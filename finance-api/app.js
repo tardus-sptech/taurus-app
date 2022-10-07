@@ -3,6 +3,7 @@ import { createInitialData } from './src/config/db/initialData.js';
 import { connect } from './src/config/db/mongoDbConfig.js';
 import checkToken from './src/config/auth/checkToken.js';
 import { connectRabbitMq } from './src/config/rabbitmq/rabbitConfig.js';
+import spentRoutes from './src/modules/finance/routes/SpentRoutes.js';
 
 const app = express();
 const env = process.env;
@@ -12,7 +13,10 @@ connect();
 createInitialData();
 connectRabbitMq();
 
-// app.use(checkToken);
+app.use(express.json());
+app.use(checkToken);
+app.use(spentRoutes);
+
 
 app.get('/api/status', async (req, res) => {
     return res.status(200).json({
