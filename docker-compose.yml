@@ -11,16 +11,28 @@ services:
     ports:
       - 5432:5432
 
-  finance-db:
+  finance-data-db:
     image: postgres:11
-    container_name: finance-db
+    container_name: finance-data-db
     restart: always
     environment:
-      - POSTGRES_DB=finance-db
+      - POSTGRES_DB=finance-data-db
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=root
     ports:
       - 5433:5432
+      
+  finance-db:
+    image: mongo:latest
+    container_name: finance-db
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=root
+    ports:
+      - 27017:27017
+      - 28017:28017
+
       
   finance_rabbit:
     image: rabbitmq:3-management

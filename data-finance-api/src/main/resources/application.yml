@@ -1,0 +1,76 @@
+server:
+  port: ${PORT:8081}
+
+spring:
+
+  main:
+    allow-bean-definition-overriding: true
+
+  application:
+    name: product-api
+
+# WITHOUT-DOCKER
+#  datasource:
+#    driverClassName: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/financedb
+#    username: aluno
+#    password: sptech
+#  jpa:
+#    hibernate.ddl-auto: update
+#    generate-ddl: true
+#    show-sql: true
+
+#  WITH-DOCKER
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5433/finance-data-db?useTimezone=true&serverTimezone=UTC
+    username: admin
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+
+## PROD
+#  datasource:
+#    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+#    url: jdbc:sqlserver://svr-taurus.database.windows.net:1433;database=taurus-bd;user=admin-taurus@svr-taurus;password=#Gfgrupo4;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
+#  jpa:
+#    hibernate:
+#      ddl-auto: create-drop
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.SQLServerDialect
+#    show-sql: true
+
+  rabbitmq:
+    host: ${RABBIT_MQ_HOST:localhost}
+    port: ${RABBIT_MQ_PORT:5672}
+    username: ${RABBIT_MQ_USER:guest}
+    password: ${RABBIT_MQ_PASSWORD:guest}
+
+app-config:
+
+  services:
+    spenties: ${FINANCE_CONTROL_HOST:localhost}:${FINANCE_CONTROL_PORT:8082}
+
+  secrets:
+    api-secret: ${API_SECRET:YXV0aC1hcGktc2VjcmV0LWRldi10YXVydXM=}
+
+  rabbit:
+    exchange:
+      spent: spent.topic
+
+    routingKey:
+      spent-value: spent-value-update.routingKey
+      spent-confirmation: spent-confirmation.routingKey
+
+    queue:
+      spent-value: spent-value-update.queue
+      spent-confirmation: spent-confirmation.queue
+
+file:
+  upload-dir: . /Code/UploadDir
