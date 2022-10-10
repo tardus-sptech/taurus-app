@@ -14,7 +14,7 @@ createInitialData();
 connectRabbitMq();
 
 app.use(express.json());
-app.use(checkToken);
+app.use(checkToken); 
 app.use(spentRoutes);
 
 

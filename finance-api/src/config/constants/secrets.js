@@ -9,5 +9,5 @@ export const MONGO_DB_URL = env.MONGO_DB_URL
 : "mongodb://admin:root@localhost:27017";
 
 export const RABBIT_MQ_URL = env.RABBIT_MQ_URL 
-? env.MONGO_DB_URL 
+? env.RABBIT_MQ_URL 
 : "amqp://localhost:5672";

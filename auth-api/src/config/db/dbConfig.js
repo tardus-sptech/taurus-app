@@ -1,8 +1,9 @@
 import Sequelize from "sequelize";
+import { DB_HOST, DB_NAME, DB_PASSWORD, DB_USER } from "../constants/secrets.js";
 
-const sequelize = new Sequelize("taurus-bd", "admin-taurus", "#Gfgrupo4", {
-  host: "svr-taurus.database.windows.net",
-  dialect: "mssql",
+const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
+  host: DB_HOST,
+  dialect: "postgres",
   quoteIdentifiers: false,
   define: {
     syncOnAssociation: true,

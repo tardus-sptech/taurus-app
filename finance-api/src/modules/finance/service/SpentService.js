@@ -36,7 +36,7 @@ class SpentService {
         };
       }
 
-    async findById(req) {
+      async findById(req) {
         try {
             const { id } = req.params;
             this.validateInformedId(id);
@@ -57,15 +57,63 @@ class SpentService {
         }
     }
 
+    async findBySpentId(req) {
+        try {
+            const { spentId } = req.params;
+            this.validateInformedSpentId(spentId);
+            const spenties = await SpentRepository.findBySpentId(spentId);
+            if (!spenties) {
+                throw new SpentException(BAD_REQUEST, "The spenties was not found.")
+            }
+            req.status = SUCCESS;
+            return {
+                financesId: spenties.map((spent) => {
+                    return spent.id
+                })
+            };
+        } catch (err) {
+            const status = err.status ? err.status : httpStatus.INTERNAL_SERVER_ERROR;
+            req.status = BAD_REQUEST;
+            return {
+              message: err.message,
+            };
+        }
+    }
+
+    async findAll(req) {
+        try {
+            const spenties = await SpentRepository.findAll();
+            if (!spenties) {
+                throw new SpentException(BAD_REQUEST, "No spenties were found.")
+            }
+            req.status = SUCCESS;
+            return {
+                spenties
+            };
+        } catch (err) {
+            const status = err.status ? err.status : httpStatus.INTERNAL_SERVER_ERROR;
+            req.status = BAD_REQUEST;
+            return {
+              message: err.message,
+            };
+        }
+    }
+
     validateInformedId(id) {
         if (!id) {
+            throw new SpentException(BAD_REQUEST, 'The finance ID must be informed.')
+        }
+    }
+
+    validateInformedSpentId(spentId) {
+        if (!spentId) {
             throw new SpentException(BAD_REQUEST, 'The spent ID must be informed.')
         }
     }
 
     sendMessage(createdSpent) {
         const message = {
-            spentiesId: createdSpent.id,
+            financesId: createdSpent.id,
             spenties: createdSpent.spenties
         };
         sendMessageToSpentValueUpdateQueue(message);
@@ -73,7 +121,7 @@ class SpentService {
     async updateSpent(spentMessage) {
         try {
             const spent = JSON.parse(spentMessage);
-            if (!spent.spentId && !spent.status) {
+            if (spent.spentiesId && spent.status) {
                 let existingSpent = await SpentRepository.findById(spent.spentiesId);
                 if (existingSpent && spent.status !== existingSpent.status) {
                     existingSpent.status = spent.status;

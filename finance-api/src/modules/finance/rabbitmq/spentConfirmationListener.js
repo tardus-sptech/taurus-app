@@ -3,12 +3,11 @@ import { RABBIT_MQ_URL } from '../../../config/constants/secrets.js';
 import SpentService from '../service/SpentService.js';
 
 import {
-    SPENT_TOPIC,
-    SPENT_VALUE_UPDATE_QUEUE,
-    SPENT_VALUE_UPDATE_ROUTING_KEY,
     SPENT_CONFIRMATION_QUEUE,
-    SPENT_CONFIRMATION_ROUTING_KEY
-} from '../../../config/rabbitmq/queue.js'
+    SPENT_CONFIRMATION_ROUTING_KEY, SPENT_TOPIC,
+    SPENT_VALUE_UPDATE_QUEUE,
+    SPENT_VALUE_UPDATE_ROUTING_KEY
+} from '../../../config/rabbitmq/queue.js';
 
 export function listenToFinanceConfirmationQueue() {
     amqp.connect(RABBIT_MQ_URL, (error, connection) => {
@@ -25,7 +24,7 @@ export function listenToFinanceConfirmationQueue() {
                 SpentService.updateSpent(message.content.toString());
             },
             {
-                noAck: true,
+                noAck: true, 
             }
             )
         })

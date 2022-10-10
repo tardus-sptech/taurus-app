@@ -17,9 +17,17 @@ class SpentRepository {
             return null;
         }
     }
-    async find() {
+    async findAll() {
         try {
             return await Spent.find();
+        } catch (error) {
+            console.error(error.message);
+            return null;
+        }
+    }
+    async findBySpentId() {
+        try {
+            return await Spent.find({ "spenties.spentId": Number(spentId) });
         } catch (error) {
             console.error(error.message);
             return null;

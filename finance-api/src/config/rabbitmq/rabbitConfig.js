@@ -12,23 +12,13 @@ import {
 import { RABBIT_MQ_URL } from '../constants/secrets.js'
 
 const TWO_SECONDS = 2000;
-const HALF_MINUTE = 30000;
-const CONTAINER_ENV = "container";
 
 export async function connectRabbitMq() {
-    const env = process.env.NODE_ENV;   
-    console.info("Waiting for RabbitMQ start...")
-    if (CONTAINER_ENV === env) {
-        setInterval(() => {
-            connectRabbitMqAndCreateQueues();
-        }, HALF_MINUTE);
-    } else {
-        connectRabbitMqAndCreateQueues();
-    }
+    await connectRabbitMqAndCreateQueues();
 }
 
-function connectRabbitMqAndCreateQueues() {
-    amqp.connect(RABBIT_MQ_URL, (error, connection) => {
+async function connectRabbitMqAndCreateQueues() {
+    amqp.connect(RABBIT_MQ_URL, { timeout: 180000 }, (error, connection) => {
         if (error) {
             throw error;
         }

@@ -1,5 +1,19 @@
 version: '3'
 services:
+
+  finance-db:
+    image: mongo:latest
+    container_name: finance-db
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=root
+    networks:
+      - finance-network
+    ports:
+      - 27017:27017
+      - 28017:28017
+
   auth-db:
     image: postgres:11
     container_name: auth-db
@@ -11,33 +25,12 @@ services:
     ports:
       - 5432:5432
 
-  finance-data-db:
-    image: postgres:11
-    container_name: finance-data-db
-    restart: always
-    environment:
-      - POSTGRES_DB=finance-data-db
-      - POSTGRES_USER=admin
-      - POSTGRES_PASSWORD=root
-    ports:
-      - 5433:5432
-      
-  finance-db:
-    image: mongo:latest
-    container_name: finance-db
-    restart: always
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=root
-    ports:
-      - 27017:27017
-      - 28017:28017
-
-      
   finance_rabbit:
     image: rabbitmq:3-management
     container_name: finance_rabbit
     hostname: finance_rabbit
+    networks:
+    - finance-network
     ports:
       - 5672:5672
       - 25676:25676
@@ -45,3 +38,78 @@ services:
     environment:
       - RABBITMQ_DEFAULT_USER=guest
       - RABBITMQ_DEFAULT_PASS=guest
+
+  data-finance-db:
+    image: postgres:11
+    container_name: data-finance-db
+    restart: always
+    environment:
+      - POSTGRES_DB=data-finance-db
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=root
+    ports:
+      - 5433:5432
+      
+
+  data-finance-api:
+    build: './data-finance-api'
+    container_name: data-finance-api
+    networks:
+    - finance-network
+    depends_on:
+      - data-finance-db
+      - finance_rabbit
+    environment:
+      - PORT=8081
+      - API_SECRET=YXV0aC1hcGktc2VjcmV0LWNvbnRhaW5lci10YXVydXM=
+      - DB_HOST=data-finance-db
+      - DB_NAME=data-finance-db
+      - DB_USER=admin
+      - DB_PASSWORD=root
+      - DB_PORT=5432
+      - RABBIT_MQ_HOST=finance_rabbit
+      - RABBIT_MQ_PORT=5672
+      - RABBIT_MQ_USER=guest
+      - RABBIT_MQ_PASSWORD=guest
+    ports:
+      - 8081:8081
+
+
+  finance-api:
+    build: './finance-api'
+    container_name: finance-api
+    networks:
+    - finance-network
+    depends_on:
+      - finance_rabbit
+      - finance-db
+      - data-finance-api
+    environment:
+      - PORT=8082
+      - API_SECRET=YXV0aC1hcGktc2VjcmV0LWNvbnRhaW5lci10YXVydXM=
+      - MONGO_DB_URL=mongodb://admin:root@localhost:27017
+      - RABBIT_MQ_URL=amqp://guest:guest@finance_rabbit:5672/
+    ports:
+      - 8082:8082
+
+  auth-api:
+    build: './auth-api'
+    container_name: auth-api
+    networks:
+    - finance-network
+    depends_on:
+      - auth-db
+    environment:
+      - PORT=8080
+      - API_SECRET=YXV0aC1hcGktc2VjcmV0LWNvbnRhaW5lci10YXVydXM=
+      - DB_HOST=auth-db
+      - DB_NAME=auth-db
+      - DB_USER=admin
+      - DB_PASSWORD=root
+      - DB_PORT=5432
+    ports:
+      - 8080:8080
+      
+networks:
+  finance-network:
+    driver: bridge

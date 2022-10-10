@@ -1,8 +1,12 @@
 import Spent from "../../modules/finance/model/Spent.js";
 
 export async function createInitialData() {
-    await Spent.collection.drop();
-    let firstSpent =  await Spent.create({
+    let existingData = await Spent.find();
+    if (existingData && existingData.length > 0) {
+        console.info("Remove existing data...");
+        await Spent.collection.drop()
+    }
+    await Spent.create({
         spenties: [
             {
                 spentId: 1001,
