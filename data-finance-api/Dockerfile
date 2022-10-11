@@ -1,4 +1,4 @@
-FROM gradle:7.0.0-jdk11
+FROM gradle:7.4-jdk11
 COPY --chown=gradle:gradle . .
 WORKDIR .
 RUN gradle build -x test --no-daemon
