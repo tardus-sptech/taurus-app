@@ -2,9 +2,9 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Noto Sans', sans-serif;
+  font-family: "Noto Sans", sans-serif;
   scroll-behavior: smooth;
-  background-color: #6600CC;
+  background-color: #6600cc;
 }
 
 .navbar {
@@ -86,7 +86,7 @@
   outline: none;
   border-radius: 4px;
   background: white;
-  color: #6600CC;
+  color: #6600cc;
   transition: all 0.3s ease;
 }
 
@@ -125,6 +125,7 @@
   align-items: center;
 }
 
+
 .card-login {
   width: 60%;
   padding: 35px 35px;
@@ -136,49 +137,63 @@
   font-size: 3vw;
 }
 
-.card-login > h3 {
+.card-login > h4 {
+  color: white;
+  margin: 0;
+  font-size: 1vw;
+}
+
+.card-estrategia {
+  width: 60%;
+}
+
+.size-estrategia {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.box-estrategia {
+  width: 220px;
+  height: 80px;
+  background-color: white;
+  margin: 10px;
+  padding: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 11px;
+}
+
+.user{
+  width: 40px;
+  border-radius: 50px;
+}
+
+.texto-user{
+  background-color: white;
+  width: 50%;
+}
+
+.all-boxes {
+  display: flex;
+  justify-content: space-around;
+}
+
+.all-boxes-two {
+  display: flex;
+  justify-content: space-around;
+}
+
+.card-estrategia > h3 {
   color: white;
   margin: 0;
   font-size: 2vw;
 }
 
-.card-login > h4 {
+.card-estrategia > h4 {
   color: white;
   margin-top: 10px;
-}
-
-.textfield {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  margin: 10px 0px;
-}
-
-.textfield > input {
-  width: 100%;
-  padding: 15px;
-  background: rgb(64, 62, 146, 0%);
-  color: #320552;
-  font-size: 12pt;
-  outline: none;
-  box-sizing: border-box;
-}
-
-input {
-  background-color: rgb(64, 62, 146, 0%);
-  border: orange;
-  border-bottom: 1px solid #fff;
-}
-
-.textfield > label {
-  color: #320552;
-  margin-bottom: 10px;
-  margin-top: 23px;
-}
-
-.textfield > input::placeholder {
-  color: rgb(181, 181, 181);
 }
 
 .btn-login {
@@ -191,23 +206,18 @@ input {
   text-transform: uppercase;
   background: white;
   font-weight: 700;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   cursor: pointer;
-  box-shadow: 0px 10px 40px -12px #252B42;
-  color: #252B42;
+  box-shadow: 0px 10px 40px -12px #252b42;
+  color: #6600cc;
 }
 
-.left-login-image{
+.left-login-image {
   width: 80%;
 }
 
-.box-estrategia{
-  width: 50px 50px;
-  background-color: white;
-}
-
 .footer_container {
-  background-color: #252B42;
+  background-color: #252b42;
   padding: 5rem 0;
   display: flex;
   flex-direction: column;
@@ -220,12 +230,12 @@ input {
   max-width: 1000px;
   display: flex;
   justify-content: center;
-  background-color: #252B42;
+  background-color: #252b42;
 }
 
 .footer_link--wrapper {
   display: flex;
-  background-color: #252B42;
+  background-color: #252b42;
 }
 
 .footer_link--items {
@@ -236,13 +246,13 @@ input {
   text-align: left;
   width: 170px;
   box-sizing: border-box;
-  background-color: #252B42;
+  background-color: #252b42;
 }
 
 .footer_link--items h2 {
   margin-bottom: 16px;
   color: #fff;
-  background-color: #252B42;
+  background-color: #252b42;
 }
 
 .footer_link--items a {
@@ -250,7 +260,7 @@ input {
   text-decoration: none;
   margin-bottom: 0.5rem;
   transition: 0.3 ease-out;
-  background-color: #252B42;
+  background-color: #252b42;
 }
 
 .footer_link--items a:hover {
@@ -258,15 +268,14 @@ input {
   transition: 0.3 ease-out;
 }
 
-.logos{
+.logos {
   display: flex;
   justify-content: center;
   padding: 5px;
-  background-color: #252B42;
+  background-color: #252b42;
 }
-.footer_img{
+.footer_img {
   width: 40px;
-  background-color: #252B42;
+  background-color: #252b42;
   padding: 5px;
-
 }

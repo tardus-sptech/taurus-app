@@ -4,6 +4,7 @@ import Mulher from "./assets/croods-user-interface.png";
 import Facebook from "./assets/facebook.png";
 import Instagram from "./assets/instagram.png";
 import Twitter from "./assets/twitter.png";
+import User from "./assets/user3.png";
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
           </li>
         </ul>
       </nav>
+
       <div class="main-login">
         <div class="right-login">
           <div class="card-login">
@@ -56,13 +58,25 @@ function App() {
           <img src={Mulher} class="left-login-image" alt="Imagem Mulher" />
         </div>
       </div>
-      <div class="card-login">
-        <h3>Nossa Estratégia</h3>
-        <h4>
-          Vamos trazer organização financeira com simplicidade para a sua
-          realidade.
-        </h4>
-        <div className="box-estrategia"></div>
+
+      <div class="size-estrategia">
+        <div class="card-estrategia">
+          <h3>Nossa Estratégia</h3>
+          <h4>
+            Vamos trazer organização financeira com simplicidade para a sua
+            realidade.
+          </h4>
+          <div class="all-boxes">
+            <div class="box-estrategia"><img src={User} alt="" class="user" /><span class="texto-user"> Metas conjuntas</span></div>
+            <div class="box-estrategia"><img src={User} alt="" class="user" /> <span class="texto-user">Suporte ao Open Banking</span></div>
+            <div class="box-estrategia"><img src={User} alt="" class="user" /> <span class="texto-user">Análise Financeira</span></div>
+          </div>
+          <div class="all-boxes-two">
+            <div class="box-estrategia"><img src={User} alt="" class="user" /> <span class="texto-user">Sugestões aos usuários</span></div>
+            <div class="box-estrategia"><img src={User} alt="" class="user" /> <span class="texto-user">Seu dinheiro salvo</span></div>
+            <div class="box-estrategia"><img src={User} alt="" class="user" /> <span class="texto-user">Visualização sobre seus gastos</span></div>
+          </div>
+        </div>
       </div>
 
       <div class="footer_container">
