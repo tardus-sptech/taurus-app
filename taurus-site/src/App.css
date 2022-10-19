@@ -2,7 +2,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: "Noto Sans", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   scroll-behavior: smooth;
   background-color: #6600cc;
 }
@@ -167,7 +167,7 @@
 }
 
 .user{
-  width: 40px;
+  width: 50px;
   border-radius: 50%;
 }
 
@@ -545,6 +545,77 @@
 
 .left-login-image {
   width: 80%;
+}
+
+.main-login-informado {
+  background: #f1f5f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #252b42;
+}
+
+.left-login-informado {
+  width: 50vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #252b42;
+}
+
+.left-login-informado > h1 {
+  font-size: 2vw;
+  color: #320552;
+  background-color: #252b42;
+}
+
+.right-login-informado {
+  width: 60vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #252b42;
+}
+
+
+.card-login-informado {
+  width: 60%;
+}
+
+.card-login-informado > h2 {
+  color: white;
+  margin: 0;
+  font-size: 2.5vw;
+  background-color: #252b42;
+}
+
+.card-login-informado > h4 {
+  color: white;
+  margin: 0;
+  font-size: 1vw;
+  background-color: #252b42;
+}
+
+.ipt-login-informado {
+  width: 40%;
+  padding: 16px 0px;
+  margin: 10px 0px;
+  border: none;
+  border-radius: 5px 0px 0px 5px;
+  background: white;
+  font-weight: 700;
+}
+
+.btn-login-informado {
+  width: 20%;
+  padding: 16px 0px;
+  margin: 10px 0px;
+  border: none;
+  border-radius: 0px 5px 5px 0px;
+  outline: none;
+  background: #6600cc;
+  cursor: pointer;
+  color: white;
 }
 
 .footer_container {
