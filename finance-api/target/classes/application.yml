@@ -1,0 +1,46 @@
+server:
+  port: ${PORT:8081}
+
+spring:
+  application:
+    name: product-api
+
+# WITHOUT-DOCKER
+#  datasource:
+#    driverClassName: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/financedb
+#    username: aluno
+#    password: sptech
+#  jpa:
+#    hibernate.ddl-auto: update
+#    generate-ddl: true
+#    show-sql: true
+
+#  WITH-DOCKER
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5433/finance-db?useTimezone=true&serverTimezone=UTC
+    username: admin
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+
+## PROD
+#  datasource:
+#    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+#    url: jdbc:sqlserver://svr-taurus.database.windows.net:1433;database=taurus-bd;user=admin-taurus@svr-taurus;password=#Gfgrupo4;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
+#  jpa:
+#    hibernate:
+#      ddl-auto: create-drop
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.SQLServerDialect
+#    show-sql: true
+
+file:
+  upload-dir: /Code/UploadDir
