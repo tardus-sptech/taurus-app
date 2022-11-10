@@ -1,20 +1,10 @@
 import "./App.css";
-import NavBar from "./Components/NavBar";
-import FirstSection from "./Components/FirstSection";
-import Faq from "./Components/Faq";
-import Precos from "./Components/Precos";
-import Footer from "./Components/Footer";
-import Email from "./Components/Email";
+import Rotas from "./routes";
 
 function App() {
   return (
     <>
-      <NavBar />
-      <FirstSection />
-      <Faq />
-      <Precos />
-      <Email />
-      <Footer />
+      <Rotas />
     </>
   );
 }

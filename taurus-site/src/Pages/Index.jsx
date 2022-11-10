@@ -1,9 +1,20 @@
 import React from "react";
 import {useNavigate} from "react-router-dom";
+import Logo from "../assets/taurus_-_logo.png"
+import Mulher from "../assets/croods-user-interface.png"
+import User from "../assets/user3.png"
+import Check from "../assets/check.png"
+import Check2 from "../assets/check2.png"
+import Facebook from "../assets/facebook.png"
+import Twitter from "../assets/twitter.png"
+import Instagram from "../assets/instagram.png"
 
 function Index() {
 
   const navigate = useNavigate();
+  function navigateLogin() {
+    navigate("/login")
+  }
 
   return (
     <>
@@ -32,7 +43,7 @@ function Index() {
             </a>
           </li>
           <li className="navbar_item">
-            <a onClick={() => navigate("/login")} className="navbar_links" id="login_page">
+            <a onClick={navigateLogin} className="navbar_links" id="login_page">
               Login
             </a>
           </li>
