@@ -1,42 +1,56 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+
 import Logo from "../assets/taurus_-_logo.png";
-import Config from "../assets/pngegg (1).png";
-import User2 from "../assets/user.png";
+import Barra from "../assets/barra.png";
+import Faca from "../assets/faca.png";
+import Casa from "../assets/casa.png";
+import Barra2 from "../assets/barravazia.png";
+import NavBar from "../Components/NavBar";
 
-function LimiteGasto() {
-  const navigate = useNavigate();
-  function navigateLancamentos() {
-    navigate("/lancamentos");
-  }
-
+function LimiteGastos() {
   return (
     <>
-      <nav className="navbar">
-        <img className="navbar_img" src={Logo} alt="" />
-        <h1 className="navbar_logo">Taurus</h1>
-        <div className="navbar_menu">
-          <div className="navbar_item">
-            <div className="navbar_links_logado">Visão Geral</div>
-          </div>
-          <div className="navbar_item">
-            <div onClick={navigateLancamentos} className="navbar_links_logado">
-              Lançamentos
+      <NavBar />
+      <div className="corFundo">
+        <div className="size-limite">
+          <div className="card-limite">
+            <div className="limite-boxes">
+              <div className="box-limite">
+                <div className="titulo-limite">
+                  <h3>Limite de Gastos</h3>
+                  <h4>Novembro 2022</h4>
+                </div>
+                <div className="limites">
+                  <div className="preco">
+                  <img className="facaimg" src={Faca} alt="" />
+                    <div className="titulo-pergunta">Alimentação</div>
+                    <span className="titulo-resposta">200,00 de 200,00</span>
+                  </div>
+                  <div className="barra">
+                    <img className="barraimg" src={Barra} alt="" />
+                  </div>
+                </div>
+                <div className="limites">
+                  <div className="preco">
+                  <img className="facaimg" src={Casa} alt="" />
+                    <div className="titulo-pergunta">Alimentação</div>
+                    <span className="titulo-resposta">200,00 de 200,00</span>
+                  </div>
+                  <div className="barra">
+                    <img className="barraimg" src={Barra2} alt="" />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <div className="navbar_item">
-            <div className="navbar_links_logado">Limite de Gastos</div>
-          </div>
-          <div className="navbar_user">
-            <img className="navbar_img_user" src={Config} alt="" />
-          </div>
-          <div className="navbar_user">
-            <img className="navbar_img_user" src={User2} alt="" />
-          </div>
         </div>
-      </nav>
+        <footer className="footer">
+          <img className="navbar_img" src={Logo} alt="" />
+          <h1 className="footer_logo">Taurus</h1>
+        </footer>
+      </div>
     </>
   );
 }
 
-export default LimiteGasto;
+export default LimiteGastos;
