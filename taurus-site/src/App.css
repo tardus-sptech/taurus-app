@@ -64,6 +64,18 @@
   background-color: #6600cc;
 }
 
+.navbar_links_logado {
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  text-decoration: none;
+  height: 100%;
+  transition: all 0.3s ease;
+  background-color: #6600cc;
+}
+
 .navbar_btn {
   display: flex;
   justify-content: center;
@@ -75,6 +87,23 @@
 .navbar_img {
   width: 80px;
 }
+.navbar_img_user {
+  width: 40px;
+}
+
+.navbar_user {
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  text-decoration: none;
+  height: 100%;
+  transition: all 0.3s ease;
+  background-color: #6600cc;
+}
+
+
 
 .button {
   display: flex;
