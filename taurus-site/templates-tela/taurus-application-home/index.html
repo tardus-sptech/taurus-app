@@ -1,43 +1,135 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="style.css">
-        <title>index</title>
-    </head>
-    <body>
-        <div id="main-container">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/e2229bd305.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>index</title>
+</head>
+
+<body>
+    <div id="main-container">
 
 
-            <header>
+        <header class="header">
+            <div class="taurus-logo">
+                <img src="./img/taurus-logo-white.png" alt="">
+            </div>
+            <nav class="nav-bar">
+                <li class="nav-item"><a href="#">Visão Geral</a></li>
+                <li class="nav-item"><a href="#">Lançamentos</a></li>
+                <li class="nav-item"><a href="#">Relatórios</a></li>
+                <li class="nav-item"><a href="#">Limite de gastos</a></li>
+            </nav>
+            <div class="header-icons">
+                <i class="fa-solid fa-user"></i>
+                <i class="fa-solid fa-gear"></i>
+            </div>
+        </header>
 
-            </header>
+        <main id="content">
 
-            <main id="content">
-                <div id="first-container">
+            <div id="first-container">
+                <div class="user-balence">
 
-                </div>
+                    <div id="user-balance-header">
+                        <div class="user-balance-identify">
+                            <span class="balance-title">Boa noite,</span>
+                            <span id="user-name">Renan Oliveira <i class="fa-sharp fa-solid fa-moon"></i></span>
+                        </div>
 
-                <div id="second-container">
-                    <div id="left-div">
-                        <div class="my-accounts"></div>
-                        <div class="credit-cards"></div>
+                        <div class="user-general-balance">
+                            <span class="balance-title">Saldo geral</span>
+                            <span id="money-balance">R$ <span id="balance">1.800,00</span></span>
+                        </div>
                     </div>
-                    <div id="right-div">
-                        <div class="sign-details"></div>
-                        <div class="mouth-balance"></div>
-                        <div class="high-spents"></div>
-                        <div class="month-limits"></div>
+
+                    <div id="user-balance-footer">
+                        <div class="user-balance-box" id="monthly-revenue">
+                            <span class="balance-title">Receita mensal</span>
+                            <span id="monthly-revenue-balance">R$ 1.500,00</span>
+                        </div>
+                        <div class="user-balance-box" id="monthly-expense">
+                            <span class="balance-title">Despesa mensal</span>
+                            <span id="monthly-expense-balance">R$ 1.500,00</span>
+                        </div>
+                        <div class="user-balance-box" id="reports">
+                            <span>
+                                <i class="fa-solid fa-chart-simple"></i>
+                                <span>Ver relatórios</span>
+                            </span>
+                        </div>
                     </div>
                 </div>
-            </main>
+                <div class="balance-controls">
+                    <i class="fa-solid fa-circle-plus" id="plus-button"></i>
+                    <i class="fa-solid fa-circle-minus" id="minus-button"></i>
+                    <i class="fa-solid fa-right-left" id="swap-button"></i>
+                </div>
+            </div>
 
-            <footer>
+            <div id="second-container">
+                <div id="left-div">
+                    <div class="my-accounts">
+                        <h1 class="title-container">Minhas contas</h1>
+                        <div id="accounts-list">
+                            <div class="account-user">
+                                <img src="./img/nubank-logo.png" alt="" class="bank-image-account">
+                                <span>
+                                    <span id="account-name">Renan Oliveira</span>
+                                    <span id="type-account">Conta Corrente</span>
+                                </span>
+                                <span id="account-balance">R$ 500,00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="credit-cards">
+                        <h1 class="title-container">Cartões de crédito</h1>
+                        <div id="credit-card-list">
 
-            </footer>
+                            <div class="credit-card-user">
+                                <div class="credit-card-header">
+                                    <img src="./img/nubank-logo.png" alt="" class="bank-image-account">
+                                    <span>
+                                        <span class="bank-name">Nubank</span>
+                                        <span>Cartão de crédito</span>
+                                    </span>
+                                </div>
+                                <div class="credit-card-footer">
+                                    <span>
+                                        <span>Disponível</span>
+                                        <span class="credit-avaliable">R$ 2.350,00</span>
+                                    </span>
+                                    <span>
+                                        <span>Fatura</span>
+                                        <span class="credit-bill">R$ 0,00</span>
+                                    </span>
+                                </div>
+                            </div>
 
-        </div>
-    </body>
+                        </div>
+                    </div>
+                </div>
+                <div id="right-div">
+                    <div class="sign-details">
+                        <h1 id="sign-details"></h1>
+                    </div>
+                    <div class="mouth-balance"></div>
+                    <div class="high-spents"></div>
+                    <div class="month-limits"></div>
+                </div>
+            </div>
+
+        </main>
+
+        <footer>
+
+        </footer>
+
+    </div>
+</body>
+
 </html>
