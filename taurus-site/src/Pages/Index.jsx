@@ -21,38 +21,38 @@ function Index() {
       <nav className="navbar">
         <img className="navbar_img" src={Logo} alt="" />
         <h1 className="navbar_logo">Taurus</h1>
-        <ul className="navbar_menu">
-          <li className="navbar_item">
-            <a href="./Home/index.html" className="navbar_links" id="home_page">
+        <div className="navbar_menu">
+          <div className="navbar_item">
+            <div className="navbar_links" id="home_page">
               Início
-            </a>
-          </li>
-          <li className="navbar_item">
-            <a href="./Home/index.html" className="navbar_links" id="sobre_page">
+            </div>
+          </div>
+          <div className="navbar_item">
+            <div className="navbar_links" id="sobre_page">
               Produto
-            </a>
-          </li>
-          <li className="navbar_item">
-            <a href="./Home/index.html" className="navbar_links" id="servico_page">
+            </div>
+          </div>
+          <div className="navbar_item">
+            <div className="navbar_links" id="servico_page">
               Preço
-            </a>
-          </li>
-          <li className="navbar_item">
-            <a href="./Home/index.html" className="navbar_links" id="servico_page">
+            </div>
+          </div>
+          <div className="navbar_item">
+            <div className="navbar_links" id="servico_page">
               Contato
-            </a>
-          </li>
-          <li className="navbar_item">
-            <a onClick={navigateLogin} className="navbar_links" id="login_page">
+            </div>
+          </div>
+          <div className="navbar_item">
+            <div onClick={navigateLogin} className="navbar_links" id="login_page">
               Login
-            </a>
-          </li>
-          <li className="navbar_btn">
-            <a href="./cadastro.html" className="button" id="cadastro_page">
+            </div>
+          </div>
+          <div className="navbar_btn">
+            <div onClick={navigateLogin} className="button" id="cadastro_page">
               Cadastro
-            </a>
-          </li>
-        </ul>
+            </div>
+          </div>
+        </div>
       </nav>
       <div className="main-login">
         <div className="right-login">

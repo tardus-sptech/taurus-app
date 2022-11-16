@@ -8,7 +8,7 @@ function LoginSignIn(){
         var eye = document.getElementById('checkPass2')
         var inpt = document.getElementById('senha_login');
     
-        if(x == 1){
+        if(x === 1){
             eyeSlash.style.display = 'none';
             eye.style.display = 'block';
             inpt.type = 'text';
@@ -57,7 +57,7 @@ function LoginSignIn(){
                                 <input type="checkbox" name="" id=""/>
                                 <span className="checkbox-spn">Lembrar-me</span>
                             </label>
-                            <a href="#" className="btn-3">Esqueci minha senha</a>
+                            <div className="btn-3">Esqueci minha senha</div>
                         </div>
                     </div>
         
@@ -71,7 +71,7 @@ function LoginSignIn(){
                 </div>
             </div>
             
-            <div id="signUp-box" style="display: none;">
+            <div id="signUp-box" style={{display: 'none'}}>
                 <div className="content-box sign-up">
                     <div id="form-box-signup">
                         <div className="header-form">
