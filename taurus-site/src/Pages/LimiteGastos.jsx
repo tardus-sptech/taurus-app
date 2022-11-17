@@ -6,6 +6,7 @@ import Faca from "../assets/faca.png";
 import Casa from "../assets/casa.png";
 import Barra2 from "../assets/barravazia.png";
 import NavBar from "../Components/NavBar";
+import Footer from "../Components/Footer";
 
 function LimiteGastos() {
   return (
@@ -22,7 +23,7 @@ function LimiteGastos() {
                 </div>
                 <div className="limites">
                   <div className="preco">
-                  <img className="facaimg" src={Faca} alt="" />
+                    <img className="facaimg" src={Faca} alt="" />
                     <div className="titulo-pergunta">Alimentação</div>
                     <span className="titulo-resposta">200,00 de 200,00</span>
                   </div>
@@ -32,9 +33,9 @@ function LimiteGastos() {
                 </div>
                 <div className="limites">
                   <div className="preco">
-                  <img className="facaimg" src={Casa} alt="" />
+                    <img className="facaimg" src={Casa} alt="" />
                     <div className="titulo-pergunta">Alimentação</div>
-                    <span className="titulo-resposta">200,00 de 200,00</span>
+                    <span className="titulo-resposta">0,00 de 200,00</span>
                   </div>
                   <div className="barra">
                     <img className="barraimg" src={Barra2} alt="" />
@@ -44,10 +45,7 @@ function LimiteGastos() {
             </div>
           </div>
         </div>
-        <footer className="footer">
-          <img className="navbar_img" src={Logo} alt="" />
-          <h1 className="footer_logo">Taurus</h1>
-        </footer>
+        <Footer />
       </div>
     </>
   );
