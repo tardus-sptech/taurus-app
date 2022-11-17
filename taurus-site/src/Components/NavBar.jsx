@@ -13,7 +13,7 @@ function NavBar() {
             </div>
             <nav className="nav-bar">
                 <li className="nav-item">
-                  <a href="#">Visão Geral</a>
+                  <a onClick={() => navigate("/visaoGeral")}>Visão Geral</a>
                 </li>
                 <li className="nav-item">
                   <a onClick={() => navigate("/lancamentos")}>Lançamentos</a>
