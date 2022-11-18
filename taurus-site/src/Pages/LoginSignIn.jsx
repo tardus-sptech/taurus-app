@@ -22,6 +22,7 @@ function LoginSignIn(){
     // }
 
     const LOGIN_URL = '';
+    const SIGN_IN_URL = '';
 
     const navigate = useNavigate();
 
@@ -94,7 +95,7 @@ function LoginSignIn(){
                             </div>
                         </div>
         
-                        <button className="bnt-2" title="Entrar" onClick="entrar()">Entrar</button>
+                        <button className="bnt-2" title="Entrar">Entrar</button>
         
                         <div className="another-text">
                             <label for="" className="lbl_checkbox">
