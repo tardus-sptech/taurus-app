@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import logoTaurusWhite from "../assets/taurus-logo-white.png";
 
 function NavBar() {
+  
   const navigate = useNavigate();
   
   return (
@@ -13,16 +14,16 @@ function NavBar() {
             </div>
             <nav className="nav-bar">
                 <li className="nav-item">
-                  <a onClick={() => navigate("/visaoGeral")}>Visão Geral</a>
+                  <button onClick={() => navigate("/visaoGeral")}>Visão Geral</button>
                 </li>
                 <li className="nav-item">
-                  <a onClick={() => navigate("/lancamentos")}>Lançamentos</a>
+                  <button onClick={() => navigate("/lancamentos")}>Lançamentos</button>
                 </li>
                 <li className="nav-item">
-                  <a onClick={() => navigate("/relatorios")}>Relatórios</a>
+                  <button onClick={() => navigate("/relatorios")}>Relatórios</button>
                 </li>
                 <li className="nav-item">
-                  <a onClick={() => navigate("/limite")}>Limite de gastos</a>
+                  <button onClick={() => navigate("/limite")}>Limite de gastos</button>
                 </li>
             </nav>
             <div className="header-icons">
