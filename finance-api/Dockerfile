@@ -1,7 +1,6 @@
-FROM node:14
+FROM gradle:7.4-jdk11
+COPY --chown=gradle:gradle . .
 WORKDIR .
-COPY package*.json ./
-RUN yarn
-COPY . .
-EXPOSE 8082
-CMD ["node", "app.js"]
+RUN gradle build -x test --no-daemon
+EXPOSE 8081
+CMD ["gradle", "bootRun"]
