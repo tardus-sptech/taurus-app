@@ -1,24 +1,52 @@
-import React from 'react';
+import axios from 'axios';
+import React, {useState} from 'react';
+import { useNavigate } from 'react-router-dom';
+import api from '../api';
 
 function LoginSignIn(){
 
-
-    function checkPass(x) {
-        var eyeSlash = document.getElementById('checkPass');
-        var eye = document.getElementById('checkPass2')
-        var inpt = document.getElementById('senha_login');
+    // function checkPass(x) {
+    //     var eyeSlash = document.getElementById('checkPass');
+    //     var eye = document.getElementById('checkPass2')
+    //     var inpt = document.getElementById('senha_login');
     
-        if(x === 1){
-            eyeSlash.style.display = 'none';
-            eye.style.display = 'block';
-            inpt.type = 'text';
-        }else{
-            eye.style.display = 'none';
-            eyeSlash.style.display = 'block';
-            inpt.type = 'password';
+    //     if(x === 1){
+    //         eyeSlash.style.display = 'none';
+    //         eye.style.display = 'block';
+    //         inpt.type = 'text';
+    //     }else{
+    //         eye.style.display = 'none';
+    //         eyeSlash.style.display = 'block';
+    //         inpt.type = 'password';
+    //     }
+    // }
+
+    const LOGIN_URL = '';
+
+    const navigate = useNavigate();
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [success, setSuccess] = useState(false);
+
+    const login = async (e) => {
+        e.preventDefault();
+
+        try {
+            const response = await api.post(LOGIN_URL, 
+                JSON.stringify({email, password}), 
+                {
+                    headers: {'Content-Type': 'application/json'}
+                }
+            );
+            console.log(JSON.stringify(response?.data));
+            setEmail('');
+            setPassword('');
+            setSuccess(true);
+        } catch (error) {
+            console.error(error);
         }
     }
-
     
     return(
         <>
@@ -45,8 +73,10 @@ function LoginSignIn(){
                             <div className="inpt-box">
                                 <i className="fa-solid fa-lock"></i>
                                 <input id="senha_login" type="password" placeholder="Digite sua senha"/>
-                                <i className="fa-solid fa-eye-slash" id="checkPass" onClick={checkPass(1)}></i>
-                                <i className="fa-solid fa-eye" id="checkPass2" onClick={checkPass(2)}></i>
+                                {/* <i className="fa-solid fa-eye-slash" id="checkPass" onClick={checkPass(1)}></i>
+                                <i className="fa-solid fa-eye" id="checkPass2" onClick={checkPass(2)}></i> */}
+                                <i className="fa-solid fa-eye-slash" id="checkPass"></i>
+                                <i className="fa-solid fa-eye" id="checkPass2"></i>
                             </div>
                         </div>
         

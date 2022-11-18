@@ -12,9 +12,6 @@ import Instagram from "../assets/instagram.png"
 function Index() {
 
   const navigate = useNavigate();
-  function navigateLogin() {
-    navigate("/login")
-  }
 
   return (
     <>
@@ -43,12 +40,12 @@ function Index() {
             </div>
           </div>
           <div className="navbar_item">
-            <div onClick={navigateLogin} className="navbar_links" id="login_page">
+            <div onClick={() => navigate("/login")} className="navbar_links" id="login_page">
               Login
             </div>
           </div>
           <div className="navbar_btn">
-            <div onClick={navigateLogin} className="button" id="cadastro_page">
+            <div onClick={() => navigate("/login")} className="button" id="cadastro_page">
               Cadastro
             </div>
           </div>
