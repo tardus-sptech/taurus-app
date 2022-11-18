@@ -1,8 +1,9 @@
-import React from 'react';
+import axios from 'axios';
+import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
+import api from '../api';
 
 function LoginSignIn(){
-
 
     // function checkPass(x) {
     //     var eyeSlash = document.getElementById('checkPass');
@@ -20,8 +21,32 @@ function LoginSignIn(){
     //     }
     // }
 
+    const LOGIN_URL = '';
+
     const navigate = useNavigate();
 
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [success, setSuccess] = useState(false);
+
+    const login = async (e) => {
+        e.preventDefault();
+
+        try {
+            const response = await api.post(LOGIN_URL, 
+                JSON.stringify({email, password}), 
+                {
+                    headers: {'Content-Type': 'application/json'}
+                }
+            );
+            console.log(JSON.stringify(response?.data));
+            setEmail('');
+            setPassword('');
+            setSuccess(true);
+        } catch (error) {
+            console.error(error);
+        }
+    }
     
     return(
         <>
