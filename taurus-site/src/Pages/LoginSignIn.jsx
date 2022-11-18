@@ -54,7 +54,7 @@ function LoginSignIn(){
             <div id="login-box">
                 <div className="content-box">
     
-                    <div id="form-box">
+                    <form id="form-box" onSubmit={login}>
                         <div className="header-form">
                             <h1 className="title-form">Login</h1>
                             <div className="social-icons"></div>
@@ -64,7 +64,14 @@ function LoginSignIn(){
                             <p className="inpt-name">Email</p>
                             <div className="inpt-box">
                                 <i className="fa-solid fa-envelope"></i>
-                                <input id="email_login" type="email" placeholder="Digite seu email"/>
+                                <input 
+                                    id="email_login" 
+                                    type="email" 
+                                    placeholder="Digite seu email" 
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    value={email}
+                                    required
+                                />
                             </div>
                         </div>
         
@@ -72,7 +79,14 @@ function LoginSignIn(){
                             <p className="inpt-name">Senha</p>
                             <div className="inpt-box">
                                 <i className="fa-solid fa-lock"></i>
-                                <input id="senha_login" type="password" placeholder="Digite sua senha"/>
+                                <input 
+                                    id="senha_login" 
+                                    type="password" 
+                                    placeholder="Digite sua senha"
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    value={password}
+                                    required
+                                />
                                 {/* <i className="fa-solid fa-eye-slash" id="checkPass" onClick={checkPass(1)}></i>
                                 <i className="fa-solid fa-eye" id="checkPass2" onClick={checkPass(2)}></i> */}
                                 <i className="fa-solid fa-eye-slash" id="checkPass"></i>
@@ -89,7 +103,7 @@ function LoginSignIn(){
                             </label>
                             <div className="btn-3">Esqueci minha senha</div>
                         </div>
-                    </div>
+                    </form>
         
                     <div id="current_auth_box">
                         <div className="box">
