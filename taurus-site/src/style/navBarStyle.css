@@ -3,12 +3,11 @@
     height: 60px;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
-    padding: 0px 50px;
+    justify-content: space-between;
+    padding: 0 10vw;
 }
 
 .taurus-logo{
-    width: 30%;
     display: flex;
     justify-content: center;
 }
@@ -30,7 +29,9 @@
     padding: 10px;
 }
 
-.nav-item a{
+.nav-item button{
+    background-color: transparent;
+    border: none;
     color: #FFFFFF;
     font-size: 15px;
     font-weight: bold;
@@ -46,7 +47,6 @@
 }
 
 .header-icons{
-    width: 30%;
     display: flex;
     justify-content: flex-end;
 }
