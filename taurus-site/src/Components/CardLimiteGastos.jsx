@@ -6,25 +6,9 @@ function CardLimiteGastos(props){
     
     const [bars, setBars] = useState([]);
         useEffect(() => {
-          api.get("/").then((resposta) => {
+          api.get("/limities").then((resposta) => {
 
-          setBars([
-            {
-                categoria:"Alimentação",
-                gasto:"200",
-                total:"400"
-            },
-            {
-                categoria:"Casa",
-                gasto:"230",
-                total:"300"
-            },
-            {
-                categoria:"Lazer",
-                gasto:"20",
-                total:"100"
-            }
-          ]);
+          setBars(resposta.data);
           })
         }, [])
 
@@ -42,9 +26,9 @@ function CardLimiteGastos(props){
                 <div className="limites">
                 {bars.map((item) => (
                     <BarraLimite
-                    categoria={item.categoria}
-                    gasto={item.gasto}
-                        total={item.total}
+                    categoria={item.category.description}
+                    gasto={item.categorySpent}
+                        total={200}
                     />
                     ))}
                 </div>

@@ -12,22 +12,9 @@ function LimiteGastos() {
 
   const [cards, setCards] = useState([]);
   useEffect(() => {
-          api.get("/").then((resposta) => {
-          // setCards(resposta.data);
-          setCards([
-            {
-              mes: "Janeiro",
-              ano: "2022"
-            },
-            {
-              mes: "Fevereiro",
-              ano: "2022"
-            },
-            {
-              mes: "Março",
-              ano: "2022"
-            }
-          ]);
+          api.get("/limities/").then((resposta) => {
+            setCards(resposta.data);
+            console.log(resposta.data);
           })
         }, [])
 
@@ -38,8 +25,8 @@ function LimiteGastos() {
         card={
           cards.map((item) => (
             <Card
-              mes={item.mes}
-              ano={item.ano}
+              mes={item.month}
+              ano={2022}
             />
         ))
 
