@@ -33,6 +33,7 @@
 .nav-item button{
     background-color: transparent;
     border: none;
+    cursor: pointer;
     color: #FFFFFF;
     font-size: 15px;
     font-weight: bold;
