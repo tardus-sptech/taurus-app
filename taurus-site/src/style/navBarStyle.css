@@ -27,6 +27,7 @@
     display: flex;
     align-items: center;
     padding: 10px;
+    cursor: pointer;
 }
 
 .nav-item button{
@@ -35,11 +36,6 @@
     color: #FFFFFF;
     font-size: 15px;
     font-weight: bold;
-}
-
-.nav-item{
-    height: 100%;
-    cursor: pointer;
 }
 
 .nav-item:hover, .nav-item a:hover{
