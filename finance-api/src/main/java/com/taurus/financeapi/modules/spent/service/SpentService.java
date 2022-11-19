@@ -6,6 +6,8 @@ import com.taurus.financeapi.modules.spent.dto.SpentRequest;
 import com.taurus.financeapi.modules.spent.dto.SpentResponse;
 import com.taurus.financeapi.modules.spent.model.Spent;
 import com.taurus.financeapi.modules.spent.repository.SpentRepository;
+import com.taurus.financeapi.modules.user.model.User;
+import com.taurus.financeapi.modules.user.repository.UserRepository;
 import com.taurus.financeapi.modules.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +22,6 @@ import static org.springframework.util.ObjectUtils.isEmpty;
 @Slf4j
 @Service
 public class SpentService {
-
     @Lazy
     @Autowired
     private SpentRepository spentRepository;
