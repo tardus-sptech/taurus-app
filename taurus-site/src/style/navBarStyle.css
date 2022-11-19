@@ -39,6 +39,7 @@
 
 .nav-item{
     height: 100%;
+    cursor: pointer;
 }
 
 .nav-item:hover, .nav-item a:hover{
