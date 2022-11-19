@@ -38,7 +38,6 @@ public class SpentService {
         var user = userService.findById(request.getUserId());
         var category = categoryService.findById(request.getCategoryId());
         var spent = spentRepository.save(Spent.of(request, category, user));
-        userService.update(user.getId(), request.getValue());
         return SpentResponse.of(spent);
     }
 
