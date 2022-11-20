@@ -9,6 +9,12 @@ import BasicModal from "../Components/ModalLancamento";
 function VisaoGeral() {
 
     const navigate = useNavigate();
+    const name = sessionStorage.getItem('name');
+
+    var today = new Date(), time = today.getHours();
+    var saudacao = time < 12 ? "Bom dia," : time < 18 ? "Boa tarde," : "Boa noite,";
+    var icon = time < 18 ? "fa-sharp fa-solid fa-sun icontime" : "fa-sharp fa-solid fa-moon icontime";
+
 
     return (
         <>
@@ -20,8 +26,8 @@ function VisaoGeral() {
 
                         <div id="user-balance-header">
                             <div className="user-balance-identify">
-                                <span className="balance-title">Boa noite,</span>
-                                <span id="user-name">Renan Oliveira <i className="fa-sharp fa-solid fa-moon"></i></span>
+                                <span className="balance-title">{saudacao}</span>
+                                <span id="user-name">{name}<i className={icon}></i></span>
                             </div>
 
                             <div className="user-general-balance">
@@ -51,14 +57,11 @@ function VisaoGeral() {
                         <i className="fa-solid fa-circle-plus" id="plus-button"></i>
                         <i className="fa-solid fa-circle-minus" id="minus-button"></i>
                         <i className="fa-solid fa-right-left" id="swap-button"></i>
+
+                        <BasicModal />
+
                     </div>
                 </div>
-                <React.StrictMode>
-                    <StyledEngineProvider injectFirst>
-                        <BasicModal  />
-                    </StyledEngineProvider>
-                </React.StrictMode>
-
 
 
                 <div id="second-container">

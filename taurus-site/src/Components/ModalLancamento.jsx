@@ -5,20 +5,6 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import Form from './FormLancamento'
 
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 'auto',
-  height: 'auto',
-  bgcolor: 'background.paper',
-  border: 'none',
-  borderRadius: '5px',
-  outline: 'none',
-  boxShadow: 24,
-  p: 4,
-};
 
 export default function BasicModal() {
   const [open, setOpen] = React.useState(false);
@@ -27,13 +13,13 @@ export default function BasicModal() {
 
   return (
     <div>
-      <Button onClick={handleOpen}>Open modal</Button>
+      <Button onClick={handleOpen}>Cadastrar Transação</Button>
       <Modal
         open={open}
         onClose={handleClose}
         
       >
-        <Box sx={style}>
+        <Box className='Modal-lancamento'>
             <Form />
         </Box>
       </Modal>

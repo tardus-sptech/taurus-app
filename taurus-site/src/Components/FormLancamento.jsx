@@ -6,26 +6,6 @@ import api from "../api";
 
 
 
-
-const currencies = [
-  {
-    value: 'USD',
-    label: '$',
-  },
-  {
-    value: 'EUR',
-    label: '€',
-  },
-  {
-    value: 'BTC',
-    label: '฿',
-  },
-  {
-    value: 'JPY',
-    label: '¥',
-  },
-];
-
 function Form({ handleAdd, transactionsList, setTransactionsList }) {
 
 
@@ -33,7 +13,10 @@ function Form({ handleAdd, transactionsList, setTransactionsList }) {
   const [amount, setAmount] = useState("");
   const [isExpense, setExpense] = useState(false);
 
-  const [currency, setCurrency] = React.useState('EUR');
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
 
 
@@ -62,7 +45,6 @@ function Form({ handleAdd, transactionsList, setTransactionsList }) {
     setAmount("");
   };
 
-  const [teste, setTeste] = useState("");
 
 
   const navigate = useNavigate();
@@ -72,15 +54,14 @@ function Form({ handleAdd, transactionsList, setTransactionsList }) {
   const [categoria, setCategoryId] = useState("");
   const [userId, setCuserId] = useState("");
 
-
-
+  const cb = document.querySelector('#eutestando');
+  let idUsuario = sessionStorage.getItem('id');
 
   useEffect(() => {
     console.log("RESUMO DOS ESTADOS: ")
     console.log("name: ", name)
     console.log("value: ", value)
     console.log("categoryId: ", categoria)
-    console.log("Teste: ", teste)
 
 
   }, [name, value, categoria, userId]);
@@ -90,9 +71,9 @@ function Form({ handleAdd, transactionsList, setTransactionsList }) {
     const novaTransacao = {
 
       name: name,
-      value: value,
+      value: cb.checked ? (value * -1 ) : value,
       categoryId: categoria,
-      userId: 1,
+      userId: idUsuario,
     }
 
     api.post("/spenties/", novaTransacao, {
@@ -117,6 +98,7 @@ function Form({ handleAdd, transactionsList, setTransactionsList }) {
 
   return (
     <>
+    <h2 className="title-modal">Cadastrar transação</h2>
       <Grid container spacing={1.6}>
 
         <Grid item md={12}>
@@ -167,13 +149,13 @@ function Form({ handleAdd, transactionsList, setTransactionsList }) {
         </Grid>
         <Grid item md={12}>
           <div class="button r" id="button-1">
-            <input type="checkbox" class="checkbox" value={teste} onChange={(e) => setTeste(e.target.value)} />
+            <input type="checkbox" id="eutestando" class="checkbox" />
             <div class="knobs"></div>
             <div class="layer"></div>
           </div>
         </Grid>
         <Grid item md={12}>
-        <button className="btn-adicionar" onClick={adicionarTransacao2} >ADICIONAR</button>
+        <button className="btn-adicionar" onClick={adicionarTransacao2} onClose={handleClose} >ADICIONAR</button>
       </Grid>
     </Grid>
     </>
