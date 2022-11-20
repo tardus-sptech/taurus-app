@@ -46,8 +46,9 @@ function LoginSignIn(){
             setEmail('');
             setPassword('');
             sessionStorage.setItem('id', response.data.id)
+            sessionStorage.setItem('name', response.data.name)
             sessionStorage.setItem('email', response.data.email)
-            navigate("/visaoGeral");
+            navigate("/loading");
         } catch (error) {
             console.error(error);
         }
