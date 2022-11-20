@@ -8,11 +8,49 @@ import Check2 from "../assets/check2.png"
 import Facebook from "../assets/facebook.png"
 import Twitter from "../assets/twitter.png"
 import Instagram from "../assets/instagram.png"
+import { useEffect } from "react";
+import { useState } from "react";
+import api from "../api";
 
 function Index() {
 
   const navigate = useNavigate();
 
+//   const [name, setName] = useState("");
+//     const [value, setValue] = useState("");
+//     const [categoryId, setCategoryId] = useState("");
+//     const [userId, setCuserId] = useState("");
+    
+
+  
+  
+//   useEffect(() => {
+//     console.log("RESUMO DOS ESTADOS: ")
+//     console.log("name: ", name)
+//     console.log("value: ", value)
+//     console.log("categoryId: ", categoryId)
+
+// }, [name, value, categoryId, userId]);
+
+//   function adicionarTransacao(evento) {
+//     evento.preventDefault();
+//    console.log("EVENTO: ", evento)
+
+   
+//     const novaTransacao = {
+   
+//   categoryId: 1,     // acessando input "ipt_genero" do formulário através do atributo "name" para obter seu valor
+//   name: evento.target.ipt_titulo.value,     // acessando input "ipt_titulo" do formulário através do atributo "name" para obter seu valor
+//   value: evento.target.ipt_valor.value,   // acessando input "ipt_artista" do formulário através do atributo "name" para obter seu valor
+//   userId: 1,
+// }
+//   console.log("NOVO TRANSAÇÃO:", novaTransacao);
+
+//         api.post("/spenties/").then("", novaTransacao )
+//         .then((res) => console.log("res: ", res))
+//         .catch((error) => console.error(error))
+
+//   }
   return (
     <>
       <nav className="navbar">
