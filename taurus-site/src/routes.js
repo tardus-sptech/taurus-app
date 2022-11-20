@@ -16,7 +16,7 @@ function Rotas(){
                 <Route path="/login" element={<LoginSignIn />} />
                 <Route path="/lancamentos" element={<Lancamentos />} />
                 <Route path="/limite" element={<LimiteGastos />} />
-                <Route path="/loading" element={<Loading />}/>
+                <Route path="/loading" element={<Loading />} />
                 <Route path="/visaoGeral" element={<VisaoGeral />}/>
             </Routes>
         </BrowserRouter>

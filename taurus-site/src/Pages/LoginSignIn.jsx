@@ -36,13 +36,18 @@ function LoginSignIn(){
         try {
             const response = await api.patch(`${LOGIN_URL}/${email}/${password}`, 
                 {
-                    headers: {'Content-Type': 'application/json'}
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
                 }
             );
             console.log(JSON.stringify(response?.data));
             setEmail('');
             setPassword('');
-            setSuccess(true);
+            sessionStorage.setItem('id', response.data.id)
+            sessionStorage.setItem('name', response.data.name)
+            sessionStorage.setItem('email', response.data.email)
+            navigate("/loading");
         } catch (error) {
             console.error(error);
         }
