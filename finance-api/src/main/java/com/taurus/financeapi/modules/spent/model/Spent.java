@@ -56,7 +56,7 @@ public class Spent {
                 .build();
     }
 
-    public void updateValue(Double newValue) {
-        value = newValue - value;
+    public void updateValue() {
+        value = user.getValueInAccount() - getValue();
     }
 }

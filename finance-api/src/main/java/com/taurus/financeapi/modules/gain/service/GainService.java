@@ -1,11 +1,11 @@
-package com.taurus.financeapi.modules.spent.service;
+package com.taurus.financeapi.modules.gain.service;
 
 import com.taurus.financeapi.config.exception.ValidationException;
 import com.taurus.financeapi.modules.category.service.CategoryService;
-import com.taurus.financeapi.modules.spent.dto.SpentRequest;
-import com.taurus.financeapi.modules.spent.dto.SpentResponse;
-import com.taurus.financeapi.modules.spent.model.Spent;
-import com.taurus.financeapi.modules.spent.repository.SpentRepository;
+import com.taurus.financeapi.modules.gain.dto.GainRequest;
+import com.taurus.financeapi.modules.gain.dto.GainResponse;
+import com.taurus.financeapi.modules.gain.model.Gain;
+import com.taurus.financeapi.modules.gain.repository.GainRepository;
 import com.taurus.financeapi.modules.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +19,11 @@ import static org.springframework.util.ObjectUtils.isEmpty;
 
 @Slf4j
 @Service
-public class SpentService {
+public class GainService {
 
     @Lazy
     @Autowired
-    private SpentRepository spentRepository;
+    private GainRepository gainRepository;
 
     @Lazy
     @Autowired
@@ -33,60 +33,60 @@ public class SpentService {
     @Autowired
     private UserService userService;
 
-    public SpentResponse save(SpentRequest request) {
+    public GainResponse save(GainRequest request) {
         var user = userService.findById(request.getUserId());
-        user.setValueInAccount(user.getValueInAccount() - request.getValue());
+        user.setValueInAccount(user.getValueInAccount() + request.getValue());
         var category = categoryService.findById(request.getCategoryId());
-        var spent = spentRepository.save(Spent.of(request, category, user));
-        return SpentResponse.of(spent);
+        var gain = gainRepository.save(Gain.of(request, category, user));
+        return GainResponse.of(gain);
     }
 
-    public Spent findById(Integer id) {
-        return spentRepository
+    public Gain findById(Integer id) {
+        return gainRepository
                 .findById(id)
                 .orElseThrow(() -> new ValidationException("There's no spent for the given ID."));
     }
 
 
-    public List<SpentResponse> findAll() {
-        return spentRepository
+    public List<GainResponse> findAll() {
+        return gainRepository
                 .findAll()
                 .stream()
-                .map(SpentResponse::of)
+                .map(GainResponse::of)
                 .collect(Collectors.toList());
     }
 
-    public List<SpentResponse> findByName(String name) {
+    public List<GainResponse> findByName(String name) {
         if (isEmpty(name)) {
             throw new ValidationException("The kitty name must be informed.");
         }
 
-        return spentRepository
+        return gainRepository
                 .findByNameIgnoreCaseContaining(name)
                 .stream()
-                .map(SpentResponse::of)
+                .map(GainResponse::of)
                 .collect(Collectors.toList());
     }
 
-    public SpentResponse findByIdResponse(Integer id) {
-        return SpentResponse.of(findById(id));
+    public GainResponse findByIdResponse(Integer id) {
+        return GainResponse.of(findById(id));
     }
 
-    public List<SpentResponse> findByCategoryId(Integer categoryId) {
+    public List<GainResponse> findByCategoryId(Integer categoryId) {
         if (isEmpty(categoryId)) {
             throw new ValidationException("The kitt' category ID must be informed.");
         }
-        if (!spentRepository.existsByCategoryId(categoryId)) {
+        if (!gainRepository.existsByCategoryId(categoryId)) {
             throw new ValidationException("The spent' category ID was not found.");
         }
-        return spentRepository
+        return gainRepository
                 .findByCategoryId(categoryId)
                 .stream()
-                .map(SpentResponse::of)
+                .map(GainResponse::of)
                 .collect(Collectors.toList());
     }
 
-    private void validateSpentDataInformed(SpentRequest request) {
+    private void validateSpentDataInformed(GainRequest request) {
         if (isEmpty(request.getName())) {
             throw new ValidationException("The spent name was not informed.");
         }
@@ -95,18 +95,18 @@ public class SpentService {
         }
     }
 
-    public SpentResponse update(SpentRequest request, Integer id) {
+    public GainResponse update(GainRequest request, Integer id) {
         validateSpentDataInformed(request);
         validateCategoryIdInformed(request);
         validateInformedId(id);
         var user = userService.findById(request.getUserId());
         var category = categoryService.findById(request.getCategoryId());
-        var spent = spentRepository.save(Spent.of(request, category, user));
-        return SpentResponse.of(spent);
+        var spent = gainRepository.save(Gain.of(request, category, user));
+        return GainResponse.of(spent);
     }
 
     public void delete(Integer id) {
-        spentRepository.deleteById(id);
+        gainRepository.deleteById(id);
     }
 
     private void validateInformedId(Integer id) {
@@ -115,7 +115,7 @@ public class SpentService {
         }
     }
 
-    private void validateCategoryIdInformed(SpentRequest request) {
+    private void validateCategoryIdInformed(GainRequest request) {
         if (isEmpty(request.getCategoryId())) {
             throw new ValidationException("The spent ID was not informed.");
         }

@@ -1,22 +1,25 @@
 package com.taurus.financeapi.modules.user.dto;
 
-import com.taurus.financeapi.modules.category.dto.CategoryResponse;
-import com.taurus.financeapi.modules.spent.dto.SpentResponse;
-import com.taurus.financeapi.modules.spent.model.Spent;
 import com.taurus.financeapi.modules.user.model.User;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
 @Data
+@AllArgsConstructor
 @Builder
 public class UserResponse {
-    private int id;
+    int id;
     private String name;
     private String cpf;
     private Date birthDate;
     private String email;
+
+    public UserResponse(Integer idUsuario, Object name, Object cpf, Object birthDate, Object email, Object o, Object o1, Object o2, Object o3, Object o4, Object o5) {
+    }
 
     public static UserResponse of(User user) {
         return UserResponse

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(allowedHeaders = "*")
 @RestController
 @RequestMapping("/api/kitties")
 public class KittyController {

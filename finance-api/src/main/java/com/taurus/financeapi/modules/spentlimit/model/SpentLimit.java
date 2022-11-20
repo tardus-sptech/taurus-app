@@ -60,6 +60,7 @@ public class SpentLimit {
         return SpentLimit
                 .builder()
                 .month(request.getMonth())
+                .currentLimit(request.getCurrentLimit())
                 .monthSpent(request.getMonthSpent())
                 .categorySpent(request.getCategorySpent())
                 .category(category)

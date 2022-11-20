@@ -58,7 +58,7 @@ function Form({ handleAdd, transactionsList, setTransactionsList }) {
   let idUsuario = sessionStorage.getItem('id');
 
   useEffect(() => {
-    console.log("RESUMO DOS ESTADOS: ")
+    console.log("RESUMO DOS TRANSACAO: ")
     console.log("name: ", name)
     console.log("value: ", value)
     console.log("categoryId: ", categoria)
@@ -71,18 +71,29 @@ function Form({ handleAdd, transactionsList, setTransactionsList }) {
     const novaTransacao = {
 
       name: name,
-      value: cb.checked ? (value * -1 ) : value,
+      value: value  ,
       categoryId: categoria,
       userId: idUsuario,
     }
 
-    api.post("/spenties/", novaTransacao, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }).then((resposta) => {
-      console.log(resposta.status)
-    })
+    if(cb.checked){
+      api.post("/spenties/", novaTransacao, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then((resposta) => {
+        console.log(resposta.status)
+      })
+    }else{
+      api.post("/gains/", novaTransacao, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then((resposta) => {
+        console.log(resposta.status)
+      })
+    }
+  
   }
 
 

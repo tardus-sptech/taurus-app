@@ -31,13 +31,11 @@ public class SpentLimitService {
     @Autowired
     private CategoryService categoryService;
 
-
-
     public SpentLimitResponse save(SpentLimitRequest request) {
         var user = userService.findById(request.getUserId());
         var category = categoryService.findById(request.getCategoryId());
-        var spent = spentLimitRepository.save(SpentLimit.of(request, category, user));
-        return SpentLimitResponse.of(spent);
+        var spentLimit = spentLimitRepository.save(SpentLimit.of(request, category, user));
+        return SpentLimitResponse.of(spentLimit);
     }
 
     public SpentLimit findById(Integer id) {

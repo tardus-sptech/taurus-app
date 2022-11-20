@@ -1,12 +1,14 @@
 package com.taurus.financeapi.modules.user.service;
 
 import com.taurus.financeapi.config.exception.ValidationException;
+import com.taurus.financeapi.modules.user.dto.UserResponse;
 import com.taurus.financeapi.modules.user.model.User;
 import com.taurus.financeapi.modules.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.springframework.util.ObjectUtils.isEmpty;
 
@@ -38,15 +40,15 @@ public class UserService {
         user.setValueInAccount(user.getValueInAccount() - newValue);
     }
 
-    public User login(String email, String password) {
-        User user = userRepository.findUserByEmailAndPassword(email, password);
-        if(user == null || user.isLogged()) {
-            return null;
-        }
-        user.setLogged(true);
-        userRepository.save(user);
-        return user;
-    }
+//    public User login(String email, String password) {
+//        User user = userRepository.findUserByEmailAndPassword(email, password);
+//        if(user == null || user.isLogged()) {
+//            return null;
+//        }
+//        user.setLogged(true);
+//        userRepository.save(user);
+//        return user;
+//    }
 
     public User logout(String personId) {
         User user = userRepository.findByPersonId(personId);
@@ -56,5 +58,9 @@ public class UserService {
         user.setLogged(false);
         userRepository.save(user);
         return user;
+    }
+
+    public Optional<UserResponse> getByEmailAndPassword(String email, String senha) {
+        return userRepository.getByEmailAndPassword(email, senha);
     }
 }

@@ -54,12 +54,7 @@ function VisaoGeral() {
                         </div>
                     </div>
                     <div className="balance-controls">
-                        <i className="fa-solid fa-circle-plus" id="plus-button"></i>
-                        <i className="fa-solid fa-circle-minus" id="minus-button"></i>
-                        <i className="fa-solid fa-right-left" id="swap-button"></i>
-
                         <BasicModal />
-
                     </div>
                 </div>
 
