@@ -1,0 +1,57 @@
+.header{
+    background-color: #6600CC;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10vw;
+}
+
+.taurus-logo{
+    display: flex;
+    justify-content: center;
+}
+
+.taurus-logo img{
+    cursor: pointer;
+}
+
+.nav-bar{
+    display: flex;
+    justify-content: space-between;
+    width: 40%;
+    height: 100%;
+}
+
+.nav-item{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.nav-item button{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.nav-item:hover, .nav-item a:hover{
+    background-color: #8257E5;
+    transition: 0.5s;
+}
+
+.header-icons{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.header-icons i{
+    color: #FFFFFF;
+    font-size: 25px;
+    margin: 0px 15px;
+    cursor: pointer;
+}
