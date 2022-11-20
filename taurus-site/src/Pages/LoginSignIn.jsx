@@ -25,7 +25,8 @@ function LoginSignIn(){
         e.preventDefault();
 
         try {
-            const response = await api.patch(`${LOGIN_URL}/${email}/${password}`, 
+            const response = await api.post(LOGIN_URL, 
+                JSON.stringify({email, password}),
                 {
                     headers: {
                         'Content-Type': 'application/json'
