@@ -21,7 +21,7 @@ function LoginSignIn(){
     //     }
     // }
 
-    const LOGIN_URL = '';
+    const LOGIN_URL = '/users/login';
     const SIGN_IN_URL = '';
 
     const navigate = useNavigate();
@@ -37,13 +37,17 @@ function LoginSignIn(){
             const response = await api.post(LOGIN_URL, 
                 JSON.stringify({email, password}), 
                 {
-                    headers: {'Content-Type': 'application/json'}
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
                 }
             );
             console.log(JSON.stringify(response?.data));
             setEmail('');
             setPassword('');
-            setSuccess(true);
+            sessionStorage.setItem('id', response.data.id)
+            sessionStorage.setItem('email', response.data.email)
+            navigate("/visaoGeral");
         } catch (error) {
             console.error(error);
         }
