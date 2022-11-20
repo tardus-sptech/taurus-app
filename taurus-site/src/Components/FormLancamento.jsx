@@ -14,11 +14,6 @@ function Form({ handleAdd, transactionsList, setTransactionsList }) {
   const [isExpense, setExpense] = useState(false);
 
 
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
-
 
 
   const generateID = () => Math.round(Math.random() * 1000);
@@ -105,6 +100,7 @@ function Form({ handleAdd, transactionsList, setTransactionsList }) {
     })
   }, [])
 
+ 
 
 
   return (
@@ -145,10 +141,7 @@ function Form({ handleAdd, transactionsList, setTransactionsList }) {
               label="Categoria"
               value={categoria}
               onChange={(e) => setCategoryId(e.target.value)}
-              SelectProps={{
-                native: true,
-
-              }}
+              
             >
               {category.map((option) => (
                 <MenuItem key={option.id} value={option.id}>
@@ -159,14 +152,14 @@ function Form({ handleAdd, transactionsList, setTransactionsList }) {
           </FormControl>
         </Grid>
         <Grid item md={12}>
-          <div class="button r" id="button-1">
-            <input type="checkbox" id="eutestando" class="checkbox" />
-            <div class="knobs"></div>
-            <div class="layer"></div>
+          <div className="button r" id="button-1">
+            <input type="checkbox" id="eutestando" className="checkbox" />
+            <div className="knobs"></div>
+            <div className="layer"></div>
           </div>
         </Grid>
         <Grid item md={12}>
-        <button className="btn-adicionar" onClick={adicionarTransacao2} onClose={handleClose} >ADICIONAR</button>
+        <button className="btn-adicionar" onClick={adicionarTransacao2}>ADICIONAR</button>
       </Grid>
     </Grid>
     </>
