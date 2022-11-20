@@ -21,7 +21,7 @@ function LoginSignIn(){
     //     }
     // }
 
-    const LOGIN_URL = '';
+    const LOGIN_URL = '/users/login';
     const SIGN_IN_URL = '';
 
     const navigate = useNavigate();
@@ -34,8 +34,7 @@ function LoginSignIn(){
         e.preventDefault();
 
         try {
-            const response = await api.post(LOGIN_URL, 
-                JSON.stringify({email, password}), 
+            const response = await api.patch(`${LOGIN_URL}/${email}/${password}`, 
                 {
                     headers: {'Content-Type': 'application/json'}
                 }
