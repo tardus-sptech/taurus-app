@@ -24,6 +24,12 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @GetMapping("/{idUser}")
+    public ResponseEntity<User> getUserById(@PathVariable @Valid int idUser){
+        User user = userService.findById(idUser);
+        return (user != null) ? ResponseEntity.status(HttpStatus.OK).body(user) : ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+
     @GetMapping
     public ResponseEntity<List<User>> users() {
         List<User> usuarios = userService.users();
