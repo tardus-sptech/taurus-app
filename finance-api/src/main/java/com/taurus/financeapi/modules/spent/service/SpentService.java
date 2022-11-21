@@ -49,6 +49,14 @@ public class SpentService {
                 .orElseThrow(() -> new ValidationException("There's no spent for the given ID."));
     }
 
+    public List<SpentResponse> findByUserId(Integer idUser){
+        return spentRepository
+                .findByUserId(idUser)
+                .stream()
+                .map(SpentResponse::of)
+                .collect(Collectors.toList());
+    }
+
 
     public List<SpentResponse> findAll() {
         return spentRepository

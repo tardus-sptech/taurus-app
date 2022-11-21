@@ -4,6 +4,7 @@ import com.taurus.financeapi.modules.spent.dto.SpentRequest;
 import com.taurus.financeapi.modules.spent.model.Spent;
 import com.taurus.financeapi.modules.spent.service.SpentService;
 import com.taurus.financeapi.modules.spent.dto.SpentResponse;
+import com.taurus.financeapi.modules.user.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,11 @@ public class SpentController {
 
     @Autowired
     private SpentService spentService;
+
+    @GetMapping("/user/{idUser}")
+    public List<SpentResponse> getSpentByUserId(@PathVariable Integer idUser){
+        return spentService.findByUserId(idUser);
+    }
 
     @PostMapping
     public SpentResponse save(@RequestBody SpentRequest spent) {
