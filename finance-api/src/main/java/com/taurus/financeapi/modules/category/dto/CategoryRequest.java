@@ -4,5 +4,6 @@ import lombok.Data;
 
 @Data
 public class CategoryRequest {
+    private Double value;
     private String description;
 }

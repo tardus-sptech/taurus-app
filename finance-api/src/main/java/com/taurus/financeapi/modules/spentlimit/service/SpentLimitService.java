@@ -1,9 +1,11 @@
 package com.taurus.financeapi.modules.spentlimit.service;
 
-import com.taurus.financeapi.config.exception.ValidationException;
 import com.taurus.financeapi.modules.category.service.CategoryService;
+import com.taurus.financeapi.modules.kitty.dto.KittyRequest;
+import com.taurus.financeapi.modules.kitty.dto.KittyResponse;
+import com.taurus.financeapi.modules.kitty.model.Kitty;
+import com.taurus.financeapi.modules.spent.dto.SpentRequest;
 import com.taurus.financeapi.modules.spent.dto.SpentResponse;
-import com.taurus.financeapi.modules.spent.model.Spent;
 import com.taurus.financeapi.modules.spentlimit.dto.SpentLimitRequest;
 import com.taurus.financeapi.modules.spentlimit.dto.SpentLimitResponse;
 import com.taurus.financeapi.modules.spentlimit.model.SpentLimit;
@@ -15,6 +17,8 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 import static org.springframework.util.ObjectUtils.isEmpty;
 
@@ -34,19 +38,14 @@ public class SpentLimitService {
     public SpentLimitResponse save(SpentLimitRequest request) {
         var user = userService.findById(request.getUserId());
         var category = categoryService.findById(request.getCategoryId());
-        var spentLimit = spentLimitRepository.save(SpentLimit.of(request, category, user));
+        var spentLimit = (SpentLimit.of(request, category, user));
+        category.setValue(spentLimit.getCategorySpent() + category.getValue());
+        spentLimitRepository.save(spentLimit);
         return SpentLimitResponse.of(spentLimit);
-    }
-
-    public SpentLimit findById(Integer id) {
-        return spentLimitRepository
-                .findById(id)
-                .orElseThrow(() -> new ValidationException("There's no limit for the given ID."));
     }
 
     public List<SpentLimit> findByUserId(Integer userId) {
         return spentLimitRepository.findByUserId(userId);
-
     }
 
     public List<SpentLimit> findAll() {

@@ -89,6 +89,7 @@ function Form({ handleAdd, transactionsList, setTransactionsList }) {
       name: name,
       value: value,
       userId: idUsuario,
+      
     }
 
     if (cb.checked) {

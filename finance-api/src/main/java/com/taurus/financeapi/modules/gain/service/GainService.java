@@ -25,7 +25,6 @@ public class GainService {
     @Autowired
     private GainRepository gainRepository;
 
-
     @Lazy
     @Autowired
     private UserService userService;

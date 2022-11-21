@@ -12,8 +12,8 @@ function VisaoGeral() {
     const navigate = useNavigate();
 
     var today = new Date(), time = today.getHours();
-    var saudacao = time < 12 ? "Bom dia," : time < 18 ? "Boa tarde," : "Boa noite,";
-    var icon = time < 18 ? "fa-sharp fa-solid fa-sun icontime" : "fa-sharp fa-solid fa-moon icontime";
+    var saudacao = 6 < time || time < 12 ? "Bom dia," : time < 18 ? "Boa tarde," : "Boa noite,";
+    var icon = 6< time || time < 18 ? "fa-sharp fa-solid fa-sun icontime" : "fa-sharp fa-solid fa-moon icontime";
 
     useEffect( () => {userData()}, []);
 
