@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "spent")
+@Table(name = "gain")
 public class Gain {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,10 +27,6 @@ public class Gain {
 
     @Column(name = "value", nullable = false)
     private Double value;
-
-    @ManyToOne
-    @JoinColumn(name = "fk_category", nullable = false)
-    private Category category;
 
     @ManyToOne
     @JoinColumn(name = "fk_user", nullable = false)
@@ -45,13 +41,11 @@ public class Gain {
     }
 
     public static Gain of(GainRequest request,
-                          Category category,
                           User user) {
         return Gain
                 .builder()
                 .name(request.getName())
                 .value(request.getValue())
-                .category(category)
                 .user(user)
                 .build();
     }

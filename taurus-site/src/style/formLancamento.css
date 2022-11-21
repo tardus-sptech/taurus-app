@@ -26,7 +26,7 @@
   width: 100%;
   padding: 0 1.5rem;
   height: 4rem;
-  background: #33cc95;
+  background: #6600cc;
   color: #fff;
   border-radius: 0.25rem;
   border: 0;
@@ -34,6 +34,7 @@
   margin-top: 1.5rem;
   font-weight: 600;
   transition: filter 0.2s;
+  cursor: pointer;
 }
 
 .ipt-formLancamento:focus {
@@ -129,4 +130,8 @@
 .css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
   border: none;
   outline: none;
+}
+
+.combo-form{
+  visibility: hidden;
 }

@@ -36,7 +36,7 @@ public class SpentLimitController {
     }
 
     @GetMapping("/user/{userId}")
-    public SpentLimit findByUserId(@PathVariable Integer userId) {
+    public List<SpentLimit> findByUserId(@PathVariable Integer userId) {
         return spentLimitService.findByUserId(userId);
     }
 

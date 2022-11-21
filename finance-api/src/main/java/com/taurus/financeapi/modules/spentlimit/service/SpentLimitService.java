@@ -44,7 +44,7 @@ public class SpentLimitService {
                 .orElseThrow(() -> new ValidationException("There's no limit for the given ID."));
     }
 
-    public SpentLimit findByUserId(Integer userId) {
+    public List<SpentLimit> findByUserId(Integer userId) {
         return spentLimitRepository.findByUserId(userId);
 
     }
