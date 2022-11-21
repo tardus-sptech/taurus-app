@@ -18,15 +18,22 @@ function VisaoGeral() {
 
     useEffect( () => {userData()}, []);
     useEffect( () => {listSpents()}, []);
+    useEffect( () => {listGains()}, []);
 
     const [name, setName] = useState('');
     const [balance, setBalance] = useState('');
     const [spents, setSpents] = useState([]);
-
+    const [gains, setGains] = useState([]);
+    var gasto = 0;
+    var ganho = 0;
     const USER_URL = '/users';
     const SPENT_URL = '/spenties/user'
     const idUser = sessionStorage.getItem('id');
+   
+    
+     
 
+    
     const userData = async (e) => {
         try {
             const response = await api.get(`${USER_URL}/${idUser}`);
@@ -40,20 +47,47 @@ function VisaoGeral() {
     const listSpents = async (e) => {
         try {
             const response = await api.get(`${SPENT_URL}/${idUser}`);
-            console.log(response.data)
+             console.log(response.data)
             setSpents(response.data);
         } catch (error) {
             console.error(error);
         }
     }
+    spents.map((spents, index) => {
+    
+        gasto += spents.value     
+        
+        })
+          
+//
+    const listGains = async (e) => {
+        try {
+            const response = await api.get(`gains/user/${idUser}`);
+             console.log(response.data)
+           
+            setGains(response.data);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+    
+    gains.map((gains, index) => {
+              
+        ganho += gains.value
+       
+})
+//
     const [category, setCategory] = useState([]);
     useEffect(() => {
       api.get(`/users/${idUser}`).then((resposta) => {
         setCategory(resposta.data);
-        console.log(resposta.data);
+        // console.log(resposta.data);
       })
     }, [])
-  
+
+
+
+    
     return (
         <>
             <NavBar />
@@ -77,11 +111,11 @@ function VisaoGeral() {
                         <div id="user-balance-footer">
                             <div className="user-balance-box" id="monthly-revenue">
                                 <span className="balance-title">Receita mensal</span>
-                                <span id="monthly-revenue-balance">R$ 1.500,00</span>
+                                <span id="monthly-revenue-balance">R$ {ganho} </span>
                             </div>
                             <div className="user-balance-box" id="monthly-expense">
                                 <span className="balance-title">Despesa mensal</span>
-                                <span id="monthly-expense-balance">R$ 1.500,00</span>
+                                <span id="monthly-expense-balance">R${gasto}</span>
                             </div>
                             <div className="user-balance-box" id="reports">
                                 <span>

@@ -94,4 +94,7 @@ public class GainService {
         }
     }
 
+    public List<Gain> findByUserId(Integer userId) {
+        return gainRepository.findByUserId(userId);
+    }
 }
