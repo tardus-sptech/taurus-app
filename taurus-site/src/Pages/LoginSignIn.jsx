@@ -37,6 +37,7 @@ function LoginSignIn(){
             setEmail('');
             setPassword('');
             sessionStorage.setItem('id', response.data.id)
+            sessionStorage.setItem('name', response.data.name)
             navigate("/loading");
         } catch (error) {
             console.error(error);
