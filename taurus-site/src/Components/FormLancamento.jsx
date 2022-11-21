@@ -14,11 +14,6 @@ function Form({ handleAdd, transactionsList, setTransactionsList }) {
   const [isExpense, setExpense] = useState(false);
 
 
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
-
 
 
   const generateID = () => Math.round(Math.random() * 1000);
@@ -66,26 +61,48 @@ function Form({ handleAdd, transactionsList, setTransactionsList }) {
 
   }, [name, value, categoria, userId]);
 
+  function removerC(){
+    if (!cb.checked) {
+      var combo = document.getElementById("outlined-select-currency-native");
+      var combo2 = document.getElementById("demo-simple-select-label");
+      combo.style.visibility = "hidden";
+      combo2.style.visibility = "hidden";
+    }
+    else{
+      var combo = document.getElementById("outlined-select-currency-native");
+      var combo2 = document.getElementById("demo-simple-select-label");
+      combo.style.visibility = "visible";
+      combo2.style.visibility = "visible";
+      combo.style.border="1px solid #cacaca";
+    }
+  }
 
   function adicionarTransacao2(evento) {
-    const novaTransacao = {
-
+    const novaTransacaoSaida = {
       name: name,
-      value: value  ,
+      value: value,
       categoryId: categoria,
       userId: idUsuario,
     }
 
-    if(cb.checked){
-      api.post("/spenties/", novaTransacao, {
+    const novaTransacaoEntrada = {
+      name: name,
+      value: value,
+      userId: idUsuario,
+      
+    }
+
+    if (cb.checked) {
+      
+      api.post("/spenties/", novaTransacaoSaida, {
         headers: {
           'Content-Type': 'application/json'
         }
       }).then((resposta) => {
         console.log(resposta.status)
       })
-    }else{
-      api.post("/gains/", novaTransacao, {
+    } else {
+      api.post("/gains/", novaTransacaoEntrada, {
         headers: {
           'Content-Type': 'application/json'
         }
@@ -93,9 +110,8 @@ function Form({ handleAdd, transactionsList, setTransactionsList }) {
         console.log(resposta.status)
       })
     }
-  
-  }
 
+  }
 
   const [category, setCategory] = useState([]);
   useEffect(() => {
@@ -108,8 +124,8 @@ function Form({ handleAdd, transactionsList, setTransactionsList }) {
 
 
   return (
-    <>
-    <h2 className="title-modal">Cadastrar transação</h2>
+    <><form>
+      <h2 className="title-modal">Cadastrar transação</h2>
       <Grid container spacing={1.6}>
 
         <Grid item md={12}>
@@ -138,17 +154,14 @@ function Form({ handleAdd, transactionsList, setTransactionsList }) {
 
         <Grid item md={12}>
           <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Categoria</InputLabel>
+            <InputLabel style={{visibility: "hidden"}} id="demo-simple-select-label">Categoria</InputLabel>
             <Select
               className="combo-form"
-              id="outlined-select-currency-native testere"
+              id="outlined-select-currency-native"
               label="Categoria"
               value={categoria}
               onChange={(e) => setCategoryId(e.target.value)}
-              SelectProps={{
-                native: true,
 
-              }}
             >
               {category.map((option) => (
                 <MenuItem key={option.id} value={option.id}>
@@ -159,16 +172,17 @@ function Form({ handleAdd, transactionsList, setTransactionsList }) {
           </FormControl>
         </Grid>
         <Grid item md={12}>
-          <div class="button r" id="button-1">
-            <input type="checkbox" id="eutestando" class="checkbox" />
-            <div class="knobs"></div>
-            <div class="layer"></div>
+          <div className="button r" id="button-1" onClick={removerC}>
+            <input type="checkbox" id="eutestando" className="checkbox"/>
+            <div className="knobs"></div>
+            <div className="layer"></div>
           </div>
         </Grid>
         <Grid item md={12}>
-        <button className="btn-adicionar" onClick={adicionarTransacao2} onClose={handleClose} >ADICIONAR</button>
+          <button className="btn-adicionar" type="submit" onClick={adicionarTransacao2}>ADICIONAR</button>
+        </Grid>
       </Grid>
-    </Grid>
+    </form>
     </>
   );
 };

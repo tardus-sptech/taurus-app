@@ -3,12 +3,13 @@ import api from "../api";
 import { useEffect, useState } from "react";
 
 function CardLimiteGastos(props){
-    
+  const id = sessionStorage.getItem('id');
     const [bars, setBars] = useState([]);
         useEffect(() => {
-          api.get("/limities").then((resposta) => {
+          api.get(`/limities/user/${id}`).then((resposta) => {
 
           setBars(resposta.data);
+         console.log(resposta.data)
           })
         }, [])
 

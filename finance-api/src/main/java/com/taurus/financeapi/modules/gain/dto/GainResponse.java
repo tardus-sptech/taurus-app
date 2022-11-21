@@ -20,7 +20,6 @@ public class GainResponse {
     private Integer id;
     private String name;
     private Double value;
-    private CategoryResponse category;
     private User user;
     @JsonProperty("created_at")
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
@@ -32,7 +31,6 @@ public class GainResponse {
                 .id(gain.getId())
                 .name(gain.getName())
                 .value(gain.getValue())
-                .category(CategoryResponse.of(gain.getCategory()))
                 .user(gain.getUser())
                 .createdAt(gain.getCreatedAt())
                 .build();

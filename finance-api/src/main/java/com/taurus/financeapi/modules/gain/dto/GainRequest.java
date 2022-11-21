@@ -14,8 +14,6 @@ public class GainRequest {
     @Min(1)
     private Double value;
     @NotNull
-    private Integer categoryId;
-    @NotNull
     private Integer userId;
 
     public void updateValue(Double newValue) {

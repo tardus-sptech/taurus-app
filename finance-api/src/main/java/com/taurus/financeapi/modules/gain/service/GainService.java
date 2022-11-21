@@ -27,17 +27,12 @@ public class GainService {
 
     @Lazy
     @Autowired
-    private CategoryService categoryService;
-
-    @Lazy
-    @Autowired
     private UserService userService;
 
     public GainResponse save(GainRequest request) {
         var user = userService.findById(request.getUserId());
         user.setValueInAccount(user.getValueInAccount() + request.getValue());
-        var category = categoryService.findById(request.getCategoryId());
-        var gain = gainRepository.save(Gain.of(request, category, user));
+        var gain = gainRepository.save(Gain.of(request, user));
         return GainResponse.of(gain);
     }
 
@@ -72,20 +67,6 @@ public class GainService {
         return GainResponse.of(findById(id));
     }
 
-    public List<GainResponse> findByCategoryId(Integer categoryId) {
-        if (isEmpty(categoryId)) {
-            throw new ValidationException("The kitt' category ID must be informed.");
-        }
-        if (!gainRepository.existsByCategoryId(categoryId)) {
-            throw new ValidationException("The spent' category ID was not found.");
-        }
-        return gainRepository
-                .findByCategoryId(categoryId)
-                .stream()
-                .map(GainResponse::of)
-                .collect(Collectors.toList());
-    }
-
     private void validateSpentDataInformed(GainRequest request) {
         if (isEmpty(request.getName())) {
             throw new ValidationException("The spent name was not informed.");
@@ -97,11 +78,9 @@ public class GainService {
 
     public GainResponse update(GainRequest request, Integer id) {
         validateSpentDataInformed(request);
-        validateCategoryIdInformed(request);
         validateInformedId(id);
         var user = userService.findById(request.getUserId());
-        var category = categoryService.findById(request.getCategoryId());
-        var spent = gainRepository.save(Gain.of(request, category, user));
+        var spent = gainRepository.save(Gain.of(request, user));
         return GainResponse.of(spent);
     }
 
@@ -112,12 +91,6 @@ public class GainService {
     private void validateInformedId(Integer id) {
         if (isEmpty(id)) {
             throw new ValidationException("The ID must be informed");
-        }
-    }
-
-    private void validateCategoryIdInformed(GainRequest request) {
-        if (isEmpty(request.getCategoryId())) {
-            throw new ValidationException("The spent ID was not informed.");
         }
     }
 

@@ -40,10 +40,6 @@ public class GainController {
         return gainService.findByName(name);
     }
 
-    @GetMapping("/category/{categoryId}")
-    public List<GainResponse> findByCategoryId(@PathVariable Integer categoryId) {
-        return gainService.findByCategoryId(categoryId);
-    }
 
 //    @PutMapping("{id}")
 //    public SpentResponse update(@RequestBody SpentRequest request,
