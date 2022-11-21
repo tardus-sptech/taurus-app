@@ -98,6 +98,7 @@ function VisaoGeral() {
 
 
                 <div id="second-container">
+                    <h1 className='title-container'>Últimos gastos</h1>
                     <div className="high-spents">
                             {
                                 spents.map((spents, index) => {
@@ -111,7 +112,6 @@ function VisaoGeral() {
                                     )
                                 })
                             }
-                        <HighSpents />
                     </div>
                 </div>
             </main>

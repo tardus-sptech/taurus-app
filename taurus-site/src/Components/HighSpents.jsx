@@ -10,7 +10,6 @@ function HighSpents(props) {
     return(
         <>
             <div className='spents-container'>
-                <h1 className='title-container'>Últimos gastos</h1>
                 <div className='spents-box'>
                     <div className='spent'>
                         <span>
