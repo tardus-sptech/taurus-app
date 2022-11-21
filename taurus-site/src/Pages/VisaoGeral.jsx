@@ -13,8 +13,8 @@ function VisaoGeral() {
     const navigate = useNavigate();
 
     var today = new Date(), time = today.getHours();
-    var saudacao = 6 < time || time < 12 ? "Bom dia," : time < 18 ? "Boa tarde," : "Boa noite,";
-    var icon = 6< time || time < 18 ? "fa-sharp fa-solid fa-sun icontime" : "fa-sharp fa-solid fa-moon icontime";
+    var saudacao = time > 6 && time < 12 ? "Bom dia," : time < 18 ? "Boa tarde," : "Boa noite,";
+    var icon = 6 < time && time < 18 ? "fa-sharp fa-solid fa-sun icontime" : "fa-sharp fa-solid fa-moon icontime";
 
     useEffect( () => {userData()}, []);
 
@@ -42,7 +42,14 @@ function VisaoGeral() {
             console.error(error);
         }
     }
-
+    const [category, setCategory] = useState([]);
+    useEffect(() => {
+      api.get(`/users/${idUser}`).then((resposta) => {
+        setCategory(resposta.data);
+        console.log(resposta.data);
+      })
+    }, [])
+  
     return (
         <>
             <NavBar />

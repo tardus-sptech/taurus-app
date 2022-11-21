@@ -1,8 +1,8 @@
 import { TextField } from "@mui/material";
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React , {  useEffect, useState } from "react";
 import Footer from "../Components/Footer";
 import NavBar from "../Components/NavBar";
+import api from "../api";
 
 function VisualizarUsuario() {
   const [name, setName] = useState('');
