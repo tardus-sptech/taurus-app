@@ -10,6 +10,6 @@ import java.util.List;
 public interface SpentRepository extends JpaRepository<Spent, Integer> {
     List<Spent> findByNameIgnoreCaseContaining(String name);
     List<Spent> findByCategoryId(Integer id);
-    List<Spent> findByUserId(Integer idUser);
+    List<Spent> findByUserIdOrderByCreatedAtDesc(Integer idUser);
     Boolean existsByCategoryId(Integer categoryId);
 }

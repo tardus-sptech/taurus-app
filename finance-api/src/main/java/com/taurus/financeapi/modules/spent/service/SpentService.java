@@ -51,7 +51,7 @@ public class SpentService {
 
     public List<SpentResponse> findByUserId(Integer idUser){
         return spentRepository
-                .findByUserId(idUser)
+                .findByUserIdOrderByCreatedAtDesc(idUser)
                 .stream()
                 .map(SpentResponse::of)
                 .collect(Collectors.toList());
