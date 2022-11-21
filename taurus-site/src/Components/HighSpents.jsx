@@ -18,7 +18,7 @@ function HighSpents(props) {
                         </span>
                     </div>
                     <div>
-                        <span className='spent-value'>R$ -{value}</span>
+                        <span className={value < 0 ? 'spent-value' : 'gain-value'}>R$ {Number(value).toFixed(2)}</span>
                     </div>
                 </div>
             </div>

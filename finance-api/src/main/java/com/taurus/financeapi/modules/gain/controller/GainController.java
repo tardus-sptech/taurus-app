@@ -26,6 +26,11 @@ public class GainController {
         return gainService.save(spent);
     }
 
+    @GetMapping("/user/{idUser}")
+    public List<GainResponse> getGainByUserId(@PathVariable Integer idUser){
+        return gainService.findByIdUser(idUser);
+    }
+
     @GetMapping
     public List<GainResponse> findAll() {
         return gainService.findAll();
