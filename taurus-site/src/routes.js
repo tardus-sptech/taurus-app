@@ -6,6 +6,7 @@ import LimiteGastos from "./Pages/LimiteGastos";
 import LoginSignIn from "./Pages/LoginSignIn";
 import Loading from "./Pages/Loading";
 import VisaoGeral from "./Pages/VisaoGeral";
+import EditarUsuario from "./Pages/VisualizarUsuario";
 
 
 function Rotas(){
@@ -18,6 +19,7 @@ function Rotas(){
                 <Route path="/limite" element={<LimiteGastos />} />
                 <Route path="/loading" element={<Loading />} />
                 <Route path="/visaoGeral" element={<VisaoGeral />}/>
+                <Route path="/conta" element={<EditarUsuario />}/>
             </Routes>
         </BrowserRouter>
     );
