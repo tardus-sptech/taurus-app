@@ -1,20 +1,38 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "../Components/Footer";
 import NavBar from "../Components/NavBar";
 import ReactDOM from 'react-dom/client';
 import { StyledEngineProvider } from '@mui/material/styles';
 import BasicModal from "../Components/ModalLancamento";
+import api from "../api";
 
 function VisaoGeral() {
 
     const navigate = useNavigate();
-    const name = sessionStorage.getItem('name');
 
     var today = new Date(), time = today.getHours();
     var saudacao = time < 12 ? "Bom dia," : time < 18 ? "Boa tarde," : "Boa noite,";
     var icon = time < 18 ? "fa-sharp fa-solid fa-sun icontime" : "fa-sharp fa-solid fa-moon icontime";
 
+    useEffect( () => {userData()}, []);
+
+    const [name, setName] = useState('');
+    const [balance, setBalance] = useState('');
+
+    const USER_URL = '/users';
+    const idUser = sessionStorage.getItem('id');
+
+    const userData = async (e) => {
+
+        try {
+            const response = await api.get(`${USER_URL}/${idUser}`);
+            setName(response.data.name);
+            setBalance(Number(response.data.valueInAccount).toFixed(2));
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
     return (
         <>
@@ -32,7 +50,7 @@ function VisaoGeral() {
 
                             <div className="user-general-balance">
                                 <span className="balance-title">Saldo geral</span>
-                                <span id="money-balance">R$ <span id="balance">1.800,00</span></span>
+                                <span id="money-balance">R$ <span id="balance">{balance}</span></span>
                             </div>
                         </div>
 
