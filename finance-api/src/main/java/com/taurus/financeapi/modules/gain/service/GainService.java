@@ -51,6 +51,14 @@ public class GainService {
                 .collect(Collectors.toList());
     }
 
+    public List<GainResponse> findByIdUser(Integer idUser){
+        return gainRepository
+                .findByUserIdOrderByCreatedAtDesc(idUser)
+                .stream()
+                .map(GainResponse::of)
+                .collect(Collectors.toList());
+    }
+
     public List<GainResponse> findByName(String name) {
         if (isEmpty(name)) {
             throw new ValidationException("The kitty name must be informed.");
