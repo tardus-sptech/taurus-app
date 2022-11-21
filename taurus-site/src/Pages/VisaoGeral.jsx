@@ -18,14 +18,18 @@ function VisaoGeral() {
 
     useEffect( () => {userData()}, []);
     useEffect( () => {listSpents()}, []);
+    useEffect( () => {listGains()}, []);
 
     const [name, setName] = useState('');
     const [balance, setBalance] = useState('');
-    const [spents, setSpents] = useState([]);
+    const [transactions, setTransactions] = useState([]);
 
     const USER_URL = '/users';
-    const SPENT_URL = '/spenties/user'
+    const SPENT_URL = '/spenties/user';
+    const GAIN_URL = '/gains/user';
     const idUser = sessionStorage.getItem('id');
+
+    console.log(transactions);
 
     const userData = async (e) => {
         try {
@@ -38,14 +42,26 @@ function VisaoGeral() {
     }
 
     const listSpents = async (e) => {
+        
         try {
             const response = await api.get(`${SPENT_URL}/${idUser}`);
-            console.log(response.data)
-            setSpents(response.data);
+            setTransactions(response.data);
         } catch (error) {
             console.error(error);
         }
     }
+
+    const listGains = async (e) => {
+        
+        try {
+            const response = await api.get(`${GAIN_URL}/${idUser}`);
+            setTransactions(response.data);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+
     const [category, setCategory] = useState([]);
     useEffect(() => {
       api.get(`/users/${idUser}`).then((resposta) => {
@@ -98,16 +114,16 @@ function VisaoGeral() {
 
 
                 <div id="second-container">
-                    <h1 className='title-container'>Últimos gastos</h1>
+                    <h1 className='title-container'>Últimas transações</h1>
                     <div className="high-spents">
                             {
-                                spents.map((spents, index) => {
+                                transactions.map((transactions, index) => {
                                     return (
                                         <HighSpents 
-                                            key={spents.id}
-                                            name={spents.name}
-                                            value={spents.value}
-                                            date={spents.created_at}
+                                            key={transactions.id}
+                                            name={transactions.name}
+                                            value={transactions.value}
+                                            date={transactions.created_at}
                                         />
                                     )
                                 })
