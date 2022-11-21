@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(allowedHeaders = "*")
 @RestController
@@ -30,13 +31,19 @@ public class SpentLimitController {
         return spentLimitService.findAll();
     }
 
-    @GetMapping("{id}")
-    public SpentLimit findById(@PathVariable Integer id) {
-        return spentLimitService.findById(id);
-    }
+//    @GetMapping("/{id}")
+//    public SpentLimit findById(@PathVariable Integer id) {
+//        return spentLimitService.fi(id);
+//    }
+
+//    @PatchMapping("/{id}")
+//    public SpentLimitResponse update(@RequestBody SpentLimitRequest request,
+//                                     @PathVariable Integer id) {
+//        return spentLimitService.update(request, id);
+//    }
 
     @GetMapping("/user/{userId}")
-    public SpentLimit findByUserId(@PathVariable Integer userId) {
+    public List<SpentLimit> findByUserId(@PathVariable Integer userId) {
         return spentLimitService.findByUserId(userId);
     }
 

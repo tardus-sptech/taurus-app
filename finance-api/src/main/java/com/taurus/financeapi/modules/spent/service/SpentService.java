@@ -1,6 +1,7 @@
 package com.taurus.financeapi.modules.spent.service;
 
 import com.taurus.financeapi.config.exception.ValidationException;
+import com.taurus.financeapi.modules.category.dto.CategoryRequest;
 import com.taurus.financeapi.modules.category.service.CategoryService;
 import com.taurus.financeapi.modules.spent.dto.SpentRequest;
 import com.taurus.financeapi.modules.spent.dto.SpentResponse;
@@ -37,6 +38,7 @@ public class SpentService {
         var user = userService.findById(request.getUserId());
         user.setValueInAccount(user.getValueInAccount() - request.getValue());
         var category = categoryService.findById(request.getCategoryId());
+        category.setValue(request.getValue() + category.getValue());
         var spent = spentRepository.save(Spent.of(request, category, user));
         return SpentResponse.of(spent);
     }
