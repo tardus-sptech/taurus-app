@@ -17,12 +17,14 @@ function VisaoGeral() {
     var icon = 6< time || time < 18 ? "fa-sharp fa-solid fa-sun icontime" : "fa-sharp fa-solid fa-moon icontime";
 
     useEffect( () => {userData()}, []);
+    useEffect( () => {listSpents()}, []);
 
     const [name, setName] = useState('');
     const [balance, setBalance] = useState('');
     const [spents, setSpents] = useState([]);
 
     const USER_URL = '/users';
+    const SPENT_URL = '/spenties/user'
     const idUser = sessionStorage.getItem('id');
 
     const userData = async (e) => {
@@ -37,7 +39,9 @@ function VisaoGeral() {
 
     const listSpents = async (e) => {
         try {
-            
+            const response = await api.get(`${SPENT_URL}/${idUser}`);
+            console.log(response.data)
+            setSpents(response.data);
         } catch (error) {
             console.error(error);
         }
@@ -88,18 +92,18 @@ function VisaoGeral() {
 
                 <div id="second-container">
                     <div className="high-spents">
-                            {/* {
+                            {
                                 spents.map((spents, index) => {
                                     return (
                                         <HighSpents 
                                             key={spents.id}
-                                            spent={spents.name}
+                                            name={spents.name}
                                             value={spents.value}
-                                            date={spents.date}
+                                            date={spents.created_at}
                                         />
                                     )
                                 })
-                            } */}
+                            }
                         <HighSpents />
                     </div>
                 </div>

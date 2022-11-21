@@ -15,11 +15,11 @@ function HighSpents(props) {
                     <div className='spent'>
                         <span>
                             <i class="fa-solid fa-house"></i>
-                            <p>fasdas</p>
+                            <p>{name}</p>
                         </span>
                     </div>
                     <div>
-                        <span className='spent-value'>R$ -1420.00</span>
+                        <span className='spent-value'>R$ -{value}</span>
                     </div>
                 </div>
             </div>
