@@ -8,6 +8,7 @@ import org.springframework.beans.BeanUtils;
 public class CategoryResponse {
     private Integer id;
     private String description;
+    private Double value;
 
     public static CategoryResponse of(Category category) {
         var response = new CategoryResponse();

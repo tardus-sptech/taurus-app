@@ -73,13 +73,6 @@ public class KittyService {
                 .collect(Collectors.toList());
     }
 
-    public KittyResponse update(KittyRequest request, Integer id) {
-        validateKittyDescriptionInformed(request);
-        var category = categoryService.findById(request.getCategoryId());
-        var kitty = kittyRepository.save(Kitty.of(request, category));
-        return KittyResponse.of(kitty);
-    }
-
     public void delete(Integer id) {
         kittyRepository.deleteById(id);
     }

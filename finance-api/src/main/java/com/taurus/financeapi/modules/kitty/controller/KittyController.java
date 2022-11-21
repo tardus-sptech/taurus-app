@@ -82,11 +82,11 @@ public class KittyController {
         return kittyService.findByCategoryId(categoryId);
     }
 
-    @PutMapping("{id}")
-    public KittyResponse update(@RequestBody KittyRequest request,
-                                @PathVariable Integer id) {
-        return kittyService.update(request, id);
-    }
+//    @PutMapping("{id}")
+//    public KittyResponse update(@RequestBody KittyRequest request,
+//                                @PathVariable Integer id) {
+//        return kittyService.update(request, id);
+//    }
 
     @Transactional
     @DeleteMapping("{id}")
