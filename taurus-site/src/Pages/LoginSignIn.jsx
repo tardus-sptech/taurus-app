@@ -13,10 +13,6 @@ function LoginSignIn(){
         checkPass ? setCheckPass(false) : setCheckPass(true);
     }
 
-    function changeBox() {
-        loginBox ? setLoginBox(false) : setLoginBox(true);
-    }
-
     const LOGIN_URL = '/users/login';
     const SIGN_IN_URL = '/users';
 
@@ -26,11 +22,9 @@ function LoginSignIn(){
     const [password, setPassword] = useState('');
     const [success, setSuccess] = useState(false);
 
-    const [nameSignIn, setNameSignIn] = useState('');
+    const [name, setName] = useState('');
     const [cpf, setCpf] = useState('');
-    const [passwordSignIn, setPasswordSignIn] = useState('');
-    const [emailSignIn, setEmailSignIn] = useState('');
-    const [birthDateSignIn, setBirthDateSignIn] = useState('');
+    const [birthDate, setBirthDate] = useState('');
     const [valueInAccount, setValueInAccount] = useState(0);
 
     const login = async (e) => {
@@ -53,6 +47,7 @@ function LoginSignIn(){
             navigate("/loading");
         } catch (error) {
             console.error(error);
+            window.alert('Erro ao realizar o login');
         }
     }
 
@@ -61,7 +56,7 @@ function LoginSignIn(){
 
         try {
             const response = await api.post(SIGN_IN_URL,
-                JSON.stringify({nameSignIn,cpf, emailSignIn, passwordSignIn, birthDateSignIn, valueInAccount}),
+                JSON.stringify({name,cpf, email, password, birthDate, valueInAccount}),
                 {
                     headers: {
                         'Content-Type': 'application/json'
@@ -69,14 +64,16 @@ function LoginSignIn(){
                 }
             )
             console.log(response?.data);
-            setEmailSignIn('');
-            setPasswordSignIn('');
-            setNameSignIn('');
-            setPasswordSignIn('');
-            setBirthDateSignIn('');
+            setEmail('');
+            setName('');
+            setPassword('');
+            setBirthDate('');
             setCpf('');
+            setLoginBox(true);
+            window.alert('Cadastro realizado com sucesso!');
         } catch(error){
             console.error(error);
+            window.alert('Erro ao tentar realizar o cadastro');
         }
     }
     
@@ -166,8 +163,8 @@ function LoginSignIn(){
                                     id="nome_cadastro" 
                                     type="text" 
                                     placeholder="Digite seu nome"
-                                    onChange={(e) => setNameSignIn(e.target.value)}
-                                    value={nameSignIn}
+                                    onChange={(e) => setName(e.target.value)}
+                                    value={name}
                                     required
                                     />
                             </div>
@@ -181,8 +178,8 @@ function LoginSignIn(){
                                     id="email_cadastro" 
                                     type="text" 
                                     placeholder="Digite seu email"
-                                    onChange={(e) => setEmailSignIn(e.target.value)}
-                                    value={emailSignIn}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    value={email}
                                     required
                                 />
                             </div>
@@ -211,8 +208,8 @@ function LoginSignIn(){
                                     id="data_nascimento" 
                                     type="date" 
                                     placeholder=""
-                                    onChange={(e) => setBirthDateSignIn(e.target.value)}
-                                    value={birthDateSignIn}
+                                    onChange={(e) => setBirthDate(e.target.value)}
+                                    value={birthDate}
                                     required
                                 />
                             </div>
@@ -224,10 +221,10 @@ function LoginSignIn(){
                                 <i className="fa-solid fa-lock"></i>
                                 <input 
                                     id="senha_cadastro" 
-                                    type="email" 
+                                    type="password" 
                                     placeholder="Digite sua senha"
-                                    onChange={(e) => setPasswordSignIn(e.target.value)}
-                                    value={passwordSignIn}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    value={password}
                                     required
                                 />
                             </div>
