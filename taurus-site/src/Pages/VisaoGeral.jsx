@@ -34,9 +34,6 @@ function VisaoGeral() {
     const idUser = sessionStorage.getItem('id');
 
 
-
-
-
     const userData = async (e) => {
         try {
             const response = await api.get(`${USER_URL}/${idUser}`);
@@ -72,8 +69,9 @@ function VisaoGeral() {
         } catch (error) {
             console.error(error);
         }
+    }
 
-        const listGains = async (e) => {
+        const listGainsa = async (e) => {
 
             try {
                 const response = await api.get(`${GAIN_URL}/${idUser}`);
@@ -165,8 +163,8 @@ function VisaoGeral() {
                 <Footer />
             </>
         );
-    }
 }
+
 
 
 export default VisaoGeral;
