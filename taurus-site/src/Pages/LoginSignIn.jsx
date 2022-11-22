@@ -20,12 +20,13 @@ function LoginSignIn(){
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [success, setSuccess] = useState(false);
 
     const [name, setName] = useState('');
     const [cpf, setCpf] = useState('');
     const [birthDate, setBirthDate] = useState('');
+    const [confirmPass, setConfirmPass] = useState('');
     const [valueInAccount, setValueInAccount] = useState(0);
+
 
     const login = async (e) => {
         e.preventDefault();
@@ -55,6 +56,14 @@ function LoginSignIn(){
         e.preventDefault();
 
         try {
+            if(password != confirmPass){
+                window.alert('As senhas devem ser iguais!');
+                return false;
+            }else if(password.length < 3){
+                window.alert('A senha deve ter mais de 3 caracteres!');
+                return false;
+            }
+
             const response = await api.post(SIGN_IN_URL,
                 JSON.stringify({name,cpf, email, password, birthDate, valueInAccount}),
                 {
@@ -69,6 +78,7 @@ function LoginSignIn(){
             setPassword('');
             setBirthDate('');
             setCpf('');
+            setConfirmPass('');
             setLoginBox(true);
             window.alert('Cadastro realizado com sucesso!');
         } catch(error){
@@ -238,6 +248,8 @@ function LoginSignIn(){
                                     id="confirmacao_senha_cadastro" 
                                     type="password" 
                                     placeholder="Confirme sua senha"
+                                    onChange={(e) => setConfirmPass(e.target.value)}
+                                    value={confirmPass}
                                     required
                                 />
                             </div>
