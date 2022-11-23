@@ -19,20 +19,21 @@ function VisaoGeral() {
     useEffect(() => { userData() }, []);
     useEffect(() => { listSpents() }, []);
     useEffect(() => { listGains() }, []);
+    useEffect(() => { listGains2() }, []);
 
     const [name, setName] = useState('');
     const [balance, setBalance] = useState('');
     const [spents, setSpents] = useState([]);
     const [gains, setGains] = useState([]);
+    const [transactions, setTransactions] = useState([]);
+
     var gasto = 0;
     var ganho = 0;
-    const [transactions, setTransactions] = useState([]);
 
     const USER_URL = '/users';
     const SPENT_URL = '/spenties/user';
     const GAIN_URL = '/gains/user';
     const idUser = sessionStorage.getItem('id');
-
 
     const userData = async (e) => {
         try {
@@ -48,31 +49,28 @@ function VisaoGeral() {
 
         try {
             const response = await api.get(`${SPENT_URL}/${idUser}`);
-            setTransactions(response.data);
+            setSpents(response.data);
         } catch (error) {
             console.error(error);
         }
     }
     spents.map((spents, index) => {
 
-        gasto += spents.value
+        (gasto += spents.value)
 
     })
 
     //
     const listGains = async (e) => {
         try {
-            const response = await api.get(`gains/user/${idUser}`);
-            console.log(response.data)
-
+            const response = await api.get(`${GAIN_URL}/${idUser}`);
             setGains(response.data);
         } catch (error) {
             console.error(error);
         }
     }
 
-        const listGainsa = async (e) => {
-
+        const listGains2 = async (e) => {
             try {
                 const response = await api.get(`${GAIN_URL}/${idUser}`);
                 setTransactions(response.data);
@@ -121,11 +119,11 @@ function VisaoGeral() {
                             <div id="user-balance-footer">
                                 <div className="user-balance-box" id="monthly-revenue">
                                     <span className="balance-title">Receita mensal</span>
-                                    <span id="monthly-revenue-balance">R$ {ganho} </span>
+                                    <span id="monthly-revenue-balance">R$ {Number(ganho).toFixed(2)}</span>
                                 </div>
                                 <div className="user-balance-box" id="monthly-expense">
                                     <span className="balance-title">Despesa mensal</span>
-                                    <span id="monthly-expense-balance">R${gasto}</span>
+                                    <span id="monthly-expense-balance">R$ {Number(gasto).toFixed(2)}</span>
                                 </div>
                                 <div className="user-balance-box" id="reports">
                                     <span>
