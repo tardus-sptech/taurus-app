@@ -19,13 +19,14 @@ function VisaoGeral() {
     useEffect(() => { userData() }, []);
     useEffect(() => { listSpents() }, []);
     useEffect(() => { listGains() }, []);
-    useEffect(() => { listGains2() }, []);
 
     const [name, setName] = useState('');
     const [balance, setBalance] = useState('');
     const [spents, setSpents] = useState([]);
     const [gains, setGains] = useState([]);
     const [transactions, setTransactions] = useState([]);
+
+    console.log(transactions);
 
     var gasto = 0;
     var ganho = 0;
@@ -49,18 +50,20 @@ function VisaoGeral() {
 
         try {
             const response = await api.get(`${SPENT_URL}/${idUser}`);
+            setTransactions(response.data);
+            test.push(response.data);
             setSpents(response.data);
         } catch (error) {
             console.error(error);
         }
     }
+
     spents.map((spents, index) => {
 
         (gasto += spents.value)
 
     })
 
-    //
     const listGains = async (e) => {
         try {
             const response = await api.get(`${GAIN_URL}/${idUser}`);
@@ -69,15 +72,6 @@ function VisaoGeral() {
             console.error(error);
         }
     }
-
-        const listGains2 = async (e) => {
-            try {
-                const response = await api.get(`${GAIN_URL}/${idUser}`);
-                setTransactions(response.data);
-            } catch (error) {
-                console.error(error);
-            }
-        }
 
         gains.map((gains, index) => {
 
@@ -89,12 +83,8 @@ function VisaoGeral() {
         useEffect(() => {
             api.get(`/users/${idUser}`).then((resposta) => {
                 setCategory(resposta.data);
-                // console.log(resposta.data);
             })
         }, [])
-
-
-
 
         return (
             <>
