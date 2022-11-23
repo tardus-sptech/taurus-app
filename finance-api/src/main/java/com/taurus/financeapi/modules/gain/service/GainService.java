@@ -105,4 +105,8 @@ public class GainService {
     public List<Gain> findByUserId(Integer userId) {
         return gainRepository.findByUserId(userId);
     }
+
+    public Double sumGainfindByUserId(Integer userId) {
+        return gainRepository.sumGainfindByUserId(userId);
+    }
 }

@@ -12,5 +12,9 @@ public interface GainRepository extends JpaRepository<Gain, Integer> {
     List<Gain> findByUserId(Integer id);
 
 
+    @Query("SELECT SUM(g.value) FROM Gain g")
+    public Double sumGainfindByUserId(Integer id);
+
+
     List<Gain> findByUserIdOrderByCreatedAtDesc(Integer idUser);
 }

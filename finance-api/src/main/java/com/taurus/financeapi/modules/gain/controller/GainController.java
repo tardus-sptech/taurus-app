@@ -65,4 +65,9 @@ public class GainController {
         return gainService.findByUserId(userId);
     }
 
+    @GetMapping("/user/sum/{userId}")
+    public Double sumGainfindByUserId(@PathVariable Integer userId) {
+        return gainService.sumGainfindByUserId(userId);
+    }
+
 }
