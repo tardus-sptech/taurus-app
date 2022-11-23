@@ -64,4 +64,9 @@ public class SpentController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
+    @GetMapping("/user/sum/{userId}")
+    public Double sumSpentfindByUserId(@PathVariable Integer userId) {
+        return spentService.sumSpentfindByUserId(userId);
+    }
+
 }

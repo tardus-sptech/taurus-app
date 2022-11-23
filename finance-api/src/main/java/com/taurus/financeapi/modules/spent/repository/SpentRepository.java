@@ -12,4 +12,7 @@ public interface SpentRepository extends JpaRepository<Spent, Integer> {
     List<Spent> findByCategoryId(Integer id);
     List<Spent> findByUserIdOrderByCreatedAtDesc(Integer idUser);
     Boolean existsByCategoryId(Integer categoryId);
+
+    @Query(value = "SELECT SUM(s.value) FROM Spent s WHERE s.fk_user = ?1", nativeQuery = true)
+    public Double sumSpentfindByUserId(Integer id);
 }

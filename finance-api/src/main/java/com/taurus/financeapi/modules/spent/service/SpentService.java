@@ -131,4 +131,8 @@ public class SpentService {
         }
     }
 
+    public Double sumSpentfindByUserId(Integer userId) {
+        return spentRepository.sumSpentfindByUserId(userId);
+    }
+
 }

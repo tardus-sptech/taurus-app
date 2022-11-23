@@ -12,7 +12,7 @@ public interface GainRepository extends JpaRepository<Gain, Integer> {
     List<Gain> findByUserId(Integer id);
 
 
-    @Query("SELECT SUM(g.value) FROM Gain g")
+    @Query(value = "SELECT SUM(g.value) FROM Gain g WHERE g.fk_user = ?1", nativeQuery = true)
     public Double sumGainfindByUserId(Integer id);
 
 
