@@ -60,9 +60,4 @@ public class GainController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-    @GetMapping("/user/{userId}")
-    public List<Gain> findByUserId(@PathVariable Integer userId) {
-        return gainService.findByUserId(userId);
-    }
-
 }
