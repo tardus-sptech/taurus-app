@@ -62,6 +62,12 @@ function LoginSignIn(){
             }else if(password.length < 3){
                 window.alert('A senha deve ter mais de 3 caracteres!');
                 return false;
+            }else if(cpf.length < 11){
+                window.alert('Digite um CPF válido!');
+                return false;
+            }else if(cpf == Number){
+                window.alert('CPF deve conter apenas números!');
+                return false;
             }
 
             const response = await api.post(SIGN_IN_URL,
