@@ -10,7 +10,11 @@ import api from "../api";
 
 function VisaoGeral() {
 
-    const navigate = useNavigate();
+    const [name, setName] = useState('');
+    const [balance, setBalance] = useState('');
+    const [spents, setSpents] = useState([]);
+    const [gains, setGains] = useState([]);
+    const [transactions, setTransactions] = useState([]);
 
     var today = new Date(), time = today.getHours();
     var saudacao = time > 6 && time < 12 ? "Bom dia," : time < 18 ? "Boa tarde," : "Boa noite,";
@@ -19,14 +23,18 @@ function VisaoGeral() {
     useEffect(() => { userData() }, []);
     useEffect(() => { listSpents() }, []);
     useEffect(() => { listGains() }, []);
+    useEffect(() => {
+        var list = [...spents,...gains].map((el, i) => {
+            return {
+                ...el,
+                created_at: `${el.created_at.split("/")[1]}/${el.created_at.split("/")[0]}/${el.created_at.split("/")[2]}`
+            }
+        })
 
-    const [name, setName] = useState('');
-    const [balance, setBalance] = useState('');
-    const [spents, setSpents] = useState([]);
-    const [gains, setGains] = useState([]);
-    const [transactions, setTransactions] = useState([]);
+        var sortList = list.sort((a, b) => a.created_at - b.created_at);
 
-    console.log(transactions);
+        setTransactions(sortList);
+    }, spents, gains)
 
     var gasto = 0;
     var ganho = 0;
@@ -50,8 +58,6 @@ function VisaoGeral() {
 
         try {
             const response = await api.get(`${SPENT_URL}/${idUser}`);
-            setTransactions(response.data);
-            test.push(response.data);
             setSpents(response.data);
         } catch (error) {
             console.error(error);
@@ -135,7 +141,7 @@ function VisaoGeral() {
                             {
                                 transactions.map((transactions, index) => {
                                     return (
-                                        <HighSpents
+                                        <HighSpgit sents
                                             key={transactions.id}
                                             name={transactions.name}
                                             value={transactions.value}
