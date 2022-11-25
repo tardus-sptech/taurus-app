@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
+import InputMask from 'react-input-mask';
+
 import api from '../api';
 
 function LoginSignIn(){
@@ -27,6 +29,7 @@ function LoginSignIn(){
     const [confirmPass, setConfirmPass] = useState('');
     const [valueInAccount, setValueInAccount] = useState(0);
 
+    console.log(cpf)
 
     const login = async (e) => {
         e.preventDefault();
@@ -205,8 +208,9 @@ function LoginSignIn(){
                             <p className="inpt-name">CPF</p>
                             <div className="inpt-box">
                                 <i className="fa-solid fa-id-card"></i>
-                                <input 
-                                    id="cnpj_cadastro" 
+                                <InputMask 
+                                    mask={'999.999.999-99'}
+                                    id="cpf" 
                                     type="text" 
                                     placeholder="Digite seu CPF"
                                     onChange={(e) => setCpf(e.target.value)}
