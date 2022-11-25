@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import InputMask from 'react-input-mask';
 
@@ -29,7 +29,12 @@ function LoginSignIn(){
     const [confirmPass, setConfirmPass] = useState('');
     const [valueInAccount, setValueInAccount] = useState(0);
 
-    console.log(cpf)
+    useEffect(() => {
+        var newCpf = cpf.replace('-','');
+        setCpf(newCpf);
+    }, [])
+
+    console.log(cpf.length)
 
     const login = async (e) => {
         e.preventDefault();
@@ -65,7 +70,7 @@ function LoginSignIn(){
             }else if(password.length < 3){
                 window.alert('A senha deve ter mais de 3 caracteres!');
                 return false;
-            }else if(cpf.length < 11){
+            }else if(cpf.length < 14){
                 window.alert('Digite um CPF válido!');
                 return false;
             }else if(cpf == Number){
