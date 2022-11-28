@@ -61,19 +61,19 @@ function Form({ handleAdd, transactionsList, setTransactionsList }) {
 
   }, [name, value, categoria, userId]);
 
-  function removerC(){
+  function removerC() {
     if (!cb.checked) {
       var combo = document.getElementById("outlined-select-currency-native");
       var combo2 = document.getElementById("demo-simple-select-label");
       combo.style.visibility = "hidden";
       combo2.style.visibility = "hidden";
     }
-    else{
+    else {
       var combo = document.getElementById("outlined-select-currency-native");
       var combo2 = document.getElementById("demo-simple-select-label");
       combo.style.visibility = "visible";
       combo2.style.visibility = "visible";
-      combo.style.border="1px solid #cacaca";
+      combo.style.border = "1px solid #cacaca";
     }
   }
 
@@ -89,28 +89,49 @@ function Form({ handleAdd, transactionsList, setTransactionsList }) {
       name: name,
       value: value,
       userId: idUsuario,
-      
+
     }
 
     if (cb.checked) {
-      
-      api.post("/spenties/", novaTransacaoSaida, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }).then((resposta) => {
-        console.log(resposta.status)
-      })
-    } else {
-      api.post("/gains/", novaTransacaoEntrada, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }).then((resposta) => {
-        console.log(resposta.status)
-      })
-    }
 
+      try {
+        if (value < 0) {
+          window.alert('O valor precisa ser positivo!');
+          return false;
+        } else if (categoria == "") {
+          window.alert('Categoria não pode estar vazia!');
+          return false;
+        }
+        api.post("/spenties/", novaTransacaoSaida, {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }).then((resposta) => {
+          console.log(resposta.status)
+        })
+      } catch (error) {
+        console.error(error);
+        window.alert('Erro ao tentar realizar o cadastro');
+      }
+    } else {
+
+      try {
+        if (value < 0) {
+          window.alert('O valor precisa ser positivo!');
+          return false;
+        }
+        api.post("/gains/", novaTransacaoEntrada, {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }).then((resposta) => {
+          console.log(resposta.status)
+        })
+      } catch (error) {
+        console.error(error);
+        window.alert('Erro ao tentar realizar o cadastro');
+      }
+    }
   }
 
   const [category, setCategory] = useState([]);
@@ -135,6 +156,7 @@ function Form({ handleAdd, transactionsList, setTransactionsList }) {
             className="ipt-formLancamento"
             name="ipt_titulo"
             value={name}
+            required
             onChange={(e) => setName(e.target.value)}>
           </TextField>
         </Grid>
@@ -147,6 +169,7 @@ function Form({ handleAdd, transactionsList, setTransactionsList }) {
             id="ipt-formLancamento"
             variant="outlined"
             value={value}
+            required
             type="number"
             onChange={(e) => setValue(e.target.value)}>
           </TextField>
@@ -154,12 +177,13 @@ function Form({ handleAdd, transactionsList, setTransactionsList }) {
 
         <Grid item md={12}>
           <FormControl fullWidth>
-            <InputLabel style={{visibility: "hidden"}} id="demo-simple-select-label">Categoria</InputLabel>
+            <InputLabel style={{ visibility: "hidden" }} id="demo-simple-select-label">Categoria</InputLabel>
             <Select
               className="combo-form"
               id="outlined-select-currency-native"
               label="Categoria"
               value={categoria}
+              required
               onChange={(e) => setCategoryId(e.target.value)}
 
             >
@@ -173,7 +197,7 @@ function Form({ handleAdd, transactionsList, setTransactionsList }) {
         </Grid>
         <Grid item md={12}>
           <div className="button r" id="button-1" onClick={removerC}>
-            <input type="checkbox" id="eutestando" className="checkbox"/>
+            <input type="checkbox" id="eutestando" className="checkbox" />
             <div className="knobs"></div>
             <div className="layer"></div>
           </div>

@@ -141,7 +141,7 @@ function VisaoGeral() {
                             {
                                 transactions.map((transactions, index) => {
                                     return (
-                                        <HighSpgit sents
+                                        <HighSpents
                                             key={transactions.id}
                                             name={transactions.name}
                                             value={transactions.value}
