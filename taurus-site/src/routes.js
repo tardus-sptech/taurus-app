@@ -7,6 +7,7 @@ import LoginSignIn from "./Pages/LoginSignIn";
 import Loading from "./Pages/Loading";
 import VisaoGeral from "./Pages/VisaoGeral";
 import EditarUsuario from "./Pages/VisualizarUsuario";
+import Relatorios from "./Pages/Relatorios";
 
 
 function Rotas(){
@@ -20,6 +21,7 @@ function Rotas(){
                 <Route path="/loading" element={<Loading />} />
                 <Route path="/visaoGeral" element={<VisaoGeral />}/>
                 <Route path="/conta" element={<EditarUsuario />}/>
+                <Route path="/relatorios" element={<Relatorios />}/>
             </Routes>
         </BrowserRouter>
     );
