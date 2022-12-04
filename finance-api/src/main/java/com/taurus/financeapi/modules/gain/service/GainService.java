@@ -109,4 +109,8 @@ public class GainService {
     public Double sumGainfindByUserId(Integer userId) {
         return gainRepository.sumGainfindByUserId(userId);
     }
+
+    public int countGains(Integer idUSer){
+        return gainRepository.countGainByUserId(idUSer);
+    }
 }

@@ -15,6 +15,7 @@ function VisaoGeral() {
     const [spents, setSpents] = useState([]);
     const [gains, setGains] = useState([]);
     const [transactions, setTransactions] = useState([]);
+    const navegar = useNavigate()
 
     var today = new Date(), time = today.getHours();
     var saudacao = time > 6 && time < 12 ? "Bom dia," : time < 18 ? "Boa tarde," : "Boa noite,";
@@ -124,7 +125,7 @@ function VisaoGeral() {
                                 <div className="user-balance-box" id="reports">
                                     <span>
                                         <i className="fa-solid fa-chart-simple"></i>
-                                        <span>Ver relatórios</span>
+                                        <span onClick={() => navegar("/relatorios")}>Ver relatórios</span>
                                     </span>
                                 </div>
                             </div>

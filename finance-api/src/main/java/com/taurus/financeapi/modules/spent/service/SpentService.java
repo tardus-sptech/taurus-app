@@ -135,4 +135,12 @@ public class SpentService {
         return spentRepository.sumSpentfindByUserId(userId);
     }
 
+    public void saveSpentTxt(Spent newSpent){
+        spentRepository.save(newSpent);
+    }
+
+    public int countSpenties(Integer idUSer){
+        return spentRepository.countSpentByUserId(idUSer);
+    }
+
 }

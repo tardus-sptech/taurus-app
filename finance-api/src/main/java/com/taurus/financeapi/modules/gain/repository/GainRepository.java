@@ -17,4 +17,6 @@ public interface GainRepository extends JpaRepository<Gain, Integer> {
 
 
     List<Gain> findByUserIdOrderByCreatedAtDesc(Integer idUser);
+
+    Integer countGainByUserId(Integer idUSer);
 }
