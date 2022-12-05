@@ -7,6 +7,7 @@ import { StyledEngineProvider } from '@mui/material/styles';
 import BasicModal from "../Components/ModalLancamento";
 import HighSpents from "../Components/HighSpents";
 import api from "../api";
+import {DateTime} from 'luxon';
 
 function VisaoGeral() {
 
@@ -25,17 +26,26 @@ function VisaoGeral() {
     useEffect(() => { listSpents() }, []);
     useEffect(() => { listGains() }, []);
     useEffect(() => {
-        var list = [...spents,...gains].map((el, i) => {
+
+        var spentsID = [...spents].map((el, i) => {
+            return {
+                ...el,
+                id: `${Number(el.id) * 1000}`,
+                value: `${Number(el.value) * - 1}`
+            }
+        })
+
+        var list = [...spentsID,...gains].map((el, i) => {
             return {
                 ...el,
                 created_at: `${el.created_at.split("/")[1]}/${el.created_at.split("/")[0]}/${el.created_at.split("/")[2]}`
             }
         })
 
-        var sortList = list.sort((a, b) => a.created_at - b.created_at);
+        var sortList = list.sort((a, b) => b.created_at - a.created_at);
 
         setTransactions(sortList);
-    }, spents, gains)
+    }, [spents], [gains])
 
     var gasto = 0;
     var ganho = 0;
@@ -60,6 +70,7 @@ function VisaoGeral() {
         try {
             const response = await api.get(`${SPENT_URL}/${idUser}`);
             setSpents(response.data);
+            console.log(response.data)
         } catch (error) {
             console.error(error);
         }
@@ -146,6 +157,7 @@ function VisaoGeral() {
                                             key={transactions.id}
                                             name={transactions.name}
                                             value={transactions.value}
+                                            category={transactions?.category?.description}
                                             date={transactions.created_at}
                                         />
                                     )

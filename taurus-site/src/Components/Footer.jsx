@@ -10,7 +10,7 @@ function Footer() {
         <>
             <footer className="footer-principal">
                 <div id="texto_footer">
-                    <p>© 2022 Copyright: conture.com.br
+                    <p>© 2022 Copyright: taurus.com.br
 
                         <svg width="16" height="12
                         " viewBox="0 0 57 45" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -20,7 +20,7 @@ function Footer() {
 
 
                     </p>
-                    <p>CNPJ n.º 01.008.131/0001-01 / Rua Haddock Lobo, nº 500, Consolação, São Paulo/SP - CEP 01414-000 - Conture. </p>
+                    <p>CNPJ n.º 01.008.131/0001-01 / Rua Haddock Lobo, nº 500, Consolação, São Paulo/SP - CEP 01414-000 - Taurus. </p>
                 </div>
             </footer>
         </>
