@@ -63,7 +63,7 @@ function FormLimite({ handleAdd, transactionsList, setTransactionsList }) {
 
 
 
-  function adicionarLimite(evento) {
+  const adicionarLimite = async (e) => {
 
 
     const novoLimite = {
@@ -73,24 +73,25 @@ function FormLimite({ handleAdd, transactionsList, setTransactionsList }) {
 
     }
 
-  
       try {
         if (value <= 0) {
           window.alert('O valor precisa ser positivo!');
           return false;
         }
-        api.post("/limities/", novoLimite, {
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        }).then((resposta) => {
-          console.log(resposta.status)
-        })
+
+        const response = await api.post("/limities/", novoLimite, 
+            {
+              headers: {
+                  'Content-Type': 'application/json'
+              }
+            }
+        )
+        console.log(response?.data);
       } catch (error) {
         console.error(error);
         window.alert('Erro ao tentar realizar o cadastro');
+        return false;
       }
-    
   }
 
   const [category, setCategory] = useState([]);
