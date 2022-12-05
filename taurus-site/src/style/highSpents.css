@@ -2,9 +2,10 @@
     background-color: #FFFFFF;
     border-radius: 10px;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-    height: fit-content;
+    height: 303px;
     padding: 2vh 2vw;
     margin: 10vh 0;
+    overflow-y: scroll;
 }
 
 .title-container{
@@ -14,25 +15,27 @@
 
 .spents-container{
     width: 100%;
+    user-select: none;
 }
 
 .spents-box{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin: 1.5vh 0;
     padding: 10px;
     border-radius: 10px;
     background-color: #EAEAEA;
 }
 
-.spent > span {
+.spent{
+    width: 500px;
     display: flex;
-    align-items: center;
-    width: fit-content;
+    justify-content: center;
 }
 
-.spent > span > i {
-    margin-right: 10px;
+.spent > span > p{
+    text-align: center;
 }
 
 .spent-value{
@@ -40,11 +43,25 @@
     font-weight: 600;
 }
 
-.spent-value::before{
-    content: '-';
-}
-
 .gain-value{
     color: #1ABD68;
     font-weight: 600;
+}
+
+.spents-header{
+    width: fit-content;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.spents-header i {
+    border-radius: 50%;
+    padding: 5px;
+    margin-right: 10px;
+}
+.spents-header span{
+    margin: 0 5px;
 }

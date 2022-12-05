@@ -183,7 +183,6 @@ function Form({ handleAdd, transactionsList, setTransactionsList }) {
               id="outlined-select-currency-native"
               label="Categoria"
               value={categoria}
-              required
               onChange={(e) => setCategoryId(e.target.value)}
 
             >
