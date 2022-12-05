@@ -16,5 +16,8 @@ public interface SpentRepository extends JpaRepository<Spent, Integer> {
     @Query(value = "SELECT SUM(s.value) FROM Spent s WHERE s.fk_user = ?1", nativeQuery = true)
     public Double sumSpentfindByUserId(Integer id);
 
+    @Query(value = "SELECT SUM(s.value) FROM Spent s WHERE s.fk_category = ?1 AND s.fk_user = ?2", nativeQuery = true)
+    public Double sumSpentfindByCategoryIdAndUserId(Integer categoryId, Integer userId);
+
     public Integer countSpentByUserId(Integer idUSer);
 }

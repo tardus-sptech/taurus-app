@@ -131,6 +131,10 @@ public class SpentService {
         }
     }
 
+    public Double sumSpentfindByUserId(Integer categoryId, Integer userId) {
+        return spentRepository.sumSpentfindByCategoryIdAndUserId(categoryId, userId);
+    }
+
     public Double sumSpentfindByUserId(Integer userId) {
         return spentRepository.sumSpentfindByUserId(userId);
     }
