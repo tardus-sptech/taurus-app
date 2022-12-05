@@ -1,6 +1,7 @@
 import BarraLimite from "./BarraLimite";
 import api from "../api";
 import { useEffect, useState } from "react";
+import ModalLimite from "./ModalLimite";
 
 function CardLimiteGastos(props) {
   const id = sessionStorage.getItem("id");
@@ -24,6 +25,7 @@ function CardLimiteGastos(props) {
                   <h4>
                     {props.mes} {props.ano}
                   </h4>
+                  <ModalLimite />
                 </div>
                 <div className="limites">
                   {bars.map((item) => (

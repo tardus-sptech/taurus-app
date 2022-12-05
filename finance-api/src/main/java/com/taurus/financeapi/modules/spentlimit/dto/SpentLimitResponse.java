@@ -19,9 +19,6 @@ import java.time.Month;
 @NoArgsConstructor
 public class SpentLimitResponse {
     private Integer id;
-    private Month month;
-    private Double currentLimit;
-    private Double monthSpent;
     private Double categorySpent;
     private Category category;
     private User user;
@@ -33,9 +30,6 @@ public class SpentLimitResponse {
         return SpentLimitResponse
                 .builder()
                 .id(spentLimit.getId())
-                .month(spentLimit.getMonth())
-                .currentLimit(spentLimit.getCurrentLimit())
-                .monthSpent(spentLimit.getMonthSpent())
                 .categorySpent(spentLimit.getCategorySpent())
                 .category(spentLimit.getCategory())
                 .user(spentLimit.getUser())

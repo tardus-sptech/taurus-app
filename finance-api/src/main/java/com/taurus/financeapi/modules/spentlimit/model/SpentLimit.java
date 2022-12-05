@@ -26,15 +26,6 @@ public class SpentLimit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "month", nullable = false)
-    private Month month;
-
-    @Column(name = "current_limit")
-    private Double currentLimit;
-
-    @Column(name = "month_spent", nullable = false)
-    private Double monthSpent;
-
     @Column(name = "category_spent", nullable = false)
     private Double categorySpent;
 
@@ -59,9 +50,6 @@ public class SpentLimit {
                                 User user) {
         return SpentLimit
                 .builder()
-                .month(request.getMonth())
-                .currentLimit(request.getCurrentLimit())
-                .monthSpent(request.getMonthSpent())
                 .categorySpent(request.getCategorySpent())
                 .category(category)
                 .user(user)

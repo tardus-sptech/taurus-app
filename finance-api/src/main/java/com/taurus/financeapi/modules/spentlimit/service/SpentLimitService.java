@@ -36,6 +36,12 @@ public class SpentLimitService {
     private CategoryService categoryService;
 
     public SpentLimitResponse save(SpentLimitRequest request) {
+
+        Optional<SpentLimit> teste = findByCategoryIdAndUserId(request.getCategoryId(), request.getUserId());
+
+        if (!teste.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
         var user = userService.findById(request.getUserId());
         var category = categoryService.findById(request.getCategoryId());
         var spentLimit = (SpentLimit.of(request, category, user));
@@ -46,6 +52,10 @@ public class SpentLimitService {
 
     public List<SpentLimit> findByUserId(Integer userId) {
         return spentLimitRepository.findByUserId(userId);
+    }
+
+    public Optional<SpentLimit> findByCategoryIdAndUserId(Integer categoryId, Integer userId) {
+        return spentLimitRepository.findByCategoryIdAndUserId(categoryId, userId);
     }
 
     public List<SpentLimit> findAll() {

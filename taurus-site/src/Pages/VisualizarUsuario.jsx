@@ -32,14 +32,10 @@ function VisualizarUsuario() {
       <main id="user-content">
         <Grid container id="user-container">
           <Grid item lg={6}>
-            <TextField label="Nome" color="secondary">
-              {name}
-            </TextField>
+            <TextField label="Nome" color="secondary" value={name} />
           </Grid>
-          <Grid item lg={6}>
-            <TextField color="secondary" label="Email">
-              {email}
-            </TextField>
+          <Grid item lg={12}>
+            <TextField color="secondary" label="Email" value={email} />
           </Grid>
         </Grid>
       </main>

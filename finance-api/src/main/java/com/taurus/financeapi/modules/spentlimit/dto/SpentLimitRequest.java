@@ -11,9 +11,6 @@ import java.time.Month;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SpentLimitRequest {
-    private Month month;
-    private Double currentLimit;
-    private Double monthSpent;
     private Double categorySpent;
     private Integer categoryId;
     private Integer userId;

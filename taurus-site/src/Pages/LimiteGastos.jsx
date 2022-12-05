@@ -19,7 +19,7 @@ function LimiteGastos() {
   return (
     <>
       <NavBar />
-      <Card />
+      <Card ano={2022} />
       <Footer />
     </>
   );
