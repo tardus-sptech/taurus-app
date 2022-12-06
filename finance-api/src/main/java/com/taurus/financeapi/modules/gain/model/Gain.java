@@ -1,6 +1,5 @@
 package com.taurus.financeapi.modules.gain.model;
 
-import com.taurus.financeapi.modules.category.model.Category;
 import com.taurus.financeapi.modules.gain.dto.GainRequest;
 import com.taurus.financeapi.modules.user.model.User;
 import lombok.AllArgsConstructor;

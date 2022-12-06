@@ -1,8 +1,6 @@
 package com.taurus.financeapi.modules.spentlimit.model;
 
 import com.taurus.financeapi.modules.category.model.Category;
-import com.taurus.financeapi.modules.spent.dto.SpentRequest;
-import com.taurus.financeapi.modules.spent.model.Spent;
 import com.taurus.financeapi.modules.spentlimit.dto.SpentLimitRequest;
 import com.taurus.financeapi.modules.user.model.User;
 import lombok.AllArgsConstructor;
@@ -12,7 +10,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.time.Month;
 
 @Data
 @Entity

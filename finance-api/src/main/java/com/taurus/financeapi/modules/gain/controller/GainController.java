@@ -1,26 +1,16 @@
 package com.taurus.financeapi.modules.gain.controller;
 
-import com.taurus.financeapi.modules.adt.Fila;
 import com.taurus.financeapi.modules.gain.dto.GainRequest;
 import com.taurus.financeapi.modules.gain.dto.GainResponse;
 import com.taurus.financeapi.modules.gain.model.Gain;
 import com.taurus.financeapi.modules.gain.service.GainService;
-import com.taurus.financeapi.modules.spent.model.Spent;
-import com.taurus.financeapi.modules.spentlimit.model.SpentLimit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.UnsupportedEncodingException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
-import java.util.UUID;
 
 @CrossOrigin(allowedHeaders = "*")
 @RestController

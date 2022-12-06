@@ -1,6 +1,5 @@
 package com.taurus.financeapi.modules.adt;
 
-import com.taurus.financeapi.modules.gain.model.Gain;
 import com.taurus.financeapi.modules.spent.model.Spent;
 
 import java.util.ArrayList;

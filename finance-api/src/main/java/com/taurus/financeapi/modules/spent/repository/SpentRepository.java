@@ -1,6 +1,5 @@
 package com.taurus.financeapi.modules.spent.repository;
 
-import com.taurus.financeapi.modules.spent.dto.SpentResponse;
 import com.taurus.financeapi.modules.spent.model.Spent;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

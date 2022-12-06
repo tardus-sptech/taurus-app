@@ -1,11 +1,8 @@
 package com.taurus.financeapi.modules.spentlimit.service;
 
 import com.taurus.financeapi.modules.category.service.CategoryService;
-import com.taurus.financeapi.modules.kitty.dto.KittyRequest;
-import com.taurus.financeapi.modules.kitty.dto.KittyResponse;
-import com.taurus.financeapi.modules.kitty.model.Kitty;
-import com.taurus.financeapi.modules.spent.dto.SpentRequest;
-import com.taurus.financeapi.modules.spent.dto.SpentResponse;
+import com.taurus.financeapi.modules.mail.EnviaEmailService;
+import com.taurus.financeapi.modules.spent.repository.SpentRepository;
 import com.taurus.financeapi.modules.spentlimit.dto.SpentLimitRequest;
 import com.taurus.financeapi.modules.spentlimit.dto.SpentLimitResponse;
 import com.taurus.financeapi.modules.spentlimit.model.SpentLimit;
@@ -20,8 +17,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static org.springframework.util.ObjectUtils.isEmpty;
-
 @Slf4j
 @Service
 public class SpentLimitService {
@@ -33,7 +28,13 @@ public class SpentLimitService {
     private UserService userService;
 
     @Autowired
+    SpentRepository spentRepository;
+
+    @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private EnviaEmailService emailSend;
 
     public SpentLimitResponse save(SpentLimitRequest request) {
 
@@ -42,10 +43,13 @@ public class SpentLimitService {
         if (!teste.isEmpty()) {
             throw new IllegalArgumentException();
         }
+
         var user = userService.findById(request.getUserId());
         var category = categoryService.findById(request.getCategoryId());
         var spentLimit = (SpentLimit.of(request, category, user));
         category.setValue(spentLimit.getCategorySpent() + category.getValue());
+        var spent = spentRepository.sumSpentfindByCategoryIdAndUserId(category.getId(), user.getId());
+
         spentLimitRepository.save(spentLimit);
         return SpentLimitResponse.of(spentLimit);
     }

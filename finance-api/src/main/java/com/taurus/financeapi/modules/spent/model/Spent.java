@@ -1,7 +1,7 @@
 package com.taurus.financeapi.modules.spent.model;
 
-import com.taurus.financeapi.modules.spent.dto.SpentRequest;
 import com.taurus.financeapi.modules.category.model.Category;
+import com.taurus.financeapi.modules.spent.dto.SpentRequest;
 import com.taurus.financeapi.modules.user.model.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

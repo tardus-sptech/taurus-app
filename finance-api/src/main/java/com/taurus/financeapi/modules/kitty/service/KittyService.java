@@ -1,10 +1,10 @@
 package com.taurus.financeapi.modules.kitty.service;
 
-import com.taurus.financeapi.modules.kitty.model.Kitty;
 import com.taurus.financeapi.config.exception.ValidationException;
 import com.taurus.financeapi.modules.category.service.CategoryService;
 import com.taurus.financeapi.modules.kitty.dto.KittyRequest;
 import com.taurus.financeapi.modules.kitty.dto.KittyResponse;
+import com.taurus.financeapi.modules.kitty.model.Kitty;
 import com.taurus.financeapi.modules.kitty.repository.KittyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

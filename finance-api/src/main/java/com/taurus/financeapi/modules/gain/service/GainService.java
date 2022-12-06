@@ -1,7 +1,6 @@
 package com.taurus.financeapi.modules.gain.service;
 
 import com.taurus.financeapi.config.exception.ValidationException;
-import com.taurus.financeapi.modules.category.service.CategoryService;
 import com.taurus.financeapi.modules.gain.dto.GainRequest;
 import com.taurus.financeapi.modules.gain.dto.GainResponse;
 import com.taurus.financeapi.modules.gain.model.Gain;

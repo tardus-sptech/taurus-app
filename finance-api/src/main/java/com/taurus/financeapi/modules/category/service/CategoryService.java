@@ -3,9 +3,9 @@ package com.taurus.financeapi.modules.category.service;
 import com.taurus.financeapi.config.exception.ValidationException;
 import com.taurus.financeapi.modules.category.dto.CategoryRequest;
 import com.taurus.financeapi.modules.category.dto.CategoryResponse;
-import com.taurus.financeapi.modules.spent.service.SpentService;
 import com.taurus.financeapi.modules.category.model.Category;
 import com.taurus.financeapi.modules.category.repository.CategoryRepository;
+import com.taurus.financeapi.modules.spent.service.SpentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -2,7 +2,6 @@ package com.taurus.financeapi.modules.gain.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.taurus.financeapi.modules.category.dto.CategoryResponse;
 import com.taurus.financeapi.modules.gain.model.Gain;
 import com.taurus.financeapi.modules.user.model.User;
 import lombok.AllArgsConstructor;

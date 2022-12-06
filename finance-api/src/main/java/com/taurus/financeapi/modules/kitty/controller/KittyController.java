@@ -1,10 +1,10 @@
 package com.taurus.financeapi.modules.kitty.controller;
 
+import com.taurus.financeapi.modules.kitty.dto.KittyRequest;
+import com.taurus.financeapi.modules.kitty.dto.KittyResponse;
 import com.taurus.financeapi.modules.kitty.model.Kitty;
 import com.taurus.financeapi.modules.kitty.repository.KittyRepository;
 import com.taurus.financeapi.modules.kitty.service.KittyService;
-import com.taurus.financeapi.modules.kitty.dto.KittyRequest;
-import com.taurus.financeapi.modules.kitty.dto.KittyResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

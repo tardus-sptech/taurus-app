@@ -4,9 +4,9 @@ import com.taurus.financeapi.modules.adt.Fila;
 import com.taurus.financeapi.modules.category.service.CategoryService;
 import com.taurus.financeapi.modules.gain.service.GainService;
 import com.taurus.financeapi.modules.spent.dto.SpentRequest;
+import com.taurus.financeapi.modules.spent.dto.SpentResponse;
 import com.taurus.financeapi.modules.spent.model.Spent;
 import com.taurus.financeapi.modules.spent.service.SpentService;
-import com.taurus.financeapi.modules.spent.dto.SpentResponse;
 import com.taurus.financeapi.modules.user.model.User;
 import com.taurus.financeapi.modules.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +17,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -92,7 +87,7 @@ public class SpentController {
         return spentService.sumSpentfindByUserId(categoryId, userId);
     }
 
-    @GetMapping("/user/sum/{userId}")
+        @GetMapping("/user/sum/{userId}")
     public Double sumSpentfindByUserId(@PathVariable Integer userId) {
         return spentService.sumSpentfindByUserId(userId);
     }

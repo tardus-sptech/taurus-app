@@ -1,4 +1,4 @@
-//package com.taurus.financeapi.modules.file.dto;
+package com.taurus.financeapi.modules.file.dto;//package com.taurus.financeapi.modules.file.dto;
 //
 //import java.io.Serializable;
 //

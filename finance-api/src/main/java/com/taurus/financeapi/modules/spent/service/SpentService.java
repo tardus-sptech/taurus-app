@@ -1,12 +1,15 @@
 package com.taurus.financeapi.modules.spent.service;
 
 import com.taurus.financeapi.config.exception.ValidationException;
-import com.taurus.financeapi.modules.category.dto.CategoryRequest;
 import com.taurus.financeapi.modules.category.service.CategoryService;
+import com.taurus.financeapi.modules.mail.EnviaEmailService;
 import com.taurus.financeapi.modules.spent.dto.SpentRequest;
 import com.taurus.financeapi.modules.spent.dto.SpentResponse;
 import com.taurus.financeapi.modules.spent.model.Spent;
 import com.taurus.financeapi.modules.spent.repository.SpentRepository;
+import com.taurus.financeapi.modules.spentlimit.model.SpentLimit;
+import com.taurus.financeapi.modules.spentlimit.repository.SpentLimitRepository;
+import com.taurus.financeapi.modules.user.model.User;
 import com.taurus.financeapi.modules.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +17,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static org.springframework.util.ObjectUtils.isEmpty;
@@ -30,6 +34,11 @@ public class SpentService {
     @Autowired
     private CategoryService categoryService;
 
+    @Autowired
+    private EnviaEmailService sendEmail;
+
+    @Autowired
+    private SpentLimitRepository spentLimitRepository;
     @Lazy
     @Autowired
     private UserService userService;
@@ -132,6 +141,22 @@ public class SpentService {
     }
 
     public Double sumSpentfindByUserId(Integer categoryId, Integer userId) {
+        User user = userService.findById(userId);
+        Double sum = spentRepository.sumSpentfindByUserId(userId);
+        List<SpentLimit> byUserId = spentLimitRepository.findByUserId(userId);
+        var spent = spentRepository.sumSpentfindByUserId(userId);
+        var gastoSpent = 0.0;
+        var gasto = 0.0;
+        for (int i = 0; i < byUserId.size(); i++) {
+            gastoSpent += spent;
+            gasto += byUserId.get(i).getCategorySpent();
+        }
+        sendEmail.enviar(user.getEmail(), "ALERTA DE GASTO", "Olá, " +
+                user.getName() +
+                "\n\nVocê gastou " + gastoSpent
+                +" de " + gasto + "\nRecomendamos fazer uma divisão de gastos 50 - 30 - 20. " +
+                "\nPara mais dicas, acesse nossas redes." +
+                "\n\nAtenciosamente, Taurus.");
         return spentRepository.sumSpentfindByCategoryIdAndUserId(categoryId, userId);
     }
 
