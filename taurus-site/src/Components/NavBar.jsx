@@ -21,11 +21,6 @@ function NavBar() {
             <button onClick={() => navigate("/visaoGeral")}>Visão Geral</button>
           </li>
           <li className="nav-item">
-            <button onClick={() => navigate("/lancamentos")}>
-              Lançamentos
-            </button>
-          </li>
-          <li className="nav-item">
             <button onClick={() => navigate("/relatorios")}>Relatórios</button>
           </li>
           <li className="nav-item">

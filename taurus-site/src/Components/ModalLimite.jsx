@@ -13,7 +13,7 @@ export default function ModalLimite() {
 
   return (
     <div>
-      <Button onClick={handleOpen}>Cadastrar Limite</Button>
+      <Button color='secondary' onClick={handleOpen}>Cadastrar Limite</Button>
       <Modal
         open={open}
         onClose={handleClose}
