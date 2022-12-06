@@ -4,13 +4,14 @@ import NavBar from "../Components/NavBar";
 import BarChart from "../Components/BarChart";
 import HotSite from "../Components/BodyHotSite";
 
-export default function Relatorios(){
+export default function Hotsite(){
     return(
         <>
             <NavBar />
                 {/* <div style={{width: '400px'}}>
                     <BarChart />
                 </div> */}
+                <HotSite />
             <Footer /> 
         </>
     );

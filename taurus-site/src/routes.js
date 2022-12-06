@@ -8,6 +8,7 @@ import Loading from "./Pages/Loading";
 import VisaoGeral from "./Pages/VisaoGeral";
 import EditarUsuario from "./Pages/VisualizarUsuario";
 import Relatorios from "./Pages/Relatorios";
+import Hotsite from "./Pages/Hotsite";
 
 
 function Rotas(){
@@ -22,6 +23,7 @@ function Rotas(){
                 <Route path="/visaoGeral" element={<VisaoGeral />}/>
                 <Route path="/conta" element={<EditarUsuario />}/>
                 <Route path="/relatorios" element={<Relatorios />}/>
+                <Route path="/hotsite" element={<Hotsite />}/>
             </Routes>
         </BrowserRouter>
     );

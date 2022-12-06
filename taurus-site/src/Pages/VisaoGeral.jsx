@@ -136,7 +136,7 @@ function VisaoGeral() {
                                 <div className="user-balance-box" id="reports">
                                     <span>
                                         <i className="fa-solid fa-chart-simple"></i>
-                                        <span onClick={() => navegar("/relatorios")}>Ver relatórios</span>
+                                        <span onClick={() => navegar("/hotsite")}>Ver arquivos</span>
                                     </span>
                                 </div>
                             </div>
