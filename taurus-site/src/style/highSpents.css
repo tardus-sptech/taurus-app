@@ -8,6 +8,20 @@
     overflow-y: scroll;
 }
 
+#second-container::-webkit-scrollbar{
+    width: 10px;
+}
+
+#second-container::-webkit-scrollbar-track{
+    border-radius: 10px;
+    background-color: #EAEAEA;
+}
+
+#second-container::-webkit-scrollbar-thumb{
+    background-color: #6600cc;
+    border-radius: 10px;
+}
+
 .title-container{
     text-align: center;
     border-bottom: 1px solid;
