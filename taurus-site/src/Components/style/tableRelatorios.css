@@ -1,0 +1,19 @@
+.valueSpent{
+    width: fit-content;
+    color: #ff6c6c;
+    font-weight: 600;
+}
+
+.valueSpent:before{
+    content: '-';
+}
+
+.valueGain{
+    color: #1ABD68;
+    font-weight: 600;
+    width: fit-content;
+}
+
+td{
+    padding: 5px;
+}

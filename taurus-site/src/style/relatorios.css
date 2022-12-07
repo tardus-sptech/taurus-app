@@ -1,0 +1,124 @@
+.container-relatorios{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.box-relatorios{
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.20));
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 5vh;
+    width: 50%;
+}
+
+.relatorios-header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.h1-header-relatorios{
+    font-weight: 400;
+    font-size: 25px;
+    margin: 2vh 0;
+    line-height: 30.26px;
+    width: fit-content;
+    background-color: #6600cc;
+    color: #FFFFFF;
+    padding: 2px 10px 2px 20px;
+    border-radius: 0 10px 10px 0;
+    text-align: end;
+    user-select: none;
+}
+
+.title-table-relatorios{
+    font-weight: 400;
+    font-size: 25px;
+    margin: 2vh 0;
+    line-height: 30.26px;
+    width: fit-content;
+    background-color: #6600cc;
+    color: #FFFFFF;
+    padding: 2px 10px 2px 20px;
+    border-radius: 0 10px 10px 0;
+    text-align: end;
+    user-select: none;
+}
+
+.h1-header-relatorios.month{
+    padding: 2px 20px 2px 10px;
+    border-radius: 10px 0 0 10px;
+    text-align: start;
+}
+
+.btn-relatorios-control{
+    margin: 10px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+}
+.btn-relatorios-control.active{
+    background-color: #6600cc;
+    color: #FFFFFF;
+}
+
+.relatorios-control{
+    display: flex;
+    justify-content: center;
+}
+
+.btn-relatorios-control:hover{
+
+}
+
+.box-canvas{
+    width: 100%;
+    padding: 3vh;
+}
+
+.container-table{
+    display: flex;
+    justify-content: center;
+    user-select: none;
+}
+
+/* TABLE */
+
+.table th{
+    padding: 10px;
+    border: 1px solid;
+}
+
+.table td{
+    text-align: center;
+}
+.table th{
+    border: 1px solid;
+}
+
+.table tr:nth-child(even) {
+    background-color: #EAEAEA;
+  }
+
+.table-box{
+    overflow-y: scroll;
+}
+
+.table-box::-webkit-scrollbar{
+    width: 10px;
+}
+
+.table-box::-webkit-scrollbar-track{
+    border-radius: 10px;
+    background-color: #EAEAEA;
+}
+
+.table-box::-webkit-scrollbar-thumb{
+    background-color: #6600cc;
+    border-radius: 10px;
+}
