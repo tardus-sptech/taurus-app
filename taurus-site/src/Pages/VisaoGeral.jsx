@@ -7,6 +7,8 @@ import { StyledEngineProvider } from '@mui/material/styles';
 import BasicModal from "../Components/ModalLancamento";
 import HighSpents from "../Components/HighSpents";
 import api from "../api";
+import Moment from "react-moment";
+import moment from "moment";
 
 
 function VisaoGeral() {
@@ -27,6 +29,11 @@ function VisaoGeral() {
     useEffect(() => { listGains() }, []);
     useEffect(() => {
 
+        function toTimestamp(strDate){
+            var datum = Date.parse(strDate);
+            return datum/1000;
+        }
+
         var spentsID = [...spents].map((el, i) => {
             return {
                 ...el,
@@ -38,14 +45,17 @@ function VisaoGeral() {
         var list = [...spentsID,...gains].map((el, i) => {
             return {
                 ...el,
-                created_at: `${el.created_at.split("/")[1]}/${el.created_at.split("/")[0]}/${el.created_at.split("/")[2]}`
+                created_at: `${moment(el.created_at, 'DD/MM/YYYY HH:mm:ss', true).format('MM-DD-YYYY HH:mm:ss')}`
             }
         })
 
-        var sortList = list.sort((a, b) => b.created_at - a.created_at);
+        console.log(list);
+
+        var sortList = list.sort((a, b) => toTimestamp(b.created_at) - toTimestamp(a.created_at));
 
         setTransactions(sortList);
     }, [spents], [gains])
+
 
     var gasto = 0;
     var ganho = 0;
