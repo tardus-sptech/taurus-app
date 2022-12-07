@@ -49,6 +49,24 @@ public class SpentService {
         var category = categoryService.findById(request.getCategoryId());
         category.setValue(request.getValue() + category.getValue());
         var spent = spentRepository.save(Spent.of(request, category, user));
+
+        User userSpent = userService.findById(user.getId());
+        Double sum = spentRepository.sumSpentfindByUserId(userSpent.getId());
+        List<SpentLimit> byUserId = spentLimitRepository.findByUserId(userSpent.getId());
+        var spentie = spentRepository.sumSpentfindByUserId(userSpent.getId());
+        var gastoSpent = 0.0;
+        var gasto = 0.0;
+        for (int i = 0; i < byUserId.size(); i++) {
+            gastoSpent += spentie;
+            gasto += byUserId.get(i).getCategorySpent();
+        }
+        sendEmail.enviar(user.getEmail(), "ALERTA DE GASTO", "Olá, " +
+                user.getName() +
+                "\n\nVocê gastou " + gastoSpent
+                +" de " + gasto + "\nRecomendamos fazer uma divisão de gastos 50 - 30 - 20. " +
+                "\nPara mais dicas, acesse nossas redes." +
+                "\n\nAtenciosamente, Taurus.");
+
         return SpentResponse.of(spent);
     }
 
@@ -141,22 +159,7 @@ public class SpentService {
     }
 
     public Double sumSpentfindByUserId(Integer categoryId, Integer userId) {
-        User user = userService.findById(userId);
-        Double sum = spentRepository.sumSpentfindByUserId(userId);
-        List<SpentLimit> byUserId = spentLimitRepository.findByUserId(userId);
-        var spent = spentRepository.sumSpentfindByUserId(userId);
-        var gastoSpent = 0.0;
-        var gasto = 0.0;
-        for (int i = 0; i < byUserId.size(); i++) {
-            gastoSpent += spent;
-            gasto += byUserId.get(i).getCategorySpent();
-        }
-        sendEmail.enviar(user.getEmail(), "ALERTA DE GASTO", "Olá, " +
-                user.getName() +
-                "\n\nVocê gastou " + gastoSpent
-                +" de " + gasto + "\nRecomendamos fazer uma divisão de gastos 50 - 30 - 20. " +
-                "\nPara mais dicas, acesse nossas redes." +
-                "\n\nAtenciosamente, Taurus.");
+
         return spentRepository.sumSpentfindByCategoryIdAndUserId(categoryId, userId);
     }
 
