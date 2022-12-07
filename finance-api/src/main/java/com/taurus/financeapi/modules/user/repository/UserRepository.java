@@ -1,5 +1,6 @@
 package com.taurus.financeapi.modules.user.repository;
 
+import com.taurus.financeapi.modules.user.dto.UserResetPasswordRequest;
 import com.taurus.financeapi.modules.user.dto.UserResponse;
 import com.taurus.financeapi.modules.user.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,4 +14,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     Optional<UserResponse> getByEmailAndPassword(String email, String password);
 
     User findByPersonId(String personId);
+
+    @Query(value = "update user u set password = ?1 where u.id = ?2", nativeQuery = true)
+    void alterarSenha(UserResetPasswordRequest newPassword);
 }

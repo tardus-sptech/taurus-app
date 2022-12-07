@@ -1,6 +1,7 @@
 package com.taurus.financeapi.modules.user.service;
 
 import com.taurus.financeapi.config.exception.ValidationException;
+import com.taurus.financeapi.modules.user.dto.UserResetPasswordRequest;
 import com.taurus.financeapi.modules.user.dto.UserResponse;
 import com.taurus.financeapi.modules.user.model.User;
 import com.taurus.financeapi.modules.user.repository.UserRepository;
@@ -62,5 +63,9 @@ public class UserService {
 
     public Optional<UserResponse> getByEmailAndPassword(String email, String senha) {
         return userRepository.getByEmailAndPassword(email, senha);
+    }
+
+    public void updatePassword(UserResetPasswordRequest newPassword) {
+        userRepository.alterarSenha(newPassword);
     }
 }

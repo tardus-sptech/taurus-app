@@ -1,6 +1,7 @@
 package com.taurus.financeapi.modules.user.controller;
 
 import com.taurus.financeapi.modules.user.dto.UserLoggedRequest;
+import com.taurus.financeapi.modules.user.dto.UserResetPasswordRequest;
 import com.taurus.financeapi.modules.user.dto.UserResponse;
 import com.taurus.financeapi.modules.user.model.User;
 import com.taurus.financeapi.modules.user.service.UserService;
@@ -70,5 +71,11 @@ public class UserController {
     public ResponseEntity<User> logout(@PathVariable String personId) {
         User user = userService.logout(personId);
         return (user != null) ? ResponseEntity.status(HttpStatus.OK).body(user) : ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+
+    @PatchMapping("/alterar/{personId}")
+    public ResponseEntity<User> alterar(@RequestBody UserResetPasswordRequest newPassword) {
+        userService.updatePassword(newPassword);
+        return status(200).build();
     }
 }

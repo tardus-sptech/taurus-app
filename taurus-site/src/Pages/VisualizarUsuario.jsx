@@ -41,15 +41,26 @@ function VisualizarUsuario() {
       <NavBar />
       <main id="user-content">
         <Grid container id="user-container">
-          <Grid item lg={6}>
-            <TextField label="Nome" onInput={(evento) => setName(evento.target.value)} color="secondary" value={name}  />
+          <Grid item md={6}>
+            <TextField
+              label="Nome"
+              onInput={(evento) => setName(evento.target.value)}
+              color="secondary"
+              value={name}
+            />
           </Grid>
-          <Grid item lg={12}>
-            <TextField color="secondary" label="Email" value={email} />
+          <Grid item md={6}>
+            <TextField
+              onInput={(evento) => setEmail(evento.target.value)}
+              color="secondary"
+              label="Email"
+              value={email}
+            />
           </Grid>
-            <input type="text" />
+          <Grid item md={6} className="alinhamentoBtn">
+            <Button onClick={atualizarSenha}>Trocar Dados</Button>
+          </Grid>
         </Grid>
-        <Button onClick={atualizarSenha}>Trocar Senha</Button>
       </main>
       <Footer />
     </>

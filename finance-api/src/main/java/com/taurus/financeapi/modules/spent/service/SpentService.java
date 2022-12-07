@@ -168,6 +168,8 @@ public class SpentService {
     }
 
     public void saveSpentTxt(Spent newSpent){
+        var user = userService.findById(newSpent.getUser().getId());
+        user.setValueInAccount(user.getValueInAccount() - newSpent.getValue());
         spentRepository.save(newSpent);
     }
 
