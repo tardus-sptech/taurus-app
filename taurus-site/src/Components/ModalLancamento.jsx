@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import Form from './FormLancamento'
+import "../style/visaoGeral.css";
 
 
 export default function BasicModal() {

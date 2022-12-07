@@ -9,15 +9,16 @@
     height: 213px;
     padding: 2vh 2vw;
     display: flex;
+    justify-content: space-between;
 }
 
 .user-balence{
-    width: 50%;
+    width: 60%;
     height: 100%;
 }
 
 .balance-controls{
-    width: 50%;
+    width: 30%;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -124,4 +125,21 @@
 
 .icontime {
     margin-left: 10px;
+}
+
+button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+    height: 100px;
+    width: 250px;
+    border: #6600cc 2px solid;
+    color: #6600cc;
+    font-weight: bold;
+}
+
+button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.css-1e6y48t-MuiButtonBase-root-MuiButton-root:hover {
+    height: 100px;
+    width: 250px;
+    border: #6600cc 2px solid;
+    background-color: #8016eb;
+    color: #FFFFFF;
+    font-weight: bold;
 }

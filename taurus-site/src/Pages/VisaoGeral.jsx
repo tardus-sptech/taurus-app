@@ -151,6 +151,7 @@ function VisaoGeral() {
                                 </div>
                             </div>
                         </div>
+                        <hr />
                         <div className="balance-controls">
                             <BasicModal />
                         </div>
