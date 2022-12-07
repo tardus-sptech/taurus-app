@@ -7,6 +7,7 @@ function HotSite(props) {
   const [fileExport, setFileExport] = useState();
 
   function sendTxt() {
+    console.log(fileExport)
     axios({
       method: "post",
       url: `http://localhost:8081/api/spenties/user/file-txt`,
@@ -18,6 +19,7 @@ function HotSite(props) {
       .then((res) => {
         if (res.status === 201) {
           alert("Item registrado na fila com sucesso!");
+          setFileExport(null);
         }
       })
       .catch((err) => {
@@ -59,22 +61,28 @@ function HotSite(props) {
 
   return (
     <>
-      <div className="bodyFather">
-        <label className="testeIpt">
-          <input
-            type="file"
-            onChange={(e) => setFileExport(e.target.files[0])}
-          />
-        </label>
-        <button className="btn-adicionar" onClick={() => sendTxt()}>
-          Enviar
-        </button>
-        <button className="btn-adicionar" onClick={() => saveTxt()}>
-          Salvar
-        </button>
-        <button className="btn-adicionar" onClick={() => downloadTxt()}>
-          Importar relatórios
-        </button>
+
+      <div className="box-file">
+        <div className="bodyFather">
+          <div class="upload">
+            <div class="upload__inner">
+              <label for="upload-voorbereiding" class="upload__label">{fileExport == null ? "Clique ou arraste para inserir" : fileExport.name}
+              <input id="gol" type="file" class="upload__input" onChange={(e) => setFileExport(e.target.files[0])}/>
+              </label>
+            </div>
+          </div>
+          <div className="buttons-file">
+          <button className="btn-adicionar" onClick={() => sendTxt()}>
+            Enviar
+          </button>
+          <button className="btn-adicionar" onClick={() => saveTxt()}>
+            Salvar
+          </button>
+          <button className="btn-adicionar" onClick={() => downloadTxt()}>
+            Importar relatórios
+          </button>
+          </div>
+        </div>
       </div>
     </>
   );

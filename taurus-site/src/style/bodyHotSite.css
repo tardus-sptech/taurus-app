@@ -1,6 +1,20 @@
-.bodyFather {
+.box-file {
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.20));
+    height: 50vh;
     display: flex;
     flex-direction: column;
+    width: 50%;
+    margin: auto;
+    margin-top: 5vh;
+    padding: 24px 30px;
+}
+
+
+.bodyFather {
+    display: flex;
+    flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
     height: 65vh;
@@ -9,4 +23,66 @@
 .bodyFather button {
     width: 200px;
     height: 50px;
+}
+
+
+.upload {
+    width: 28rem;
+    height: 20rem;
+    border-radius: 1rem;
+    border: 3px dashed #eee;
+}
+
+
+.upload__label {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #3b3b3b;
+    line-height: 2.5rem;
+}
+
+.upload__label--highlight {
+    color: #d7df21;
+    text-decoration: underline;
+}
+
+.upload__input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.upload__button {
+    display: block;
+    background-color: #3b3b3b;
+    color: #fff;
+    text-transform: uppercase;
+    border-radius: .5rem;
+    font-size: 1.3rem;
+    font-weight: 700;
+    width: 24rem;
+    height: 5rem;
+    line-height: 5rem;
+    text-align: center;
+    margin-top: 1.4rem;
+}
+
+.upload__inner {
+    display: flex;
+    align-items: center;
+    position: relative;
+    background-color: #fff;
+    height: 100%;
+    border-radius: .5rem;
+    padding: 3.9rem 1.7rem;
+    text-align: center;
+}
+
+.buttons-file {
+    display: flex;
+    flex-direction: column;
 }
