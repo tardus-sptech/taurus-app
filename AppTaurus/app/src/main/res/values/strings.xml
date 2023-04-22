@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">AppTaurus</string>
+
+    <string name="title_intro1">Coloque limites</string>
+    <string name="title_intro2">Defina objetivos</string>
+    <string name="title_intro3">Fácil de usar</string>
+    <string name="text_intro1">Aqui você pode colocar limites em todos os seus gastos atuais podendo ter um controle melhor sobre eles</string>
+    <string name="text_intro2">Você pode definir objetivos e nos te ajudaremos a você controlar sua grana para concluir o objetivo</string>
+    <string name="text_intro3">Muito fácil de utilizar e fácil de entender para os iniciantes</string>
+    <string name="button_intro">Próximo passo</string>
+    <string name="title_cadastro">Seja bem-vindo!</string>
+
+    <string name="cad_nome">Nome Completo</string>
+    <string name="email">E-mail</string>
+    <string name="senha">Senha</string>
+    <string name="cad_nasc">Data de Nascimento</string>
+    <string name="cad_cpf">CPF</string>
+    <string name="btn_cad_tela">cadastrar</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

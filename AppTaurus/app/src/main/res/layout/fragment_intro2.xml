@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Intro2">
+
+    <LinearLayout
+        style="@style/containerIntro"
+        tools:ignore="MissingConstraints">
+
+
+        <ImageView
+            style="@style/imageIntro"
+            android:src="@drawable/image_intro2" />
+
+        <LinearLayout
+            style="@style/containerTextIntro">
+
+            <TextView
+                style="@style/titleIntro"
+                android:text="@string/title_intro2"
+                />
+
+            <TextView
+                style="@style/textIntro"
+                android:text="@string/text_intro2"/>
+
+            <ImageView
+                style="@style/imagePageIntro"
+                android:src="@drawable/page_intro2"/>
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_prox_intro2"
+            style="@style/buttonIntro"/>
+
+
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".CadastroTela">
+
+    <ImageView
+        android:id="@+id/imageViewBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/logo_cad_log"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginHorizontal="32dp">
+
+        <TextView
+            style="@style/title_cad"/>
+
+        <EditText
+            style="@style/inputs_cadastro"
+            android:drawableLeft="@drawable/icon_nome"
+            android:hint="@string/cad_nome"
+            android:inputType="text" />
+
+        <EditText
+            style="@style/inputs_cadastro"
+            android:inputType="textEmailAddress"
+            android:hint="@string/email"
+            android:drawableLeft="@drawable/icon_email"
+            />
+
+        <com.santalu.maskara.widget.MaskEditText
+            style="@style/inputs_cadastro"
+            android:inputType="date"
+            android:hint="@string/cad_nasc"
+            android:drawableLeft="@drawable/icon_nasc"
+            app:mask="__/__/____"
+            app:maskCharacter="_"
+            app:maskStyle="completable"
+            />
+
+        <com.santalu.maskara.widget.MaskEditText
+            style="@style/inputs_cadastro"
+            android:inputType="text"
+            android:hint="@string/cad_cpf"
+            android:drawableLeft="@drawable/icon_cpf"
+            app:mask="___.___.___-__"
+            app:maskCharacter="_"
+            app:maskStyle="completable"
+            />
+
+        <EditText
+            style="@style/inputs_cadastro"
+            android:inputType="textPassword"
+            android:hint="@string/senha"
+            android:drawableLeft="@drawable/icon_senha"
+            />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:paddingHorizontal="14dp">
+
+            <CheckBox
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:buttonTint="@color/primary_color"
+                android:layout_marginRight="10dp"></CheckBox>
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Eu concordo com os"
+                android:textColor="@color/primary_color"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Termos e Condições"
+                android:textColor="@color/termos"
+                android:textStyle="bold"
+                android:textSize="14sp"/>
+
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            style="@style/buttonCadastroTela"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="30dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Já tem uma conta?"
+                android:textColor="@color/termos"
+                android:textSize="12sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:textStyle="bold"
+            android:textColor="@color/primary_color"
+            android:layout_marginLeft="10dp"
+            android:textSize="12sp"/>
+
+            </LinearLayout>
+    </LinearLayout>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
