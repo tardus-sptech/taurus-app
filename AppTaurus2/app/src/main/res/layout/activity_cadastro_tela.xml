@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".CadastroTela">
+
+    <ImageView
+        android:id="@+id/imageViewBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/logo_cad_log"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginHorizontal="32dp">
+
+        <TextView
+            style="@style/title_cad"/>
+
+        <EditText
+            style="@style/inputs_cadastro"
+            android:id="@+id/et_cadastro_nome"
+            android:drawableLeft="@drawable/icon_nome"
+            android:hint="@string/cad_nome"
+            android:inputType="text" />
+
+        <EditText
+            style="@style/inputs_cadastro"
+            android:id="@+id/et_cadastro_email"
+            android:inputType="textEmailAddress"
+            android:hint="@string/email"
+            android:drawableLeft="@drawable/icon_email"
+            />
+
+        <EditText
+            style="@style/inputs_cadastro"
+            android:id="@+id/et_cadastro_senha"
+            android:inputType="textPassword"
+            android:hint="@string/senha"
+            android:drawableLeft="@drawable/icon_senha"
+            />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="14dp">
+
+            <CheckBox
+                android:id="@+id/checkLgpd"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:buttonTint="@color/primary_color"
+                android:layout_marginRight="10dp"></CheckBox>
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/termos_cadastro"
+                android:textColor="@color/primary_color"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/termosUso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/termos2_cadastro"
+                android:textColor="@color/termos"
+                android:textStyle="bold"
+                android:textSize="14sp"/>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp">
+            <TextView
+                android:id="@+id/erroCadastro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="#FF4D4D"
+                android:text=""/>
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            style="@style/buttonCadastroTela"
+            android:onClick="cadastrar"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="30dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/j_tem_uma_conta"
+                android:textColor="@color/termos"
+                android:textSize="12sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login_cadastro"
+            android:textStyle="bold"
+            android:textColor="@color/primary_color"
+            android:layout_marginLeft="10dp"
+            android:textSize="12sp"/>
+
+            </LinearLayout>
+    </LinearLayout>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
