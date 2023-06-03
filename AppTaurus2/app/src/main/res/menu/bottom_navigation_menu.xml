@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_home"
+        android:icon="@drawable/homeicon"
+        android:title="Home"
+        android:iconTint="@color/primary_color"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/menu_analise"
+        android:icon="@drawable/analiseicon"
+        android:title="Analise"
+        android:iconTint="@color/primary_color"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/menu_noticias"
+        android:icon="@drawable/noticiasicon"
+        android:title="Noticias"
+        android:iconTint="@color/primary_color"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/menu_metas"
+        android:icon="@drawable/metasicon"
+        android:title="Metas"
+        android:iconTint="@color/primary_color"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/menu_usuario"
+        android:icon="@drawable/usericon"
+        android:title="Usuario"
+        android:iconTint="@color/primary_color"
+        app:showAsAction="always" />
+</menu>
