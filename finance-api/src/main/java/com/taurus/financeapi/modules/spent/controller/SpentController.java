@@ -44,10 +44,10 @@ public class SpentController {
         return spentService.findByUserId(idUser);
     }
 
-//    @PostMapping
-//    public SpentResponse save(@RequestBody SpentRequest spent) {
-//        return spentService.save(spent);
-//    }
+    @PostMapping
+    public SpentResponse save(@RequestBody SpentRequest spent) {
+        return spentService.save(spent);
+    }
 
     @GetMapping
     public List<SpentResponse> findAll() {
