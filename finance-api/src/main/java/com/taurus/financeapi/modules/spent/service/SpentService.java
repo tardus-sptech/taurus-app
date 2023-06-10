@@ -2,7 +2,6 @@ package com.taurus.financeapi.modules.spent.service;
 
 import com.taurus.financeapi.config.exception.ValidationException;
 import com.taurus.financeapi.modules.category.service.CategoryService;
-import com.taurus.financeapi.modules.mail.EnviaEmailService;
 import com.taurus.financeapi.modules.spent.dto.SpentRequest;
 import com.taurus.financeapi.modules.spent.dto.SpentResponse;
 import com.taurus.financeapi.modules.spent.model.Spent;
@@ -35,40 +34,37 @@ public class SpentService {
     private CategoryService categoryService;
 
     @Autowired
-    private EnviaEmailService sendEmail;
-
-    @Autowired
     private SpentLimitRepository spentLimitRepository;
     @Lazy
     @Autowired
     private UserService userService;
-
-    public SpentResponse save(SpentRequest request) {
-        var user = userService.findById(request.getUserId());
-        user.setValueInAccount(user.getValueInAccount() - request.getValue());
-        var category = categoryService.findById(request.getCategoryId());
-        category.setValue(request.getValue() + category.getValue());
-        var spent = spentRepository.save(Spent.of(request, category, user));
-
-        User userSpent = userService.findById(user.getId());
-        Double sum = spentRepository.sumSpentfindByUserId(userSpent.getId());
-        List<SpentLimit> byUserId = spentLimitRepository.findByUserId(userSpent.getId());
-        var spentie = spentRepository.sumSpentfindByUserId(userSpent.getId());
-        var gastoSpent = 0.0;
-        var gasto = 0.0;
-        for (int i = 0; i < byUserId.size(); i++) {
-            gastoSpent += spentie;
-            gasto += byUserId.get(i).getCategorySpent();
-        }
-        sendEmail.enviar(user.getEmail(), "ALERTA DE GASTO", "Olá, " +
-                user.getName() +
-                "\n\nVocê gastou " + gastoSpent
-                +" de " + gasto + "\nRecomendamos fazer uma divisão de gastos 50 - 30 - 20. " +
-                "\nPara mais dicas, acesse nossas redes." +
-                "\n\nAtenciosamente, Taurus.");
-
-        return SpentResponse.of(spent);
-    }
+//
+//    public SpentResponse save(SpentRequest request) {
+//        var user = userService.findById(request.getUserId());
+//        user.setValueInAccount(user.getValueInAccount() - request.getValue());
+//        var category = categoryService.findById(request.getCategoryId());
+//        category.setValue(request.getValue() + category.getValue());
+//        var spent = spentRepository.save(Spent.of(request, category, user));
+//
+//        User userSpent = userService.findById(user.getId());
+//        Double sum = spentRepository.sumSpentfindByUserId(userSpent.getId());
+//        List<SpentLimit> byUserId = spentLimitRepository.findByUserId(userSpent.getId());
+//        var spentie = spentRepository.sumSpentfindByUserId(userSpent.getId());
+//        var gastoSpent = 0.0;
+//        var gasto = 0.0;
+//        for (int i = 0; i < byUserId.size(); i++) {
+//            gastoSpent += spentie;
+//            gasto += byUserId.get(i).getCategorySpent();
+//        }
+//        sendEmail.enviar(user.getEmail(), "ALERTA DE GASTO", "Olá, " +
+//                user.getName() +
+//                "\n\nVocê gastou " + gastoSpent
+//                +" de " + gasto + "\nRecomendamos fazer uma divisão de gastos 50 - 30 - 20. " +
+//                "\nPara mais dicas, acesse nossas redes." +
+//                "\n\nAtenciosamente, Taurus.");
+//
+//        return SpentResponse.of(spent);
+//    }
 
     public Spent findById(Integer id) {
         return spentRepository

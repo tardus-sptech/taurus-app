@@ -11,7 +11,7 @@ public interface GainRepository extends JpaRepository<Gain, Integer> {
     List<Gain> findByUserId(Integer id);
 
 
-    @Query(value = "SELECT SUM(g.value) FROM Gain g WHERE g.fk_user = ?1", nativeQuery = true)
+    @Query("SELECT SUM(value) FROM Gain WHERE fk_user = ?1")
     public Double sumGainfindByUserId(Integer id);
 
 
