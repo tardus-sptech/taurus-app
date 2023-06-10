@@ -91,6 +91,7 @@
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_cadastrar"
             style="@style/buttonCadastroTela"
             android:onClick="cadastrar"/>
 

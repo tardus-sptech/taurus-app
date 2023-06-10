@@ -2,6 +2,7 @@ package com.taurus.apptaurus.external
 
 import com.taurus.apptaurus.request.Usuario
 import com.taurus.apptaurus.request.UsuarioLogin
+import com.taurus.apptaurus.response.ResponseGasto
 import com.taurus.apptaurus.response.UsuarioCadastro
 import com.taurus.apptaurus.response.UsuarioDados
 import retrofit2.Call
@@ -20,6 +21,10 @@ interface ApiUsuarios {
     @Headers("Content-Type: application/json")
     @GET("/api/users/{idUser}")
     fun getDados(@Path("idUser") idUser: Int?): Call<UsuarioDados>
+
+    @Headers("Content-Type: application/json")
+    @GET("/api/spenties/user/{idUser}")
+    fun getGastos(@Path("idUser") idUser: Int?): Call<List<ResponseGasto>>
 
     @Headers("Content-Type: application/json")
     @POST("/api/users")

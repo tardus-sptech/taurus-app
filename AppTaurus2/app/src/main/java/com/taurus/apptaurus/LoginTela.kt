@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import com.taurus.apptaurus.external.Apis
@@ -15,10 +16,21 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class LoginTela : AppCompatActivity() {
+
+    lateinit var btnCad: Button;
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
         setContentView(R.layout.activity_login_tela)
+
+        btnCad = findViewById(R.id.btn_cad);
+
+        btnCad.setOnClickListener {
+            val intent = Intent(this, CadastroTela::class.java)
+            startActivity(intent)
+        }
+
     }
 
 
@@ -51,12 +63,14 @@ class LoginTela : AppCompatActivity() {
                 }
             }
 
+
             override fun onFailure(call: Call<Usuario>, t: Throwable) {
                 erroLogin.text = "Erro de conexão com o servidor"
                 println(t.printStackTrace())
             }
         })
     }
+
 
 
 }

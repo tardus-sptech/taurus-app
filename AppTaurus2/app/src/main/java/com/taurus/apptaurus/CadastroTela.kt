@@ -3,9 +3,10 @@ package com.taurus.apptaurus
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Gravity
 import android.view.View
-import android.widget.EditText
-import android.widget.TextView
+import android.view.ViewGroup
+import android.widget.*
 import com.taurus.apptaurus.external.Apis
 import com.taurus.apptaurus.request.Usuario
 import com.taurus.apptaurus.response.UsuarioCadastro
@@ -16,6 +17,9 @@ import retrofit2.Response
 class CadastroTela : AppCompatActivity() {
 
     lateinit var btnIntro2: TextView;
+    lateinit var registerButton: Button
+    private lateinit var binding: AppCompatActivity
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
@@ -27,6 +31,28 @@ class CadastroTela : AppCompatActivity() {
             val intent = Intent(this, TelaLgpd::class.java)
             startActivity(intent)
         }
+
+        registerButton = findViewById(R.id.btn_cadastrar)
+
+
+        registerButton.setOnClickListener {
+            val inflater = layoutInflater
+            val popupView = inflater.inflate(R.layout.activity_lgpd, null)
+            val termsCheckBox = popupView.findViewById<CheckBox>(R.id.chk_aceitar_termos)
+            val confirmButton = popupView.findViewById<Button>(R.id.btn_confirm_popup)
+            val popupWindow = PopupWindow(popupView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true)
+
+            popupWindow.showAtLocation(binding.root, Gravity.CENTER, 0, 0)
+            confirmButton.setOnClickListener {
+                if (termsCheckBox.isChecked) {
+                    popupWindow.dismiss()
+                    registerUser()
+                } else {
+                    Toast.makeText(this, "Você deve aceitar os termos e condições para continuar.", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
     }
 
 
@@ -62,4 +88,6 @@ class CadastroTela : AppCompatActivity() {
             }
         })
     }
+
+
 }

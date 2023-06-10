@@ -1,59 +1,104 @@
 package com.taurus.apptaurus
 
+import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.appcompat.app.AppCompatActivity
+import com.taurus.apptaurus.external.Apis
+import com.taurus.apptaurus.response.ResponseGasto
+import com.taurus.apptaurus.response.UsuarioDados
+import com.taurus.apptaurus.util.UserManager
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.text.DecimalFormat
+import java.text.NumberFormat
+import java.util.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HomeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var emptyStateTextView: TextView
+    private lateinit var adapter: GastoAdapter
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
-    }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HomeFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HomeFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+
+    val idUser = UserManager.userId
+    val apiGasto = Apis.getApiUsuarios().getGastos(idUser)
+    val apiUsuario = Apis.getApiUsuarios().getDados(idUser)
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+
+        val view = inflater.inflate(R.layout.fragment_home  , container, false)
+        val valorTotal = view.findViewById<TextView>(R.id.valorTotal)
+        recyclerView = view.findViewById(R.id.recycler_view_gastos_ganhos)
+        emptyStateTextView = view.findViewById(R.id.emptyStateTextView) // Inicializa o emptyStateTextView
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        apiGasto.enqueue(object : Callback<List<ResponseGasto>> {
+            override fun onResponse(call: Call<List<ResponseGasto>>, response: Response<List<ResponseGasto>>) {
+                if (response.isSuccessful) {
+                    val dataList = response?.body()
+                    if (dataList.isNullOrEmpty()) {
+                        showEmptyState()
+                    } else {
+                        adapter = GastoAdapter(dataList)
+                        recyclerView.adapter = adapter
+                    }
+                } else {
+                    // Handle error
                 }
             }
+
+            override fun onFailure(call: Call<List<ResponseGasto>>, t: Throwable) {
+                t.printStackTrace()
+                Toast.makeText(
+                    requireContext(),
+                    t.message,
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+
+        })
+
+        apiUsuario.enqueue(object : Callback<UsuarioDados> {
+            override fun onResponse(call: Call<UsuarioDados>, response: Response<UsuarioDados>) {
+                if (response.isSuccessful) {
+                    if (response.body()?.id != null) {
+                        val valor = response.body()?.valueInAccount?.let { formatarValor(it) }
+                        valorTotal.text = valor
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<UsuarioDados>, t: Throwable) {
+                valorTotal.text = "Erro no valor"
+                println(t.printStackTrace())
+            }
+
+        })
+
+        return view
     }
+
+    private fun showEmptyState() {
+        recyclerView.visibility = View.GONE
+        emptyStateTextView.visibility = View.VISIBLE
+    }
+
+    fun formatarValor(valor: Double): String {
+        val format = NumberFormat.getInstance(Locale("pt", "BR")) as DecimalFormat
+        format.applyPattern("#,##0.00")
+        return format.format(valor)
+    }
+
 }
+

@@ -130,5 +130,14 @@
         <item name="android:layout_marginTop">8dp</item>
 
     </style>
+    <style name="bottom_navigation">
+        <item name="backgroundTint">@color/white</item>
+    </style>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- ... Outros atributos de estilo ... -->
+
+        <!-- Altere a cor da barra de status aqui -->
+        <item name="android:statusBarColor">@color/primary_color</item>
+    </style>
 
 </resources>

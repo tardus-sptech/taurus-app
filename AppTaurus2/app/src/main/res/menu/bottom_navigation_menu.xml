@@ -23,12 +23,7 @@
         android:iconTint="@color/primary_color"
         app:showAsAction="always" />
 
-    <item
-        android:id="@+id/menu_metas"
-        android:icon="@drawable/metasicon"
-        android:title="Metas"
-        android:iconTint="@color/primary_color"
-        app:showAsAction="always" />
+
 
     <item
         android:id="@+id/menu_usuario"
