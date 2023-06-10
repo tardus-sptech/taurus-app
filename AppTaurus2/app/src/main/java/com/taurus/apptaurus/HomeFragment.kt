@@ -33,12 +33,16 @@ class HomeFragment : Fragment() {
     val idUser = UserManager.userId
     val apiGasto = Apis.getApiUsuarios().getGastos(idUser)
     val apiUsuario = Apis.getApiUsuarios().getDados(idUser)
+    val apiGastosTotal = Apis.getApiUsuarios().getGastosSoma(idUser)
+    val apiGanhosTotal = Apis.getApiUsuarios().getGanhosSoma(idUser)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
 
         val view = inflater.inflate(R.layout.fragment_home  , container, false)
         val valorTotal = view.findViewById<TextView>(R.id.valorTotal)
+        val ganhoTotal = view.findViewById<TextView>(R.id.ganhoTotal)
+        val gastoTotal = view.findViewById<TextView>(R.id.despesaTotal)
         recyclerView = view.findViewById(R.id.recycler_view_gastos_ganhos)
         emptyStateTextView = view.findViewById(R.id.emptyStateTextView) // Inicializa o emptyStateTextView
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -67,6 +71,38 @@ class HomeFragment : Fragment() {
                 ).show()
             }
 
+        })
+
+        apiGanhosTotal.enqueue(object : Callback<Double> {
+            override fun onResponse(call: Call<Double>, response: Response<Double>) {
+                if (response.isSuccessful) {
+                    val valor = response.body()
+                    val valorFormatado = valor?.let { formatarValor(it) }
+                    ganhoTotal.text = "R$ ${valorFormatado}"
+                } else {
+                    ganhoTotal.text = "R$ 0,00"
+                }
+            }
+
+            override fun onFailure(call: Call<Double>, t: Throwable) {
+                ganhoTotal.text = "Erro"
+            }
+        })
+
+        apiGastosTotal.enqueue(object : Callback<Double> {
+            override fun onResponse(call: Call<Double>, response: Response<Double>) {
+                if (response.isSuccessful) {
+                    val valor = response.body()
+                    val valorFormatado = valor?.let { formatarValor(it) }
+                    gastoTotal.text = "R$ ${valorFormatado}"
+                } else {
+                    gastoTotal.text = "R$ 0,00"
+                }
+            }
+
+            override fun onFailure(call: Call<Double>, t: Throwable) {
+                gastoTotal.text = "Erro"
+            }
         })
 
         apiUsuario.enqueue(object : Callback<UsuarioDados> {

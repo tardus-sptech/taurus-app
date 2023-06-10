@@ -27,6 +27,14 @@ interface ApiUsuarios {
     fun getGastos(@Path("idUser") idUser: Int?): Call<List<ResponseGasto>>
 
     @Headers("Content-Type: application/json")
+    @GET("/api/spenties/user/sum/{idUser}")
+    fun getGastosSoma(@Path("idUser") idUser: Int?): Call<Double>
+
+    @Headers("Content-Type: application/json")
+    @GET("/api/gains/user/sum/{idUser}")
+    fun getGanhosSoma(@Path("idUser") idUser: Int?): Call<Double>
+
+    @Headers("Content-Type: application/json")
     @POST("/api/users")
     fun postCadastrar(@Body usuarioCadastro: UsuarioCadastro): Call<Usuario>
 
