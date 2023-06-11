@@ -64,7 +64,7 @@ class CategoriasFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<Double>, t: Throwable) {
-                gastoTotal.text = "Erro"
+                gastoTotal.text = "R$ 0,00"
             }
         })
 
