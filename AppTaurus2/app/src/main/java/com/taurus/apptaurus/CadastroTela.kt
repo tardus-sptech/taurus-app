@@ -56,45 +56,46 @@ class CadastroTela : AppCompatActivity() {
 //    }
 
 
-        fun cadastrar(componente: View) {
-            val name = findViewById<EditText>(R.id.et_cadastro_nome)
-            val email = findViewById<EditText>(R.id.et_cadastro_email)
-            val password = findViewById<EditText>(R.id.et_cadastro_senha)
+    }
 
-            val apiUsuarios = Apis.getApiUsuarios()
-            val cadastro = UsuarioCadastro(
-                name.text.toString(),
-                null,
-                email.text.toString(),
-                password.text.toString(),
-                null,
-                0.0
-            )
-            val request = apiUsuarios.postCadastrar(cadastro)
-            val telaLogin = Intent(this, LoginTela::class.java)
+    fun cadastrar(componente: View) {
+        val name = findViewById<EditText>(R.id.et_cadastro_nome)
+        val email = findViewById<EditText>(R.id.et_cadastro_email)
+        val password = findViewById<EditText>(R.id.et_cadastro_senha)
 
-            val erroLogin = findViewById<TextView>(R.id.erroLogin)
+        val apiUsuarios = Apis.getApiUsuarios()
+        val cadastro = UsuarioCadastro(
+            name.text.toString(),
+            null,
+            email.text.toString(),
+            password.text.toString(),
+            null,
+            0.0
+        )
+        val request = apiUsuarios.postCadastrar(cadastro)
+        val telaLogin = Intent(this, LoginTela::class.java)
 
-            val home = Intent(applicationContext, Home::class.java)
+        val erroLogin = findViewById<TextView>(R.id.erroLogin)
+
+        val home = Intent(applicationContext, Home::class.java)
 
 
-            request.enqueue(object : Callback<Usuario> {
-                override fun onResponse(call: Call<Usuario>, response: Response<Usuario>) {
-                    if (response.isSuccessful) {
+        request.enqueue(object : Callback<Usuario> {
+            override fun onResponse(call: Call<Usuario>, response: Response<Usuario>) {
+                if (response.isSuccessful) {
 
-                        startActivity(telaLogin)
+                    startActivity(telaLogin)
 
-                    } else {
-                        erroLogin.text = "Login e/ou senha inválidos"
-                    }
+                } else {
+                    erroLogin.text = "Login e/ou senha inválidos"
                 }
+            }
 
-                override fun onFailure(call: Call<Usuario>, t: Throwable) {
-                    erroLogin.text = "Erro de conexão com o servidor"
-                    println(t.printStackTrace())
-                }
-            })
-        }
+            override fun onFailure(call: Call<Usuario>, t: Throwable) {
+                erroLogin.text = "Erro de conexão com o servidor"
+                println(t.printStackTrace())
+            }
+        })
     }
 
 }
