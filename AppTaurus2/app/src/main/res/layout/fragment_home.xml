@@ -70,6 +70,7 @@
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/adicButton"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:background="@drawable/adic_icon" />

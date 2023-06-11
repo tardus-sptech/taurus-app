@@ -1,6 +1,7 @@
 package com.taurus.apptaurus
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
 import com.taurus.apptaurus.external.Apis
 import com.taurus.apptaurus.response.ResponseGasto
 import com.taurus.apptaurus.response.UsuarioDados
@@ -36,6 +38,7 @@ class HomeFragment : Fragment() {
     val apiGastosTotal = Apis.getApiUsuarios().getGastosSoma(idUser)
     val apiGanhosTotal = Apis.getApiUsuarios().getGanhosSoma(idUser)
 
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
 
@@ -43,6 +46,15 @@ class HomeFragment : Fragment() {
         val valorTotal = view.findViewById<TextView>(R.id.valorTotal)
         val ganhoTotal = view.findViewById<TextView>(R.id.ganhoTotal)
         val gastoTotal = view.findViewById<TextView>(R.id.despesaTotal)
+
+        val btnClick = view.findViewById<AppCompatButton>(R.id.adicButton)
+
+        btnClick.setOnClickListener {
+            // Código para chamar a Activity
+            val intent = Intent(activity, LancamentoGain::class.java)
+            startActivity(intent)
+        }
+
         recyclerView = view.findViewById(R.id.recycler_view_gastos_ganhos)
         emptyStateTextView = view.findViewById(R.id.emptyStateTextView) // Inicializa o emptyStateTextView
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -135,6 +147,8 @@ class HomeFragment : Fragment() {
         format.applyPattern("#,##0.00")
         return format.format(valor)
     }
+
+
 
 }
 
