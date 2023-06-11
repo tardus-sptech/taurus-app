@@ -6,4 +6,92 @@
     android:layout_height="match_parent"
     tools:context=".LancamentoSpent">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="32dp">
+
+        <TextView
+            style="@style/title_spent"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            app:cardCornerRadius="15dp">
+            <ImageView
+                style="@style/img_swap_spent"/>
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                style="@style/RS_input_entry_spent_value"/>
+
+            <EditText
+                android:id="@+id/et_spent_value"
+                style="@style/input_spent_value"
+                android:inputType="number"
+                android:hint="0,00"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="40dp">
+
+            <TextView
+                style="@style/title_description_entry"/>
+
+            <EditText
+                android:id="@+id/et_spent_description"
+                style="@style/inputs_entry"
+                android:inputType="text"
+                android:drawableLeft="@drawable/edit_icon"
+                android:hint="Adicione uma descrição"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="40dp">
+
+            <TextView
+                style="@style/title_category_entry" />
+
+            <Spinner
+                android:id="@+id/spinner_spent"
+                style="@style/spinner_category" />
+
+        </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="80dp"
+            app:cardCornerRadius="15dp">
+
+            <ImageButton
+                android:id="@+id/btn_send_spent"
+                style="@style/btn_send_entry"
+                />
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

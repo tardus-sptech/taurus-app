@@ -33,7 +33,7 @@
             android:layout_marginTop="20dp">
 
             <TextView
-                style="@style/RS_input_entry_value"/>
+                style="@style/RS_input_entry_gain_value"/>
 
             <EditText
                 android:id="@+id/et_gain_value"

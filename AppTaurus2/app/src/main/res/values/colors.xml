@@ -13,4 +13,5 @@
     <color name="termos">#333333</color>
     <color name="errorLogin">#FF4D4D</color>
     <color name="green_gain_value">#3DE52E</color>
+    <color name="red_spent_value">#EE2222</color>
 </resources>

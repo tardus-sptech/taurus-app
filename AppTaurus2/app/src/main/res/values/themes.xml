@@ -113,6 +113,16 @@
         <item name="android:text">@string/title_gain</item>
         <item name="android:textColor">@color/black</item>
     </style>
+
+    <style name="title_spent">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">35dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:text">@string/title_spent</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
     
     <style name="inputs_entry">
         <item name="android:layout_width">match_parent</item>
@@ -138,6 +148,13 @@
         <item name="android:src">@drawable/swap_entry_icon</item>
         <item name="android:background">@color/green_gain_value</item>
     </style>
+
+    <style name="img_swap_spent">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:src">@drawable/swap_entry_icon</item>
+        <item name="android:background">@color/red_spent_value</item>
+    </style>
     
     <style name="input_gain_value">
         <item name="android:layout_width">wrap_content</item>
@@ -148,7 +165,16 @@
         <item name="android:textColorHint">@color/green_gain_value</item>
     </style>
 
-    <style name="RS_input_entry_value">
+    <style name="input_spent_value">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@null</item>
+        <item name="android:textSize">40sp</item>
+        <item name="android:textColor">@color/red_spent_value</item>
+        <item name="android:textColorHint">@color/red_spent_value</item>
+    </style>
+
+    <style name="RS_input_entry_gain_value">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:text">@string/R_cifrao</item>
@@ -158,11 +184,36 @@
         <item name="android:gravity">center_vertical</item>
     </style>
 
+    <style name="RS_input_entry_spent_value">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">@string/R_cifrao</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:paddingRight">5dp</item>
+        <item name="android:textColor">@color/red_spent_value</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
     <style name="title_description_entry">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:text">@string/title_description_entry</item>
         <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="title_category_entry">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">@string/title_category_entry</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="spinner_category">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:background">@drawable/spinner_border</item>
     </style>
 
     <style name="title_log">

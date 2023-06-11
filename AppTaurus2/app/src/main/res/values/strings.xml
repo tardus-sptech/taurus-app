@@ -10,7 +10,9 @@
     <string name="button_intro">Próximo passo</string>
     <string name="title_cadastro">Seja bem-vindo!</string>
     <string name="title_gain">Adicione um ganho</string>
+    <string name="title_spent">Adicione um gasto</string>
     <string name="title_description_entry">Descrição</string>
+    <string name="title_category_entry">Categoria</string>
     <string name="R_cifrao">R$</string>
 
     <string name="cad_nome">Nome Completo</string>
