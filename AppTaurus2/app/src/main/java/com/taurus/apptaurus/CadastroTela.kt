@@ -63,6 +63,10 @@ class CadastroTela : AppCompatActivity() {
         val email = findViewById<EditText>(R.id.et_cadastro_email)
         val password = findViewById<EditText>(R.id.et_cadastro_senha)
 
+        val check = findViewById<CheckBox>(R.id.checkLgpd)
+
+        if (check.isChecked) {
+
         val apiUsuarios = Apis.getApiUsuarios()
         val cadastro = UsuarioCadastro(
             name.text.toString(),
@@ -96,6 +100,9 @@ class CadastroTela : AppCompatActivity() {
                 println(t.printStackTrace())
             }
         })
+        } else{
+            Toast.makeText(this, "Você deve aceitar os termos e condições para continuar.", Toast.LENGTH_SHORT).show()
+        }
     }
 
 }
