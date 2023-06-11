@@ -97,7 +97,7 @@ class HomeFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<Double>, t: Throwable) {
-                ganhoTotal.text = "Erro"
+                ganhoTotal.text = "R$ 0,00"
             }
         })
 
@@ -113,7 +113,7 @@ class HomeFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<Double>, t: Throwable) {
-                gastoTotal.text = "Erro"
+                gastoTotal.text = "R$ 0,00"
             }
         })
 
