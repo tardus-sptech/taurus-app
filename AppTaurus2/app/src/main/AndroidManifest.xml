@@ -19,6 +19,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".LancamentoSpent"
+            android:exported="false" />
+        <activity
             android:name=".LancamentoGain"
             android:exported="false"
             android:label="@string/title_activity_lancamento_gain"
