@@ -9,6 +9,9 @@
     <string name="text_intro3">Muito fácil de utilizar e fácil de entender para os iniciantes</string>
     <string name="button_intro">Próximo passo</string>
     <string name="title_cadastro">Seja bem-vindo!</string>
+    <string name="title_gain">Adicione um ganho</string>
+    <string name="title_description_entry">Descrição</string>
+    <string name="R_cifrao">R$</string>
 
     <string name="cad_nome">Nome Completo</string>
     <string name="email">E-mail</string>
@@ -172,4 +175,5 @@ Os eventuais litígios deverão ser apresentados no foro da comarca em que se en
     <string name="termos2_cadastro">Termos e Condições</string>
     <string name="j_tem_uma_conta">Já tem uma conta?</string>
     <string name="login_cadastro">Login</string>
+    <string name="title_activity_lancamento_gain">activity_lancamento_gain</string>
 </resources>
