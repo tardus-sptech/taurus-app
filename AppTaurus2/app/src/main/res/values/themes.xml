@@ -90,6 +90,10 @@
         <item name="android:textColor">@color/primary_color</item>
     </style>
 
+    <style name="buttonBack">
+        <item name="android:layout_width">20dp</item>
+    </style>
+
     <style name="title_cad">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -98,6 +102,67 @@
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/title</item>
         <item name="android:layout_marginBottom">52dp</item>
+    </style>
+
+    <style name="title_gain">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">35dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:text">@string/title_gain</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    
+    <style name="inputs_entry">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingBottom">14dp</item>
+        <item name="android:drawablePadding">8dp</item>
+        <item name="android:textColor">@color/primary_color</item>
+        <item name="android:backgroundTint">@color/primary_color</item>
+        <item name="android:textColorHint">@color/black</item>
+    </style>
+    
+    <style name="btn_send_entry">
+        <item name="android:layout_width">48dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:src">@drawable/right_arrow</item>
+        <item name="android:background">@color/primary_color</item>
+    </style>
+
+    <style name="img_swap_gain">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:src">@drawable/swap_entry_icon</item>
+        <item name="android:background">@color/green_gain_value</item>
+    </style>
+    
+    <style name="input_gain_value">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@null</item>
+        <item name="android:textSize">40sp</item>
+        <item name="android:textColor">@color/green_gain_value</item>
+        <item name="android:textColorHint">@color/green_gain_value</item>
+    </style>
+
+    <style name="RS_input_entry_value">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">@string/R_cifrao</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:paddingRight">5dp</item>
+        <item name="android:textColor">@color/green_gain_value</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="title_description_entry">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">@string/title_description_entry</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="title_log">
@@ -130,9 +195,11 @@
         <item name="android:layout_marginTop">8dp</item>
 
     </style>
+
     <style name="bottom_navigation">
         <item name="backgroundTint">@color/white</item>
     </style>
+
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- ... Outros atributos de estilo ... -->
 

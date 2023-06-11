@@ -12,4 +12,5 @@
     <color name="text_intro">#999999</color>
     <color name="termos">#333333</color>
     <color name="errorLogin">#FF4D4D</color>
+    <color name="green_gain_value">#3DE52E</color>
 </resources>

@@ -19,6 +19,16 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".LancamentoGain"
+            android:exported="false"
+            android:label="@string/title_activity_lancamento_gain"
+            android:theme="@style/Theme.AppTaurus" />
+        <activity
+            android:name=".activity_lancamento_gain"
+            android:exported="false"
+            android:label="@string/title_activity_lancamento_gain"
+            android:theme="@style/Theme.AppTaurus" />
+        <activity
             android:name=".TelaLgpd"
             android:exported="false" />
         <activity
