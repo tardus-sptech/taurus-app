@@ -17,6 +17,7 @@
         android:paddingHorizontal="18dp">
 
         <TextView
+            android:text="@string/title_home"
             style="@style/titles"/>
 
         <LinearLayout
