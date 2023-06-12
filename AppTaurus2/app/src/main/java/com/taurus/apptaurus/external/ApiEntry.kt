@@ -23,6 +23,6 @@ interface ApiEntry {
     fun SpentResponse(@Body spentRequest: SpentRequest): Call<Spent>
     @Headers("Content-Type: application/json")
     @GET("/api/categories")
-    fun categoryResponse(param: Callback<List<CategoryResponse>>): Call<List<CategoryResponse>>
+    fun categoryResponse(): Call<List<CategoryResponse>>
 
 }

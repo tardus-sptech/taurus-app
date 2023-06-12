@@ -39,6 +39,7 @@ class HomeFragment : Fragment() {
     val apiGanhosTotal = Apis.getApiUsuarios().getGanhosSoma(idUser)
 
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
 
@@ -52,6 +53,12 @@ class HomeFragment : Fragment() {
         btnClick.setOnClickListener {
             // Código para chamar a Activity
             val intent = Intent(activity, LancamentoGain::class.java)
+            startActivity(intent)
+        }
+        val adicSpenties = view.findViewById<AppCompatButton>(R.id.adicSpent)
+
+        adicSpenties.setOnClickListener {
+            val intent = Intent(activity, LancamentoSpent::class.java)
             startActivity(intent)
         }
 
