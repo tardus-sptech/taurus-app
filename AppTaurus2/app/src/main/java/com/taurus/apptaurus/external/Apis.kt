@@ -15,4 +15,12 @@ object Apis {
         return retrofit.create(ApiUsuarios::class.java)
     }
 
+    fun getApiEntry(): ApiEntry{
+        val retrofit = Retrofit.Builder()
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl(BASE_URL).build()
+
+        return retrofit.create(ApiEntry::class.java)
+    }
+
 }
