@@ -70,6 +70,7 @@
 
             <ImageButton
                 android:id="@+id/btn_send_gain"
+                android:onClick="addGain"
                 style="@style/btn_send_entry"
                 />
 
