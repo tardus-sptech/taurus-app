@@ -85,6 +85,7 @@
 
             <ImageButton
                 android:id="@+id/btn_send_spent"
+                android:onClick="addSpent"
                 style="@style/btn_send_entry"
                 />
 
