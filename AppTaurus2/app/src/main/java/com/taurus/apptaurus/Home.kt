@@ -49,10 +49,7 @@ class Home : AppCompatActivity() {
                     true
                 }
                 R.id.menu_analise -> {
-                    val fragment = HomeFragment()
-                    val bundle = Bundle()
-                    bundle.putString("nome", intent.getStringExtra("nome"))
-                    bundle.putString("personId", intent.getStringExtra("personId"))
+                    val fragment = CategoriasFragment()
                     fragment.arguments = bundle
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.fragment_container, fragment)
