@@ -54,7 +54,9 @@ class LoginTela : AppCompatActivity() {
                         home.putExtra("password", password.text.toString())
 
                     val userId = response.body()?.id
+                    val nome = response.body()?.name
                     UserManager.updateUserId(userId)
+                    UserManager.updateNome(nome)
 
                         startActivity(home)
 

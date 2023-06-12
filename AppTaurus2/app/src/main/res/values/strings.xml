@@ -179,4 +179,5 @@ Os eventuais litígios deverão ser apresentados no foro da comarca em que se en
     <string name="login_cadastro">Login</string>
     <string name="title_activity_lancamento_gain">activity_lancamento_gain</string>
     <string name="title_categorias">CATEGORIAS</string>
+    <string name="title_perfil">PERFIL</string>
 </resources>

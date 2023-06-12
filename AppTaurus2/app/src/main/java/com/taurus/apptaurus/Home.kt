@@ -67,9 +67,7 @@ class Home : AppCompatActivity() {
                     true
                 }
                 R.id.menu_usuario -> {
-                    val fragment = HomeFragment()
-                    val bundle = Bundle()
-                    bundle.putString("personId", intent.getStringExtra("personId"))
+                    val fragment = PerfilFragment()
                     fragment.arguments = bundle
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.fragment_container, fragment)
