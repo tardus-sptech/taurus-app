@@ -30,16 +30,7 @@ import java.text.DecimalFormat
 import java.text.NumberFormat
 import java.util.Locale
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [CategoriasFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class CategoriasFragment : Fragment() {
 
     private val idUser = UserManager.userId
@@ -49,7 +40,6 @@ class CategoriasFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: CategoriaAdapter
     private var listaDados: List<CategoriasSoma> = listOf()
-    
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,7 +55,7 @@ class CategoriasFragment : Fragment() {
                 if (response.isSuccessful) {
                     val valor = response.body()
                     val valorFormatado = valor?.let { formatarValor(it) }
-                    gastoTotal.text = "R$ ${valorFormatado}"
+                    gastoTotal.text = "R$ $valorFormatado"
                 } else {
                     gastoTotal.text = "R$ 0,00"
                 }
@@ -89,9 +79,15 @@ class CategoriasFragment : Fragment() {
                         categoriaSoma.totalValue != null && categoriaSoma.totalValue > 0
                     }
 
-                    // Crie uma lista de entradas de dados para o gráfico de pizza
-                    val entries = filteredList?.map { categoriaSoma ->
-                        PieEntry(categoriaSoma.totalValue!!.toFloat(), categoriaSoma.description)
+                    // Calcular a soma total dos totalValue dos objetos restantes
+                    val totalSum = filteredList?.sumByDouble { it.totalValue ?: 0.0 }
+
+                    // Criar uma lista de entradas de dados para o gráfico de pizza
+                    val entries = ArrayList<PieEntry>()
+
+                    filteredList?.forEach { categoriaSoma ->
+                        val percentage = (categoriaSoma.totalValue ?: 0.0) / (totalSum ?: 1.0) * 100
+                        entries.add(PieEntry(percentage.toFloat(), categoriaSoma.description))
                     }
 
                     // Crie um conjunto de dados para o gráfico de pizza
@@ -146,8 +142,6 @@ class CategoriasFragment : Fragment() {
                 // Trate o erro de solicitação aqui
             }
         })
-
-
 
         return view
     }
