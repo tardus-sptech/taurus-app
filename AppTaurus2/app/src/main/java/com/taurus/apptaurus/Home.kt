@@ -57,9 +57,7 @@ class Home : AppCompatActivity() {
                     true
                 }
                 R.id.menu_noticias -> {
-                    val fragment = HomeFragment()
-                    val bundle = Bundle()
-                    bundle.putString("personId", intent.getStringExtra("personId"))
+                    val fragment = NewsFragment()
                     fragment.arguments = bundle
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.fragment_container, fragment)
