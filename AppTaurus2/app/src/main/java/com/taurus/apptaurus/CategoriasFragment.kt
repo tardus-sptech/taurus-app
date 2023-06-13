@@ -50,8 +50,6 @@ class CategoriasFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_categorias, container, false)
         val gastoTotal = view.findViewById<TextView>(R.id.gastoTotal)
 
-        val pieChart = view.findViewById<PieChart>(R.id.pieChart)
-
         apiGastosTotal.enqueue(object : Callback<Double> {
             override fun onResponse(call: Call<Double>, response: Response<Double>) {
                 if (response.isSuccessful) {
@@ -68,88 +66,34 @@ class CategoriasFragment : Fragment() {
             }
         })
 
-        apiGasto.enqueue(object : Callback<List<ResponseGasto>> {
-            override fun onResponse(
-                call: Call<List<ResponseGasto>>,
-                response: Response<List<ResponseGasto>>
-            ) {
-                if (response.isSuccessful) {
+        // Obtenha a referência do PieChart do layout
+        val pieChart = view.findViewById<PieChart>(R.id.pieChart)
 
-                    val responseGastos: Response<List<ResponseGasto>> = response
+        // Crie uma lista de entradas de dados para o gráfico de pizza
+        val entries = listOf(
+            PieEntry(25f, "Categoria 1"),
+            PieEntry(35f, "Categoria 2"),
+            PieEntry(40f, "Categoria 3")
+        )
 
-                    val somaPorCategoria = mutableMapOf<String, Double>()
+        // Crie um conjunto de dados para o gráfico de pizza
+        val dataSet = PieDataSet(entries, "Categorias")
+        dataSet.setColors(ColorTemplate.COLORFUL_COLORS, 255)
 
-                    response.body()?.forEach { gasto ->
-                        val categoria = gasto.category?.description
-                        val valor = gasto.value ?: 0.0
+        // Crie um objeto PieData para encapsular o conjunto de dados
+        val data = PieData(dataSet)
 
-                        if (categoria != null) {
-                            if (somaPorCategoria.containsKey(categoria)) {
-                                // Categoria já existe no mapa, adiciona o valor atual
-                                val valorAnterior = somaPorCategoria[categoria] ?: 0.0
-                                somaPorCategoria[categoria] = valorAnterior + valor
-                            } else {
-                                // Categoria não existe no mapa, adiciona com o valor atual
-                                somaPorCategoria[categoria] = valor
-                            }
-                        }
-                    }
+        // Personalize o gráfico de pizza, se necessário
+        pieChart.description.isEnabled = false
+        pieChart.setEntryLabelColor(Color.BLACK)
 
-                    val gastos = somaPorCategoria.map { (categoria, valor) ->
-                        GastoPorCategoria(categoria, valor.toFloat())
-                    }
+        // Defina os dados no gráfico de pizza
+        pieChart.data = data
 
-                    val entries = mutableListOf<PieEntry>()
-                    val labels = mutableListOf<String>()
-
-                    for (gasto in gastos) {
-                        entries.add(PieEntry(gasto.valor.toFloat(), gasto.categoria))
-                    }
-
-                    val dataSet = PieDataSet(entries, "Gastos por Categoria")
-                    dataSet.colors = ColorTemplate.COLORFUL_COLORS.toList()
-
-                    val data = PieData(dataSet)
-                    data.setDrawValues(false)
-
-                    pieChart.description.isEnabled = true
-                    pieChart.description.text = "Gastos por Categoria"
-                    pieChart.legend.isEnabled = true
-
-                    pieChart.data = data
-                    pieChart.invalidate()
-
-// Configura os rótulos das categorias
-                    pieChart.setDrawEntryLabels(true)
-                    pieChart.setEntryLabelColor(Color.BLACK)
-                    pieChart.setEntryLabelTextSize(12f)
-
-                    val legend = pieChart.legend
-                    legend.form = Legend.LegendForm.CIRCLE
-                    legend.setDrawInside(false)
-                    legend.orientation = Legend.LegendOrientation.VERTICAL
-                    legend.horizontalAlignment = Legend.LegendHorizontalAlignment.RIGHT
-                    legend.verticalAlignment = Legend.LegendVerticalAlignment.TOP
-                    legend.textSize = 12f
-                    legend.xEntrySpace = 8f
-                    legend.yEntrySpace = 8f
-                    legend.yOffset = 0f
-                    legend.xOffset = 0f
-                    legend.setDrawInside(false)
+        // Atualize o gráfico
+        pieChart.invalidate()
 
 
-                    pieChart.invalidate()
-
-                } else {
-                    // Handle error
-                }
-            }
-
-            override fun onFailure(call: Call<List<ResponseGasto>>, t: Throwable) {
-                TODO("Not yet implemented")
-            }
-
-        })
 
         return view
     }
