@@ -1,12 +1,10 @@
 package com.taurus.apptaurus.response
 
-import java.util.*
-
-data class ResponseGasto(
+data class ResponseGanho(
     val id: Int?,
     val name: String?,
     val value: Double?,
-    val category: Category?,
+    val category: String = "Receita",
     val user: User?,
     val created_at: String?
 )

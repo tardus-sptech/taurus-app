@@ -2,6 +2,7 @@ package com.taurus.apptaurus.external
 
 import com.taurus.apptaurus.request.Usuario
 import com.taurus.apptaurus.request.UsuarioLogin
+import com.taurus.apptaurus.response.ResponseGanho
 import com.taurus.apptaurus.response.ResponseGasto
 import com.taurus.apptaurus.response.UsuarioCadastro
 import com.taurus.apptaurus.response.UsuarioDados
@@ -25,6 +26,10 @@ interface ApiUsuarios {
     @Headers("Content-Type: application/json")
     @GET("/api/spenties/user/{idUser}")
     fun getGastos(@Path("idUser") idUser: Int?): Call<List<ResponseGasto>>
+
+    @Headers("Content-Type: application/json")
+    @GET("/api/gains/user/{idUser}")
+    fun getGanhos(@Path("idUser") idUser: Int?): Call<List<ResponseGanho>>
 
     @Headers("Content-Type: application/json")
     @GET("/api/spenties/user/sum/{idUser}")

@@ -1,5 +1,6 @@
 package com.taurus.apptaurus
 
+import GastoAdapter
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import com.taurus.apptaurus.external.Apis
+import com.taurus.apptaurus.response.ResponseGanho
 import com.taurus.apptaurus.response.ResponseGasto
 import com.taurus.apptaurus.response.UsuarioDados
 import com.taurus.apptaurus.util.UserManager
@@ -22,7 +24,10 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.text.DecimalFormat
 import java.text.NumberFormat
+import java.text.SimpleDateFormat
 import java.util.*
+import java.util.Collections.max
+import kotlin.math.max
 
 class HomeFragment : Fragment() {
 
@@ -30,132 +35,144 @@ class HomeFragment : Fragment() {
     private lateinit var emptyStateTextView: TextView
     private lateinit var adapter: GastoAdapter
 
+    private val idUser = UserManager.userId
+    private val apiGasto = Apis.getApiUsuarios().getGastos(idUser)
+    private val apiGanho = Apis.getApiUsuarios().getGanhos(idUser)
+    private val apiUsuario = Apis.getApiUsuarios().getDados(idUser)
+    private val apiGastosTotal = Apis.getApiUsuarios().getGastosSoma(idUser)
+    private val apiGanhosTotal = Apis.getApiUsuarios().getGanhosSoma(idUser)
 
+    private var gastoResponse: List<ResponseGasto>? = null
+    private var ganhoResponse: List<ResponseGanho>? = null
 
-    val idUser = UserManager.userId
-    val apiGasto = Apis.getApiUsuarios().getGastos(idUser)
-    val apiUsuario = Apis.getApiUsuarios().getDados(idUser)
-    val apiGastosTotal = Apis.getApiUsuarios().getGastosSoma(idUser)
-    val apiGanhosTotal = Apis.getApiUsuarios().getGanhosSoma(idUser)
-
-
-    @SuppressLint("MissingInflatedId")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
-
-        val view = inflater.inflate(R.layout.fragment_home  , container, false)
+        val view = inflater.inflate(R.layout.fragment_home, container, false)
         val valorTotal = view.findViewById<TextView>(R.id.valorTotal)
         val ganhoTotal = view.findViewById<TextView>(R.id.ganhoTotal)
         val gastoTotal = view.findViewById<TextView>(R.id.despesaTotal)
 
         val btnClick = view.findViewById<AppCompatButton>(R.id.adicButton)
-
         btnClick.setOnClickListener {
-            // Código para chamar a Activity
             val intent = Intent(activity, LancamentoGain::class.java)
             startActivity(intent)
         }
-        val adicSpenties = view.findViewById<AppCompatButton>(R.id.adicSpent)
 
+        val adicSpenties = view.findViewById<AppCompatButton>(R.id.adicSpent)
         adicSpenties.setOnClickListener {
             val intent = Intent(activity, LancamentoSpent::class.java)
             startActivity(intent)
         }
 
         recyclerView = view.findViewById(R.id.recycler_view_gastos_ganhos)
-        emptyStateTextView = view.findViewById(R.id.emptyStateTextView) // Inicializa o emptyStateTextView
+        emptyStateTextView = view.findViewById(R.id.emptyStateTextView)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        adapter = GastoAdapter(listOf())
+        recyclerView.adapter = adapter
 
         apiGasto.enqueue(object : Callback<List<ResponseGasto>> {
             override fun onResponse(call: Call<List<ResponseGasto>>, response: Response<List<ResponseGasto>>) {
                 if (response.isSuccessful) {
-                    val dataList = response?.body()
-                    if (dataList.isNullOrEmpty()) {
-                        showEmptyState()
-                    } else {
-                        adapter = GastoAdapter(dataList)
-                        recyclerView.adapter = adapter
-                    }
+                    gastoResponse = response.body()
+                    onResponseComplete()
                 } else {
                     // Handle error
                 }
             }
 
             override fun onFailure(call: Call<List<ResponseGasto>>, t: Throwable) {
-                t.printStackTrace()
-                Toast.makeText(
-                    requireContext(),
-                    t.message,
-                    Toast.LENGTH_SHORT
-                ).show()
+                // Handle failure
             }
-
         })
 
-        apiGanhosTotal.enqueue(object : Callback<Double> {
-            override fun onResponse(call: Call<Double>, response: Response<Double>) {
+        apiGanho.enqueue(object : Callback<List<ResponseGanho>> {
+            override fun onResponse(call: Call<List<ResponseGanho>>, response: Response<List<ResponseGanho>>) {
                 if (response.isSuccessful) {
-                    val valor = response.body()
-                    val valorFormatado = valor?.let { formatarValor(it) }
-                    ganhoTotal.text = "R$ ${valorFormatado}"
+                    ganhoResponse = response.body()
+                    onResponseComplete()
                 } else {
-                    ganhoTotal.text = "R$ 0,00"
+                    // Handle error
                 }
             }
 
-            override fun onFailure(call: Call<Double>, t: Throwable) {
-                ganhoTotal.text = "R$ 0,00"
+            override fun onFailure(call: Call<List<ResponseGanho>>, t: Throwable) {
+                // Handle failure
             }
         })
 
         apiGastosTotal.enqueue(object : Callback<Double> {
             override fun onResponse(call: Call<Double>, response: Response<Double>) {
                 if (response.isSuccessful) {
-                    val valor = response.body()
-                    val valorFormatado = valor?.let { formatarValor(it) }
-                    gastoTotal.text = "R$ ${valorFormatado}"
+                    val gastoTotalValue = response.body()
+                    gastoTotal.text = formatCurrency(gastoTotalValue ?: 0.0)
                 } else {
-                    gastoTotal.text = "R$ 0,00"
+                    // Handle error
                 }
             }
 
             override fun onFailure(call: Call<Double>, t: Throwable) {
-                gastoTotal.text = "R$ 0,00"
+                // Handle failure
+            }
+        })
+
+        apiGanhosTotal.enqueue(object : Callback<Double> {
+            override fun onResponse(call: Call<Double>, response: Response<Double>) {
+                if (response.isSuccessful) {
+                    val ganhoTotalValue = response.body()
+                    ganhoTotal.text = formatCurrency(ganhoTotalValue ?: 0.0)
+                } else {
+                    // Handle error
+                }
+            }
+
+            override fun onFailure(call: Call<Double>, t: Throwable) {
+                // Handle failure
             }
         })
 
         apiUsuario.enqueue(object : Callback<UsuarioDados> {
             override fun onResponse(call: Call<UsuarioDados>, response: Response<UsuarioDados>) {
                 if (response.isSuccessful) {
-                    if (response.body()?.id != null) {
-                        val valor = response.body()?.valueInAccount?.let { formatarValor(it) }
-                        valorTotal.text = valor
-                    }
+                    val usuario = response.body()
+                    valorTotal.text = usuario?.valueInAccount.toString()
+                } else {
+                    // Handle error
                 }
             }
 
             override fun onFailure(call: Call<UsuarioDados>, t: Throwable) {
-                valorTotal.text = "Erro no valor"
-                println(t.printStackTrace())
+                // Handle failure
             }
-
         })
 
         return view
     }
 
-    private fun showEmptyState() {
-        recyclerView.visibility = View.GONE
-        emptyStateTextView.visibility = View.VISIBLE
+    private fun onResponseComplete() {
+        if (gastoResponse != null && ganhoResponse != null) {
+            val combinedList = combineLists(gastoResponse!!, ganhoResponse!!)
+            if (combinedList.isEmpty()) {
+                emptyStateTextView.visibility = View.VISIBLE
+                recyclerView.visibility = View.GONE
+            } else {
+                emptyStateTextView.visibility = View.GONE
+                recyclerView.visibility = View.VISIBLE
+                adapter.setData(combinedList)
+            }
+        }
     }
 
-    fun formatarValor(valor: Double): String {
-        val format = NumberFormat.getInstance(Locale("pt", "BR")) as DecimalFormat
-        format.applyPattern("#,##0.00")
-        return format.format(valor)
+    private fun combineLists(gastos: List<ResponseGasto>, ganhos: List<ResponseGanho>): List<CombinedData> {
+        val combinedList: MutableList<CombinedData> = mutableListOf()
+
+        combinedList.addAll(gastos.map { CombinedData(it, null) })
+        combinedList.addAll(ganhos.map { CombinedData(null, it) })
+
+        return combinedList.sortedByDescending { it.getData() as? String }
     }
 
-
-
+    private fun formatCurrency(value: Double): String {
+        val formatter: NumberFormat = DecimalFormat("#,##0.00")
+        return "R$ ${formatter.format(value)}"
+    }
 }
-

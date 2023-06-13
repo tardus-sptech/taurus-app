@@ -21,7 +21,7 @@
 
             <TextView
                 style="@style/titles"
-                android:text="@string/title_categorias" />
+                android:text="@string/title_perfil1" />
 
             <LinearLayout
                 android:layout_width="match_parent"
