@@ -5,6 +5,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.taurus.apptaurus.CombinedData
 import com.taurus.apptaurus.R
+import java.text.DecimalFormat
+import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -51,14 +53,14 @@ class GastoAdapter(private var listaDados: List<CombinedData>) : RecyclerView.Ad
                 val gasto = item.getGasto()
                 gastoHolder.categoria.text = gasto?.category?.description
                 gastoHolder.data.text = gasto?.created_at?.let { formatarData(it) }
-                gastoHolder.valor.text = "R$ ${gasto?.value}"
+                gastoHolder.valor.text = "${gasto?.value?.let { formatCurrency(it) }}"
             }
             TIPO_GANHO -> {
                 val ganhoHolder = holder as GanhoViewHolder
                 val ganho = item.getGanho()
                 ganhoHolder.categoria.text = "Receita"
                 ganhoHolder.data.text = ganho?.created_at?.let { formatarData(it) }
-                ganhoHolder.valor.text = "R$ ${ganho?.value}"
+                ganhoHolder.valor.text = "${ganho?.value?.let { formatCurrency(it) }}"
             }
             else -> throw IllegalArgumentException("Tipo de ViewHolder desconhecido")
         }
@@ -90,5 +92,10 @@ class GastoAdapter(private var listaDados: List<CombinedData>) : RecyclerView.Ad
     fun setData(combinedList: List<CombinedData>) {
         this.listaDados = combinedList
         notifyDataSetChanged()
+    }
+
+    private fun formatCurrency(value: Double): String {
+        val formatter: NumberFormat = DecimalFormat("#,##0.00")
+        return "R$ ${formatter.format(value)}"
     }
 }

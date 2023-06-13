@@ -54,12 +54,12 @@
 
             <TextView
                 android:id="@+id/valor_ganho"
-                android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:gravity="right|center_vertical"
                 android:text="R$ 0,00"
                 android:textColor="#3DE52E"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
         </LinearLayout>
 
