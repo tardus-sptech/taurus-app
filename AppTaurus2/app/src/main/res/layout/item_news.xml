@@ -5,19 +5,26 @@
     android:padding="8dp">
 
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/title_news"
-        android:textStyle="bold"
-        style="item_news" />
+        android:textStyle="bold" />
 
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/author_news"
         style="item_news" />
 
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/description_news"
         style="item_news" />
 
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/published_at_news"
         style="item_news" />
 

@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.taurus.apptaurus.R
 import com.taurus.apptaurus.request.News
 
-class NewsAdapter(private var newsList: List<News>) : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
+class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
+
+    private val newsList: MutableList<News> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_news, parent, false)
@@ -24,12 +26,19 @@ class NewsAdapter(private var newsList: List<News>) : RecyclerView.Adapter<NewsA
         return newsList.size
     }
 
-    fun setData(data: List<News>) {
-        newsList = data
+    fun setData(news: List<News>) {
+        newsList.clear()
+        newsList.addAll(news)
         notifyDataSetChanged()
     }
 
     inner class NewsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+
+        private val titleTextView: TextView = itemView.findViewById(R.id.title_news)
+        private val authorTextView: TextView = itemView.findViewById(R.id.author_news)
+        private val descriptionTextView: TextView = itemView.findViewById(R.id.description_news)
+        private val publishedAtTextView: TextView = itemView.findViewById(R.id.published_at_news)
+
         fun bind(news: News) {
             itemView.findViewById<TextView>(R.id.title_news).text = news.title
             itemView.findViewById<TextView>(R.id.author_news).text = news.author
